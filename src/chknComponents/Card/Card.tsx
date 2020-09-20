@@ -7,32 +7,50 @@ import {
   StyledBottomValueWrapper,
   StyledWrapper,
 } from './styled'
+import { MenuCardProps } from './components/MenuCard/MenuCard'
 
-interface CardProps {
+interface CardProps extends MenuCardProps {
   iconName?: string
   title?: string
   value?: string
+  subtitle?: string
   className?: string
+  btnText?: string
   type?: 'menu' | 'info'
   onCardClick?: () => void
+  onBtnClick?: () => void
   bottomText?: string
   bottomUnits?: string
   bottomValue?: string
   isFooterVisible?: boolean
+  isBtnDisabled?: boolean
 }
 
 const Card: React.FC<CardProps> = ({ isFooterVisible = false, ...props }) => {
   const renderCardByType = () => {
     switch (props.type) {
       case 'menu':
-        return <MenuCard title={props.title} />
+        return (
+          <MenuCard
+            title={props.title}
+            subtitle={props.subtitle}
+            onBtnClick={props.onBtnClick}
+            {...props}
+          />
+        )
       case 'info':
       default:
-        return <InfoCard iconName={props.iconName} title={props.title} value={props.value} />
+        return (
+          <InfoCard
+            iconName={props.iconName}
+            title={props.title}
+            value={props.value}
+          />
+        )
     }
   }
 
-  console.log(props);
+  console.log(props)
 
   return (
     <StyledWrapper className={props.className} onClick={props.onCardClick}>

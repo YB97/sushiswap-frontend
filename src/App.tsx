@@ -16,7 +16,9 @@ import Home from './views/Home'
 import Stake from './views/Stake'
 import CHKNHome from './views/CHKNHome'
 import CHKNAbout from './views/CHKNAbout'
+import CHKNMenuItem from './views/CHKNMenuItem'
 import Header from './chknComponents/Header'
+import CHKNMenu from './views/CHKNMenu'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -37,7 +39,12 @@ const App: React.FC = () => {
         <Header />
         <Switch>
           <Route path="/menu" exact>
-            <Farms />
+            {/* <Farms /> */}
+            <CHKNMenu />
+            {/* <Farms /> */}
+          </Route>
+          <Route exact path="/menu/:id">
+            <CHKNMenuItem />
           </Route>
           <Route path="/about" exact>
             <CHKNAbout />
