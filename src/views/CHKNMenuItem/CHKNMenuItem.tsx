@@ -108,7 +108,6 @@ const CHKNMenuItem = () => {
     }
   }, [onApprove, setRequestedApproval])
 
-  // const isNotAllowed = false
   const isNotAllowed = !allowance.toNumber()
 
   return (
