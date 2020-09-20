@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ menuItems }) => {
 
   const renderNavLinks = () => {
     return menuItems.map((menuItem: MenuItemProps) => {
-      return <MenuItem {...menuItem} />
+      return <MenuItem key={menuItem.to} {...menuItem} />
     })
   }
 
