@@ -1,13 +1,143 @@
-body {
-  background: #fff8ee;
-  margin: 0;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 16px;
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Regular.eot");
+  src: url("./assets/fonts/Poppins-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Poppins-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Poppins-Regular.woff") format("woff"),
+    url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Bold.eot");
+  src: url("./assets/fonts/Poppins-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Poppins-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Poppins-Bold.woff") format("woff"),
+    url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Medium.eot");
+  src: url("./assets/fonts/Poppins-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Poppins-Medium.woff2") format("woff2"),
+    url("./assets/fonts/Poppins-Medium.woff") format("woff"),
+    url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-SemiBold.eot");
+  src: url("./assets/fonts/Poppins-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Poppins-SemiBold.woff2") format("woff2"),
+    url("./assets/fonts/Poppins-SemiBold.woff") format("woff"),
+    url("./assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Salsa";
+  src: url("./assets/fonts/Salsa-Regular.eot");
+  src: url("./assets/fonts/Salsa-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/Salsa-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Salsa-Regular.woff") format("woff"),
+    url("./assets/fonts/Salsa-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PTMono";
+  src: url("./assets/fonts/PTMono-Regular.eot");
+  src: url("./assets/fonts/PTMono-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/PTMono-Regular.woff2") format("woff2"),
+    url("./assets/fonts/PTMono-Regular.woff") format("woff"),
+    url("./assets/fonts/PTMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html {
+  box-sizing: border-box;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+
+  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: #3a3028;
+
+  font-size: 14px;
+  line-height: 1.2;
+
+  @media ($--sm) {
+    font-size: 12px;
+  }
+}
+
+
+body {
+  background: #fdf5eb;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  min-height: 100vh;
+  background-image: url("./assets/img/background-empty.png");
+  background-position: center bottom;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }

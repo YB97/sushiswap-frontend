@@ -14,6 +14,9 @@ import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
 import Stake from './views/Stake'
+import CHKNHome from './views/CHKNHome'
+import CHKNAbout from './views/CHKNAbout'
+import Header from './chknComponents/Header'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -29,17 +32,21 @@ const App: React.FC = () => {
   return (
     <Providers>
       <Router>
-        <TopBar onPresentMobileMenu={handlePresentMobileMenu} />
-        <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} />
+        {/* <TopBar onPresentMobileMenu={handlePresentMobileMenu} /> */}
+        {/* <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} /> */}
+        <Header />
         <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/farms">
+          <Route path="/menu" exact>
             <Farms />
           </Route>
-          <Route path="/staking">
+          <Route path="/about" exact>
+            <CHKNAbout />
+          </Route>
+          <Route path="/staking" exact>
             <Stake />
+          </Route>
+          <Route path="*">
+            <CHKNHome />
           </Route>
         </Switch>
       </Router>
