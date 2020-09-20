@@ -8,6 +8,7 @@ export const FW_SEMI_BOLD = 600
 export const FW_MEDIUM = 500
 
 // COLORS
+export const BLUE = '#407AEB'
 export const BEIGE = '#fdf5eb'
 export const CHOCOLATE = '#613535'
 export const YELLOW = '#ffb506'

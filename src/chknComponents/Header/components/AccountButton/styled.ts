@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { CHOCOLATE, MD, YELLOW } from "../../../../styledVars";
+
+import styled from 'styled-components'
+import { CHOCOLATE, MD, YELLOW } from '../../../../styledVars'
 import Button from '../../../Button'
+import { darken } from 'polished';
 
 export const StyledUnclockButton = styled(Button)`
   height: 38px;
@@ -8,7 +10,7 @@ export const StyledUnclockButton = styled(Button)`
   color: ${YELLOW};
   font-size: 16px;
   &:hover {
-    background-color: darken(0.1, ${CHOCOLATE});
+    background-color: ${darken(0.1, CHOCOLATE)};
   }
 
   @media (max-width: ${MD}) {

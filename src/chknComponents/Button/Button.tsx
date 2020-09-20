@@ -7,12 +7,14 @@ interface ButtonProps {
   disabled?: boolean,
   type?: 'button' | 'submit' | 'reset',
   onClick?: () => void,
+  theme?: 'primary' | 'blue'
 }
 
-const Button: React.FC<ButtonProps> = ({ className, loading, disabled, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ...props }) => {
   return (
     <StyledButton
       type={props.type}
+      theme={theme}
       className={className}
       onClick={props.onClick}
       disabled={disabled}
@@ -23,3 +25,7 @@ const Button: React.FC<ButtonProps> = ({ className, loading, disabled, ...props 
 };
 
 export default Button;
+
+Button.defaultProps = {
+  theme: 'primary'
+}
