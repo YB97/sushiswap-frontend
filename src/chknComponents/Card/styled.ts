@@ -1,25 +1,25 @@
 import styled from "styled-components";
-import { BORDER_BEIGE, DIMMED_BEIGE, LIGHT_BROWN, WHITE, FW_MEDIUM, FONT_PTMONO} from "../../styledVars";
+import { WHITE, FW_MEDIUM, FONT_PTMONO, GRAY} from "../../styledVars";
 
 export const StyledWrapper = styled.div`
-  background-color: ${DIMMED_BEIGE};
-  border: 1px solid ${BORDER_BEIGE};
-  border-radius: 8px;
+  position: relative;
+  background-color: ${WHITE};
   box-sizing: border-box;
-  box-shadow: inset 0px 2px 0px ${WHITE};
   width: 100%;
+  box-shadow: 0px 7px 30px rgba(55, 59, 70, 0.12);
+  border-radius: 20px;
 `
 
 export const StyledBottomBlock = styled.div`
-  border-top: 1px solid ${BORDER_BEIGE};
   display: flex;
   justify-content: space-between;
-  color: ${LIGHT_BROWN};
+  color: ${GRAY};
   padding: 12px 20px;
 `
 
 export const StyledBottomValueWrapper = styled.div`
   font-weight: ${FW_MEDIUM};
+  color: #222A3F;
 `
 
 export const StyledBottomValue = styled.span`

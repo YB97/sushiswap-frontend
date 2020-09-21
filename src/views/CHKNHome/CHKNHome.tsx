@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import chiliIcon from '../../assets/img/big-chili.png'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {
   Main,
@@ -10,8 +9,8 @@ import {
   StyledButton,
   CardList,
   StyledCard,
-  Img,
-  ButtonWrapper,
+  StyledButtonWrap,
+  ButtonsWrapper,
 } from './styled'
 import getInviteLink from './helpers/getInviteLink'
 import { useWallet } from 'use-wallet'
@@ -23,19 +22,21 @@ const Home = () => {
   const { account } = useWallet()
 
   const onInvite = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), COPIED_DELAY);
+    setCopied(true)
+    setTimeout(() => setCopied(false), COPIED_DELAY)
   }
 
   const renderInviteButton = () => {
     const invitedLink = account ? getInviteLink(account) : null
     return (
       invitedLink && (
-        <CopyToClipboard text={invitedLink}>
-          <StyledButton theme="blue" onClick={onInvite}>
-            {isCopied ? 'Copied' : 'Invite & Earn'}
-          </StyledButton>
-        </CopyToClipboard>
+        <StyledButtonWrap>
+          <CopyToClipboard text={invitedLink}>
+            <StyledButton theme="blue" onClick={onInvite}>
+              {isCopied ? 'Copied' : 'Invite & Earn'}
+            </StyledButton>
+          </CopyToClipboard>
+        </StyledButtonWrap>
       )
     )
   }
@@ -67,13 +68,15 @@ const Home = () => {
           isFooterVisible
         />
       </CardList>
-      <ButtonWrapper>
-        <StyledButton onClick={() => history.push('/menu')}>
-          <Img src={chiliIcon} alt="add spice" />
-          Add Spice
-        </StyledButton>
+      <ButtonsWrapper>
+        <StyledButtonWrap>
+          <StyledButton onClick={() => history.push('/menu')}>
+            {/* <Img src={chiliIcon} alt="add spice" /> */}
+            Add Spice
+          </StyledButton>
+        </StyledButtonWrap>
         {renderInviteButton()}
-      </ButtonWrapper>
+      </ButtonsWrapper>
     </Main>
   )
 }

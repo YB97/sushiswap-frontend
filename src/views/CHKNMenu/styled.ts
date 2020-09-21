@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Icon from '../../chknComponents/Icon'
-import { MD } from './../../styledVars'
+import { MD, XS } from './../../styledVars'
 
 export const StyledAccount = styled.div`
   display: flex;
@@ -34,14 +34,14 @@ export const CardList = styled.div`
 `
 
 export const CardWrapper = styled.div`
-  width: calc(33% - 10px);
-  margin-right: 20px;
-  margin-top: 20px;
-  &:nth-child(3n) {
+  width: calc(24.5% - 10px);
+  margin-right: 14px;
+  margin-top: 80px;
+  &:nth-child(4n) {
     margin-right: 0;
   }
 
-  @media (max-width: $md) {
+  @media (max-width: ${MD}) {
     padding: 0 10px;
     width: calc(50% - 10px);
     margin-right: 0;
@@ -53,7 +53,7 @@ export const CardWrapper = styled.div`
     }
   }
 
-  @media (max-width: $xs) {
+  @media (max-width: ${XS}) {
     width: 100%;
   }
 `

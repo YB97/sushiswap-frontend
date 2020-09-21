@@ -16,6 +16,7 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 25px 20px;
+  padding-top: 65px;
 `
 
 export const StyledTitle = styled.div`
@@ -48,4 +49,18 @@ export const StyledBtn = styled(Button)`
 
 export const StyledAddBtn = styled(StyledBtn)`
   margin-top: 10px;
+`
+
+export const StyledImageWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 108px;
+  height: 108px;
+  border-radius: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 20px rgba(55, 59, 70, 0.19);
+  border-radius: 66px;
 `

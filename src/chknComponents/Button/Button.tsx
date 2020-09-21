@@ -7,7 +7,7 @@ interface ButtonProps {
   disabled?: boolean,
   type?: 'button' | 'submit' | 'reset',
   onClick?: () => void,
-  theme?: 'primary' | 'blue'
+  theme?: 'primary' | 'blue' | 'white'
 }
 
 const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ...props }) => {

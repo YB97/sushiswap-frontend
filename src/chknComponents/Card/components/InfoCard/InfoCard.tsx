@@ -11,11 +11,11 @@ const InfoCard: React.FC<InfoCard> = ({ iconName, title, value }) => {
   return (
     <>
       <StyledMainBlock>
-        {iconName && <StyledIcon iconName={iconName} />}
         <div>
           <StyledTitle>{title}</StyledTitle>
           <StyledValue>{value}</StyledValue>
         </div>
+        {iconName && <StyledIcon iconName={iconName} />}
       </StyledMainBlock>
     </>
   )

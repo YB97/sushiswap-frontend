@@ -6,6 +6,7 @@ import {
   StyledSubtitle,
   StyledBtn,
   StyledAddBtn,
+  StyledImageWrapper,
 } from './styled'
 
 export interface MenuCardProps {
@@ -33,7 +34,9 @@ const MenuCard: React.FC<MenuCardProps> = ({
 }) => {
   return (
     <StyledWrapper>
-      <img src={burnChiliIcon} alt="Select" />
+      <StyledImageWrapper>
+        <img src={burnChiliIcon} alt="Select" />
+      </StyledImageWrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle className={textClassName}>{subtitle}</StyledSubtitle>
       <StyledBtn onClick={onBtnClick} disabled={isBtnDisabled}>

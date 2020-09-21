@@ -1,9 +1,10 @@
-import { FONT_SALSA, LIGHT_BROWN, RED } from './../../styledVars';
+import { darken } from 'polished';
+import {RED, GRAY, FONT_POPPINS } from './../../styledVars';
 import styled, { css } from "styled-components";
 import { NavLink } from 'react-router-dom';
 
 export const StyledListItem = styled.li`
-  margin-left: 55px;
+  margin-left: 30px;
   &:first-child {
     margin-left: 0;
   }
@@ -18,19 +19,20 @@ export const StyledListItem = styled.li`
 
 const activeClassName = 'linkActive';
 const link = css`
-  font-family: ${FONT_SALSA};
+  font-family: ${FONT_POPPINS};
   font-size: 16px;
-  color: ${LIGHT_BROWN};
+  color: ${GRAY};
   text-decoration: none;
   transition: color 0.15s linear;
+  font-weight: 600;
   &:hover {
-    color: darken(${LIGHT_BROWN}, 10%);
+    color: ${darken(0.1, GRAY)};
   }
   &.${activeClassName} {
     color: ${RED};
     transition: color 0.15s linear;
     &:hover {
-      color: darken(${LIGHT_BROWN}, 10%);
+      color: ${RED};
     }
   }
 `

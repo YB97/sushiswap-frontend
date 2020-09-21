@@ -1,6 +1,5 @@
 import Icon from './../Icon'
 import { CHOCOLATE, YELLOW, MD } from './../../styledVars'
-import Button from './../Button'
 import styled from 'styled-components'
 
 export const StyledNav = styled.nav`
@@ -21,16 +20,20 @@ export const StyledNav = styled.nav`
 export const StyledList = styled.ul`
   display: flex;
   align-items: center;
-  justify-content: center;
   list-style: none;
   padding: 0;
+  margin-right: 30px;
+`
+
+export const StyledMenuWrapper = styled.div`
+  display: flex;
 `
 
 export const Logo = styled(Icon)`
   width: 180px;
   height: 58px;
 
-  @media (max-width: $md) {
+  @media (max-width: ${MD}) {
     width: 150px;
     height: 48px;
   }

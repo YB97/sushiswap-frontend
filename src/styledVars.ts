@@ -8,6 +8,7 @@ export const FW_SEMI_BOLD = 600
 export const FW_MEDIUM = 500
 
 // COLORS
+export const GRAY = '#828795'
 export const BLUE = '#407AEB'
 export const BEIGE = '#fdf5eb'
 export const CHOCOLATE = '#613535'
@@ -27,10 +28,10 @@ export const MEDIA_MD = '(max-width: 768px)'
 export const MEDIA_LG = '(max-width: 1200px)'
 
 // BREAKPOINTS
-export const XS = "375px";
-export const SM = "576px";
-export const MD = "768px";
-export const LG = "1200px";
+export const XS = '375px'
+export const SM = '576px'
+export const MD = '768px'
+export const LG = '1200px'
 
-// GUTTER 
-export const GUTTER = '20px';
+// GUTTER
+export const GUTTER = '20px'

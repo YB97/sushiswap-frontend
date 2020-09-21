@@ -1,10 +1,10 @@
-import { FW_MEDIUM, LIGHT_BROWN, MD } from './../../styledVars';
+import { FW_MEDIUM, MD, GRAY } from './../../styledVars';
 import styled from "styled-components";
 
 export const StyledP = styled.p`
   font-weight: ${FW_MEDIUM};
   font-size: 16px;
-  color: ${LIGHT_BROWN};
+  color: ${GRAY};
 
   @media (max-width: ${MD}) {
     font-size: 14px;

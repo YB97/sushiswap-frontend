@@ -15,6 +15,7 @@ export const LogoLarge = styled(Icon)`
 `
 
 export const Text = styled(P)`
+  color: #545B6D;
   @media (max-width: ${MD}) {
     font-size: 14px;
     text-align: center;
@@ -23,11 +24,9 @@ export const Text = styled(P)`
 `
 
 export const Main = styled.main`
-  padding-top: 45px;
   padding-bottom: 45px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   @media (max-width: ${MD}) {
     padding-top: 40px;
@@ -56,7 +55,7 @@ export const CardList = styled.div`
 
 export const StyledCard = styled(Card)`
   width: 394px;
-  margin-right: 30px;
+  margin-right: 45px;
   &:last-child {
     margin-right: 0;
   }
@@ -83,18 +82,21 @@ export const Img = styled.img`
 `
 
 export const StyledButton = styled(Button)`
-  width: 160px;
-  margin-right: 18px;
-  &:last-child() {
-    margin-right: 0;
-  }
   @media (max-width: ${MD}) {
     font-size: 14px;
   }
 `
 
-export const ButtonWrapper = styled.div`
+export const ButtonsWrapper = styled.div`
   display: flex;
   width: auto;
-  justify-content: center
-`;
+  justify-content: center;
+`
+
+export const StyledButtonWrap = styled.div`
+  width: 160px;
+  margin-left: 18px;
+  &:first-child {
+    margin-left: 0;
+  }
+`

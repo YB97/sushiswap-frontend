@@ -1,10 +1,13 @@
-import { BORDER_BEIGE, FONT_SALSA, RED, WHITE, BLUE } from './../../styledVars'
+import { BORDER_BEIGE, RED, WHITE, BLUE, FONT_POPPINS } from './../../styledVars'
 import styled, { css } from 'styled-components'
 import { darken } from 'polished'
 
 export const StyledButton = styled.button`
-  font-family: ${FONT_SALSA};
-  font-size: 17px;
+  font-family: ${FONT_POPPINS};
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -36,9 +39,7 @@ export const StyledButton = styled.button`
     width: 22px;
   }
 
-  ${(props) =>
-    props.theme === 'blue' &&
-    css`
+  ${(props) => props.theme === 'blue' && css`
       background-color: ${BLUE};
       color: white;
       &:hover {
