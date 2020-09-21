@@ -1,6 +1,13 @@
-import { BORDER_BEIGE, RED, WHITE, BLUE, FONT_POPPINS } from './../../styledVars'
+import {
+  BORDER_BEIGE,
+  RED,
+  WHITE,
+  BLUE,
+  SECONDARY_BLUE,
+  FONT_POPPINS,
+} from './../../styledVars'
 import styled, { css } from 'styled-components'
-import { darken } from 'polished'
+import { darken, rgba } from 'polished'
 
 export const StyledButton = styled.button`
   font-family: ${FONT_POPPINS};
@@ -39,11 +46,31 @@ export const StyledButton = styled.button`
     width: 22px;
   }
 
-  ${(props) => props.theme === 'blue' && css`
+  ${(props) =>
+    props.theme === 'blue' &&
+    css`
       background-color: ${BLUE};
       color: white;
       &:hover {
         background-color: ${darken(0.1, BLUE)};
       }
     `}
+  ${(props) => props.theme === 'light-blue' && css`
+    background-color: #EDF4FA;
+    border: 1px solid #DBE9F5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: ${SECONDARY_BLUE};
+    &:hover{
+      background-color: ${darken(0.1, '#EDF4FA')};
+    }
+    &:disabled {
+    background-color: ${rgba('#EDF4FA', 0.7)};
+    color:  ${rgba(SECONDARY_BLUE, 0.7)};
+    cursor: not-allowed;
+    &:hover {
+      background-color: ${rgba('#EDF4FA', 0.7)};
+    }
+  }
+  `}
 `

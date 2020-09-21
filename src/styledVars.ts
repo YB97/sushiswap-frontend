@@ -9,6 +9,7 @@ export const FW_MEDIUM = 500
 
 // COLORS
 export const GRAY = '#828795'
+export const SECONDARY_BLUE = '#4684E1'
 export const BLUE = '#407AEB'
 export const BEIGE = '#fdf5eb'
 export const CHOCOLATE = '#613535'

@@ -6,17 +6,29 @@ import {
   RED,
   LIGHT_BEIGE,
   BORDER_BEIGE,
+  GRAY,
+  BLUE,
 } from './../../../../styledVars'
 import styled from 'styled-components'
 import Button from '../../../Button'
 
 export const StyledWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   padding: 25px 20px;
   padding-top: 65px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: #D9E5E9
+  }
 `
 
 export const StyledTitle = styled.div`
@@ -36,15 +48,15 @@ export const StyledSubtitle = styled.div`
 
 export const StyledBtn = styled(Button)`
   font-family: ${FONT_POPPINS};
-  font-size: 16px;
-  font-weight: ${FW_SEMI_BOLD};
   margin-top: 37px;
-  color: ${RED};
+  /* font-size: 16px;
+  font-weight: ${FW_SEMI_BOLD};
+  color: ${BLUE};
   background-color: ${LIGHT_BEIGE};
   border: 1px solid rgba(${BORDER_BEIGE}, 0.6);
   &:hover {
-    background-color: darken(${LIGHT_BEIGE}, 2%);
-  }
+    background-color: darken(${BLUE}, 2%);
+  } */
 `
 
 export const StyledAddBtn = styled(StyledBtn)`

@@ -3,11 +3,12 @@ import { StyledButton } from "./styled";
 
 interface ButtonProps {
   className?: string,
+  href?: string,
   loading?: boolean,
   disabled?: boolean,
   type?: 'button' | 'submit' | 'reset',
   onClick?: () => void,
-  theme?: 'primary' | 'blue' | 'white'
+  theme?: 'primary' | 'blue' | 'white' | 'light-blue'
 }
 
 const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ...props }) => {

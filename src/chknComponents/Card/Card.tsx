@@ -8,6 +8,7 @@ import {
   StyledWrapper,
 } from './styled'
 import { MenuCardProps } from './components/MenuCard/MenuCard'
+import { BigNumber } from '../../sushi'
 
 interface CardProps extends MenuCardProps {
   iconName?: string
@@ -49,8 +50,6 @@ const Card: React.FC<CardProps> = ({ isFooterVisible = false, ...props }) => {
         )
     }
   }
-
-  console.log(props)
 
   return (
     <StyledWrapper className={props.className} onClick={props.onCardClick}>

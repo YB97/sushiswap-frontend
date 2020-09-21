@@ -39,7 +39,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
       </StyledImageWrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle className={textClassName}>{subtitle}</StyledSubtitle>
-      <StyledBtn onClick={onBtnClick} disabled={isBtnDisabled}>
+      <StyledBtn theme="light-blue" onClick={onBtnClick} disabled={isBtnDisabled}>
         {btnText}
       </StyledBtn>
       {hasAddBtn && (

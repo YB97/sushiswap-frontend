@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useWallet } from 'use-wallet'
-import AccountModal from '../../../../components/TopBar/components/AccountModal'
+import AccountModal from '../../../AccountModal'
 import WalletProviderModal from '../../../../components/WalletProviderModal'
 import useModal from '../../../../hooks/useModal'
 import { StyledUnclockButton } from './styled'

@@ -56,9 +56,6 @@ const CHKNMenu: FC = () => {
       ? stakedValue[sushiIndex].tokenPriceInWeth
       : new BigNumber(0)
 
-  console.log('sushiIdx', sushiIndex)
-  console.log('sushiPrice', sushiPrice)
-
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
   const CHKN_PER_BLOCK = new BigNumber(1000)
 
@@ -76,7 +73,6 @@ const CHKNMenu: FC = () => {
     }
   })
 
-  console.log('rows', rows)
 
   return (
     <Container>
@@ -92,7 +88,7 @@ const CHKNMenu: FC = () => {
                   type="menu"
                   onCardClick={() => console.log('onCardClick')}
                   bottomText="APY"
-                  bottomValue={row.apy && row.apy.toString()}
+                  bottomValue={''}
                   title={row.name}
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}
                   onBtnClick={() => history.push(`/menu/${row.id}`)}
