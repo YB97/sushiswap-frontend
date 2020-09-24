@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 // import SwapModal from '../SwapModal'
 import { DEFAULT_HEADER_NAVLINKS } from './constants'
 import MenuItem, { MenuItemProps } from '../MenuItem'
-import { StyledList, StyledNav, Logo, StyledMenuWrapper } from './styled'
+import { StyledList, StyledNav, Logo, StyledMenuWrapper, StyledAccountButton } from './styled'
 import Container from '../../chknComponents/Container'
 import AccountButton from './components/AccountButton'
 
@@ -29,7 +29,10 @@ const Header: React.FC<HeaderProps> = ({ menuItems }) => {
         <Logo iconName="logo-header" />
         <StyledMenuWrapper>
           <StyledList>{renderNavLinks()}</StyledList>
-          <AccountButton />
+          <StyledAccountButton>
+            <AccountButton />
+          </StyledAccountButton>
+          {/* <StyledAccountButton /> */}
         </StyledMenuWrapper>
         {/* <SwapModal
         visible={isModalVisible}

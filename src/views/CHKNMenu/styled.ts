@@ -26,10 +26,11 @@ export const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   margin-bottom: 200px;
 
-  @media (max-width: ${MD}) {
-    justify-content: center;
+  @media (min-width: ${MD}) {
+    
   }
 `
 
@@ -43,7 +44,7 @@ export const CardWrapper = styled.div`
 
   @media (max-width: ${MD}) {
     padding: 0 10px;
-    width: calc(50% - 10px);
+    width: calc(48% - 10px);
     margin-right: 0;
     &:nth-child(2n) {
       margin-right: 0;
@@ -56,4 +57,9 @@ export const CardWrapper = styled.div`
   @media (max-width: ${XS}) {
     width: 100%;
   }
+`
+
+export const UnlockButtonWrapper = styled.div`
+  position: absolute;
+  top: 50%;
 `

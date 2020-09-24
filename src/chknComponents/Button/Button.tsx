@@ -6,8 +6,9 @@ interface ButtonProps {
   href?: string,
   loading?: boolean,
   disabled?: boolean,
+  shape?: 'rect' | 'half-round',
   type?: 'button' | 'submit' | 'reset',
-  onClick?: () => void,
+  onClick?: (e) => void,
   theme?: 'primary' | 'blue' | 'white' | 'light-blue'
 }
 
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ..
   return (
     <StyledButton
       type={props.type}
+      shape={props.shape}
       theme={theme}
       className={className}
       onClick={props.onClick}
@@ -28,5 +30,6 @@ const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ..
 export default Button;
 
 Button.defaultProps = {
-  theme: 'primary'
+  theme: 'primary',
+  shape: 'half-round'
 }

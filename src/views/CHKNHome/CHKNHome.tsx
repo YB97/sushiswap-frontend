@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {
   Main,
   LogoLarge,
@@ -12,72 +11,78 @@ import {
   StyledButtonWrap,
   ButtonsWrapper,
 } from './styled'
-import getInviteLink from './helpers/getInviteLink'
+import Container from '../../chknComponents/Container'
 import { useWallet } from 'use-wallet'
-import { COPIED_DELAY } from './constants'
+import InviteModal from '../../chknComponents/InviteModal'
 
 const Home = () => {
-  const [isCopied, setCopied] = useState<boolean>(false)
+  const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
+  const [isFirstWeek, setIsFirstWeek] = useState(false)
   const history = useHistory()
   const { account } = useWallet()
 
-  const onInvite = () => {
-    setCopied(true)
-    setTimeout(() => setCopied(false), COPIED_DELAY)
+  const onToggleInviteModal = () => {
+    setIsOpenInviteModal(!isOpenInviteModal)
   }
 
   const renderInviteButton = () => {
-    const invitedLink = account ? getInviteLink(account) : null
     return (
-      invitedLink && (
+      account && (
         <StyledButtonWrap>
-          <CopyToClipboard text={invitedLink}>
-            <StyledButton theme="blue" onClick={onInvite}>
-              {isCopied ? 'Copied' : 'Invite & Earn'}
-            </StyledButton>
-          </CopyToClipboard>
+          <StyledButton theme="blue" onClick={onToggleInviteModal}>
+            Invite & Earn
+          </StyledButton>
         </StyledButtonWrap>
       )
     )
   }
 
   return (
-    <Main>
-      <InfoBlock>
-        <LogoLarge iconName="logo-large" />
-        <Text>Stake Uniswap LP tokens to claim your very own yummy CHKN</Text>
-      </InfoBlock>
-      <CardList>
-        <StyledCard
-          iconName="logo-circle"
-          title="Your CHKN Balance"
-          value="Locked"
-          bottomText="Pending Harvest"
-          bottomValue="0.00"
-          bottomUnits="CHKN"
-          onCardClick={() => console.log('click')}
-          isFooterVisible
-        />
-        <StyledCard
-          title="Total CHKN Supply"
-          value="Locked"
-          bottomText="New rewards per block"
-          bottomValue="1.00"
-          bottomUnits="CHKN"
-          onCardClick={() => console.log('click1')}
-          isFooterVisible
-        />
-      </CardList>
-      <ButtonsWrapper>
-        <StyledButtonWrap>
-          <StyledButton onClick={() => history.push('/menu')}>
-            {/* <Img src={chiliIcon} alt="add spice" /> */}
-            Add Spice
-          </StyledButton>
-        </StyledButtonWrap>
-        {renderInviteButton()}
-      </ButtonsWrapper>
-    </Main>
+    <>
+      <Container>
+        <Main>
+          <InfoBlock>
+            <LogoLarge iconName="logo-large" />
+            <Text>
+              Stake Eggs (farm LP tokens) to hatch your very own CHKN
+            </Text>
+          </InfoBlock>
+          <CardList>
+            <StyledCard
+              iconName="logo-circle"
+              title="Your CHKN Balance"
+              value="Locked"
+              bottomText="Pending Harvest"
+              bottomValue="0.00"
+              bottomUnits="CHKN"
+              onCardClick={() => console.log('click')}
+              isFooterVisible
+            />
+            <StyledCard
+              title="Total CHKN Supply"
+              value="Locked"
+              bottomText="New rewards per block"
+              bottomValue="1.00"
+              bottomUnits="CHKN"
+              onCardClick={() => console.log('click1')}
+              isFooterVisible
+            />
+          </CardList>
+          <ButtonsWrapper>
+            <StyledButtonWrap>
+              <StyledButton onClick={() => history.push('/stake')}>
+                {/* <Img src={chiliIcon} alt="add spice" /> */}
+                Stake Eggs
+              </StyledButton>
+            </StyledButtonWrap>
+            {renderInviteButton()}
+          </ButtonsWrapper>
+        </Main>
+      </Container>
+      {account && isOpenInviteModal && (
+        <InviteModal onIsOpenChange={onToggleInviteModal} isFirstWeek={isFirstWeek} />
+      )}
+    </>
   )
 }
 

@@ -1,21 +1,21 @@
-import Icon from '../../chknComponents/Icon';
-import Card from '../../chknComponents/Card';
-import P from '../../chknComponents/P';
-import styled from "styled-components";
-import Button from '../../chknComponents/Button';
-import { MD } from './../../styledVars';
+import Icon from '../../chknComponents/Icon'
+import Card from '../../chknComponents/Card'
+import P from '../../chknComponents/P'
+import styled from 'styled-components'
+import Button from '../../chknComponents/Button'
+import { MD } from './../../styledVars'
 
 export const LogoLarge = styled(Icon)`
-  width: 222px;
-  height: 227px;
-  @media (max-width: ${MD}) {
-    width: 150px;
-    height: 150px;
+  width: 110px;
+  height: 110px;
+  @media (min-width: ${MD}) {
+    width: 222px;
+    height: 227px;
   }
 `
 
 export const Text = styled(P)`
-  color: #545B6D;
+  color: #545b6d;
   @media (max-width: ${MD}) {
     font-size: 14px;
     text-align: center;
@@ -24,13 +24,12 @@ export const Text = styled(P)`
 `
 
 export const Main = styled.main`
-  padding-bottom: 45px;
+  padding: 30px 0 60px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  @media (max-width: ${MD}) {
-    padding-top: 40px;
-    padding-bottom: 60px;
+  @media (min-width: ${MD}) {
+    padding-bottom: 45px;
   }
 `
 
@@ -44,29 +43,34 @@ export const InfoBlock = styled.div`
 
 export const CardList = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 55px;
-  @media (max-width: ${MD}) {
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 40px;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 40px;
+
+  @media (min-width: ${MD}) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 55px;
   }
 `
 
 export const StyledCard = styled(Card)`
-  width: 394px;
-  margin-right: 45px;
-  &:last-child {
-    margin-right: 0;
+  display: block;
+  width: 100%;
+  margin-right: 0;
+  margin-top: 20px;
+  padding: 0 10px;
+  &:first-child {
+    margin-top: 0;
   }
 
-  @media (max-width: ${MD}) {
-    width: 100%;
-    margin-right: 0;
-    margin-top: 20px;
-    padding: 0 10px;
-    &:first-child {
-      margin-top: 0;
+  @media (min-width: ${MD}) {
+    width: 394px;
+    margin-right: 45px;
+    margin-top: 0;
+    &:last-child {
+      margin-right: 0;
     }
   }
 `
@@ -91,6 +95,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   width: auto;
   justify-content: center;
+  margin-top: 20px;
 `
 
 export const StyledButtonWrap = styled.div`

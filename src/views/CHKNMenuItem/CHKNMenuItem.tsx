@@ -53,7 +53,7 @@ const CHKNMenuItem = () => {
   const history = useHistory()
 
   if (!account) {
-    history.push('/menu')
+    history.push('/stake')
   }
 
   useEffect(() => {

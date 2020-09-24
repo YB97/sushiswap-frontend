@@ -9,7 +9,7 @@ import {
 import styled, { css } from 'styled-components'
 import { darken, rgba } from 'polished'
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ shape: string }>`
   font-family: ${FONT_POPPINS};
   font-weight: 600;
   font-size: 15px;
@@ -22,7 +22,6 @@ export const StyledButton = styled.button`
   align-items: center;
   background-color: ${RED};
   color: ${WHITE};
-  border-radius: 27px;
   border: 0;
   width: 100%;
   height: 46px;
@@ -55,22 +54,44 @@ export const StyledButton = styled.button`
         background-color: ${darken(0.1, BLUE)};
       }
     `}
-  ${(props) => props.theme === 'light-blue' && css`
-    background-color: #EDF4FA;
-    border: 1px solid #DBE9F5;
-    box-sizing: border-box;
-    border-radius: 10px;
-    color: ${SECONDARY_BLUE};
-    &:hover{
-      background-color: ${darken(0.1, '#EDF4FA')};
-    }
-    &:disabled {
-    background-color: ${rgba('#EDF4FA', 0.7)};
-    color:  ${rgba(SECONDARY_BLUE, 0.7)};
-    cursor: not-allowed;
-    &:hover {
-      background-color: ${rgba('#EDF4FA', 0.7)};
-    }
-  }
-  `}
+  ${(props) =>
+    props.theme === 'light-blue' &&
+    css`
+      background-color: #edf4fa;
+      border: 1px solid #dbe9f5;
+      box-sizing: border-box;
+      border-radius: 10px;
+      color: ${SECONDARY_BLUE};
+      &:hover {
+        background-color: ${darken(0.1, '#EDF4FA')};
+      }
+      &:disabled {
+        background-color: ${rgba('#EDF4FA', 0.7)};
+        color: ${rgba(SECONDARY_BLUE, 0.7)};
+        cursor: not-allowed;
+        &:hover {
+          background-color: ${rgba('#EDF4FA', 0.7)};
+        }
+      }
+    `}
+
+
+
+
+  /* shape */
+
+  ${({ shape }) => {
+    return (
+      shape === 'half-round' &&
+      css`
+        border-radius: 27px;
+      `
+    )
+  }}
+
+  ${({ shape }) =>
+    shape === 'rect' &&
+    css`
+      border-radius: 5px;
+    `}
 `

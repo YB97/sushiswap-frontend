@@ -13,7 +13,7 @@ import P from '../../chknComponents/P'
 import useFarms from '../../hooks/useFarms'
 import { Farm } from '../../contexts/Farms'
 import useAllStakedValue, { StakedValue } from '../../hooks/useAllStakedValue'
-import { Main, Logo, CardList, CardWrapper } from './styled'
+import { Main, Logo, CardList, CardWrapper, UnlockButtonWrapper } from './styled'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -36,11 +36,11 @@ const CHKNMenu: FC = () => {
           justifyContent: 'center',
         }}
       >
-        <div>
+        <UnlockButtonWrapper>
           <Button onClick={onPresentWalletProviderModal}>
             <span>🔓</span> Unlock Wallet
           </Button>
-        </div>
+        </UnlockButtonWrapper>
       </div>
     )
   }
@@ -91,7 +91,7 @@ const CHKNMenu: FC = () => {
                   bottomValue={''}
                   title={row.name}
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}
-                  onBtnClick={() => history.push(`/menu/${row.id}`)}
+                  onBtnClick={() => history.push(`/stake/${row.id}`)}
                   isFooterVisible
                 />
               </CardWrapper>

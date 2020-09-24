@@ -95,6 +95,8 @@ html {
 body {
   background-color: #B3E6F5;
   margin: 0;
+  overflow-x: hidden;
+  min-width: 320px;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: normal;

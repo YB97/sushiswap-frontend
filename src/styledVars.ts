@@ -32,7 +32,8 @@ export const MEDIA_LG = '(max-width: 1200px)'
 export const XS = '375px'
 export const SM = '576px'
 export const MD = '768px'
-export const LG = '1200px'
+export const LG = '992px'
+export const XL = '1200px'
 
 // GUTTER
 export const GUTTER = '20px'

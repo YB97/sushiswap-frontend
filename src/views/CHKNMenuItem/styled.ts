@@ -1,3 +1,4 @@
+import { MD } from './../../styledVars';
 import styled, { css } from 'styled-components'
 
 import P from '../../chknComponents/P'
@@ -20,17 +21,22 @@ export const Description = styled.div`
 
 export const CardList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   width: 100%;
   margin-top: 50px;
 `
 
 export const CardWrapper = styled.div`
-  width: 320px;
-  margin-right: 20px;
-  &:last-child {
-    margin-right: 0;
-  }
+  width: 100%;
+  margin-bottom: 50px;
+  @media (min-width: ${MD}) {
+    width: 320px;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  } 
 `
 
 export const CardItem = styled(Card)`
