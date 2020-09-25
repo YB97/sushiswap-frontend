@@ -9,8 +9,8 @@ export const LogoLarge = styled(Icon)`
   width: 110px;
   height: 110px;
   @media (min-width: ${MD}) {
-    width: 222px;
-    height: 227px;
+    width: 162px;
+    height: 167px;
   }
 `
 
@@ -24,7 +24,7 @@ export const Text = styled(P)`
 `
 
 export const Main = styled.main`
-  padding: 30px 0 60px 0;
+  padding: 10px 0 60px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -45,13 +45,17 @@ export const CardList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+
+  @media (min-width: 1600px) {
+    margin-bottom: 35px;
+  }
 
   @media (min-width: ${MD}) {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 55px;
+    margin-bottom: 30px;
   }
 `
 

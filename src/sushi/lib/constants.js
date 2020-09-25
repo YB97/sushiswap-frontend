@@ -80,7 +80,8 @@ export const supportedPools = [
     name: 'Sushi Party!',
     symbol: 'SUSHI-ETH UNI-V2 LP',
     tokenSymbol: 'SUSHI',
-    icon: '🍣',
+    // imgSrc: 'src/assets/img/egg-king.png',
+    icon: '../../assets/img/egg-king.png',
   },
   {
     pid: 0,

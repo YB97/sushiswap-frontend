@@ -1,7 +1,7 @@
-import { darken } from 'polished';
-import {RED, GRAY, FONT_POPPINS } from './../../styledVars';
-import styled, { css } from "styled-components";
-import { NavLink } from 'react-router-dom';
+import { darken } from 'polished'
+import { RED, GRAY, FONT_POPPINS, XL } from './../../styledVars'
+import styled, { css } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 export const StyledListItem = styled.li`
   margin-left: 30px;
@@ -17,7 +17,7 @@ export const StyledListItem = styled.li`
   }
 `
 
-const activeClassName = 'linkActive';
+const activeClassName = 'linkActive'
 const link = css`
   font-family: ${FONT_POPPINS};
   font-size: 16px;
@@ -35,10 +35,18 @@ const link = css`
       color: ${RED};
     }
   }
+
+  @media (min-width: 1600px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: ${XL}) {
+    font-size: 14px;
+  }
 `
 
 export const StyledNavLink = styled(NavLink).attrs({
-  activeClassName: activeClassName
+  activeClassName: activeClassName,
 })`
   ${link}
 `

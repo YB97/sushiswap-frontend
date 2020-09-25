@@ -6,7 +6,7 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 23px 0;
+  padding: 15px 0;
 
   @media (max-width: ${MD}) {
     padding: 10px;
@@ -57,4 +57,4 @@ export const StyledAccountButton = styled.div`
   @media (min-width: ${LG}) {
     margin-top: 0;
   }
-`;
+`

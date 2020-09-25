@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import BigNumber from 'bignumber.js'
 import { useHistory } from 'react-router-dom'
 import {
   Main,
@@ -14,12 +15,30 @@ import {
 import Container from '../../chknComponents/Container'
 import { useWallet } from 'use-wallet'
 import InviteModal from '../../chknComponents/InviteModal'
+import { getBalanceNumber } from '../../utils/formatBalance'
+import useTokenBalance from '../../hooks/useTokenBalance'
+import { getSushiAddress, getSushiSupply } from '../../sushi/utils'
+import useSushi from '../../hooks/useSushi'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
   const [isFirstWeek, setIsFirstWeek] = useState(false)
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const history = useHistory()
   const { account } = useWallet()
+  const sushi = useSushi()
+
+  const sushiBalance = useTokenBalance(getSushiAddress(sushi))
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const supply = await getSushiSupply(sushi)
+      setTotalSupply(supply)
+    }
+    if (sushi) {
+      fetchTotalSupply()
+    }
+  }, [sushi, setTotalSupply])
 
   const onToggleInviteModal = () => {
     setIsOpenInviteModal(!isOpenInviteModal)
@@ -43,15 +62,15 @@ const Home = () => {
         <Main>
           <InfoBlock>
             <LogoLarge iconName="logo-large" />
-            <Text>
-              Stake Eggs (farm LP tokens) to hatch your very own CHKN
-            </Text>
+            <Text>Stake Eggs (farm LP tokens) to hatch your very own CHKN</Text>
           </InfoBlock>
           <CardList>
             <StyledCard
               iconName="logo-circle"
               title="Your CHKN Balance"
-              value="Locked"
+              value={
+                !!account ? getBalanceNumber(sushiBalance).toString() : 'Locked'
+              }
               bottomText="Pending Harvest"
               bottomValue="0.00"
               bottomUnits="CHKN"
@@ -60,7 +79,11 @@ const Home = () => {
             />
             <StyledCard
               title="Total CHKN Supply"
-              value="Locked"
+              value={
+                totalSupply
+                  ? getBalanceNumber(totalSupply).toString()
+                  : 'Locked'
+              }
               bottomText="New rewards per block"
               bottomValue="1.00"
               bottomUnits="CHKN"
@@ -72,7 +95,7 @@ const Home = () => {
             <StyledButtonWrap>
               <StyledButton onClick={() => history.push('/stake')}>
                 {/* <Img src={chiliIcon} alt="add spice" /> */}
-                Stake Eggs
+                Stake
               </StyledButton>
             </StyledButtonWrap>
             {renderInviteButton()}
@@ -80,7 +103,10 @@ const Home = () => {
         </Main>
       </Container>
       {account && isOpenInviteModal && (
-        <InviteModal onIsOpenChange={onToggleInviteModal} isFirstWeek={isFirstWeek} />
+        <InviteModal
+          onIsOpenChange={onToggleInviteModal}
+          isFirstWeek={isFirstWeek}
+        />
       )}
     </>
   )

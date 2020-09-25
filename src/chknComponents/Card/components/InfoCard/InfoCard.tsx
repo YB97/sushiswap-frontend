@@ -9,15 +9,13 @@ interface InfoCard {
 
 const InfoCard: React.FC<InfoCard> = ({ iconName, title, value }) => {
   return (
-    <>
-      <StyledMainBlock>
-        <div>
-          <StyledTitle>{title}</StyledTitle>
-          <StyledValue>{value}</StyledValue>
-        </div>
-        {iconName && <StyledIcon iconName={iconName} />}
-      </StyledMainBlock>
-    </>
+    <StyledMainBlock>
+      <div>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledValue>{value}</StyledValue>
+      </div>
+      {iconName && <StyledIcon iconName={iconName} />}
+    </StyledMainBlock>
   )
 }
 

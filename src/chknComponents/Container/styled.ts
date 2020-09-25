@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const StyledContainer = styled.div`
   display: block;
@@ -23,8 +23,7 @@ export const StyledContainer = styled.div`
   }
 
   /*  Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) { 
+  @media (min-width: 1200px) {
     max-width: 1140px;
   }
-
 `

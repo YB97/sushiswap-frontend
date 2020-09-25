@@ -14,6 +14,7 @@ interface CardProps extends MenuCardProps {
   iconName?: string
   title?: string
   value?: string
+  imgSrc?: string
   subtitle?: string
   className?: string
   btnText?: string

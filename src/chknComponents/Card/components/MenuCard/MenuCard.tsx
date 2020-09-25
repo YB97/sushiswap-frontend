@@ -11,6 +11,7 @@ import {
 
 export interface MenuCardProps {
   textClassName?: string
+  imgSrc?: string
   title?: string
   subtitle?: string
   btnText?: string
@@ -25,6 +26,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
   textClassName,
   title,
   subtitle,
+  imgSrc,
   onBtnClick,
   btnText = 'Select',
   isBtnDisabled = false,
@@ -35,11 +37,16 @@ const MenuCard: React.FC<MenuCardProps> = ({
   return (
     <StyledWrapper>
       <StyledImageWrapper>
+        {/* <img src="egg-king.png" alt="Select" /> */}
         <img src={burnChiliIcon} alt="Select" />
       </StyledImageWrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle className={textClassName}>{subtitle}</StyledSubtitle>
-      <StyledBtn theme="light-blue" onClick={onBtnClick} disabled={isBtnDisabled}>
+      <StyledBtn
+        theme="light-blue"
+        onClick={onBtnClick}
+        disabled={isBtnDisabled}
+      >
         {btnText}
       </StyledBtn>
       {hasAddBtn && (

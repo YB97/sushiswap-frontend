@@ -13,7 +13,13 @@ import P from '../../chknComponents/P'
 import useFarms from '../../hooks/useFarms'
 import { Farm } from '../../contexts/Farms'
 import useAllStakedValue, { StakedValue } from '../../hooks/useAllStakedValue'
-import { Main, Logo, CardList, CardWrapper, UnlockButtonWrapper } from './styled'
+import {
+  Main,
+  Logo,
+  CardList,
+  CardWrapper,
+  UnlockButtonWrapper,
+} from './styled'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -73,7 +79,6 @@ const CHKNMenu: FC = () => {
     }
   })
 
-
   return (
     <Container>
       <Main>
@@ -81,7 +86,8 @@ const CHKNMenu: FC = () => {
         <H1>Select your spicy level</H1>
         <P>Earn CHKN token by staking Uniswap V2 LP tokens</P>
         <CardList>
-          {rows.map((row) => {
+          {rows.map((row: any) => {
+            console.log('row.imgSrc', row.imgSrc)
             return (
               <CardWrapper>
                 <Card
@@ -89,6 +95,7 @@ const CHKNMenu: FC = () => {
                   onCardClick={() => console.log('onCardClick')}
                   bottomText="APY"
                   bottomValue={''}
+                  imgSrc={row.icon}
                   title={row.name}
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}
                   onBtnClick={() => history.push(`/stake/${row.id}`)}
