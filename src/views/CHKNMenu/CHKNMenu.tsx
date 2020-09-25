@@ -53,8 +53,6 @@ const CHKNMenu: FC = () => {
     )
   }
 
-  console.log('fams', farms, 'stakedValue', stakedValue)
-
   const sushiIndex = farms.findIndex(
     ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
   )
@@ -89,7 +87,6 @@ const CHKNMenu: FC = () => {
         <P>Earn CHKN token by staking Uniswap V2 LP tokens</P>
         <CardList>
           {rows.map((row: any) => {
-            console.log('row.imgSrc', row.imgSrc)
             return (
               <CardWrapper>
                 <Card

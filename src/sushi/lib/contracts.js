@@ -1,8 +1,11 @@
 import BigNumber from 'bignumber.js/bignumber'
 import ERC20Abi from './abi/erc20.json'
-import MasterChefAbi from './abi/masterchef.json'
-import SushiAbi from './abi/sushi.json'
-import UNIV2PairAbi from './abi/uni_v2_lp.json'
+// import MasterChefAbi from './abi/masterchef.json'
+import FryCookAbi from './abi/frycook.json'
+import ChknAbi from './abi/chickenToken.json'
+// import SushiAbi from './abi/sushi.json'
+import UNIV2PairAbi from './abi/uniswap_v2_router.json'
+// import UNIV2PairAbi from './abi/uni_v2_lp.json'
 import WETHAbi from './abi/weth.json'
 import {
   contractAddresses,
@@ -21,8 +24,10 @@ export class Contracts {
     this.defaultGas = options.defaultGas
     this.defaultGasPrice = options.defaultGasPrice
 
-    this.sushi = new this.web3.eth.Contract(SushiAbi)
-    this.masterChef = new this.web3.eth.Contract(MasterChefAbi)
+    this.sushi = new this.web3.eth.Contract(ChknAbi)
+    // this.sushi = new this.web3.eth.Contract(SushiAbi)
+    this.masterChef = new this.web3.eth.Contract(FryCookAbi)
+    // this.masterChef = new this.web3.eth.Contract(MasterChefAbi)
     this.weth = new this.web3.eth.Contract(WETHAbi)
 
     this.pools = supportedPools.map((pool) =>
@@ -31,7 +36,6 @@ export class Contracts {
         tokenAddress: pool.tokenAddresses[networkId],
         lpContract: new this.web3.eth.Contract(UNIV2PairAbi),
         tokenContract: new this.web3.eth.Contract(ERC20Abi),
-        imgSrc: pool.imgSrc,
       }),
     )
 
