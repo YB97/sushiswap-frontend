@@ -1,4 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-add" viewBox="0 0 58 58">
+    <path
+      d="M54.675 31C55.959 31 57 30.1046 57 29C57 27.8955 55.9591 27 54.675 27L3.32498 27C2.04095 27 1 27.8954 1 29C1 30.1045 2.04095 31 3.32498 31L54.675 31Z"
+      fill="#0A93E2" stroke="#0A93E2" stroke-width="2" />
+    <path
+      d="M31 3.32498C31 2.04096 30.1045 1 29 1C27.8954 1 27 2.04095 27 3.32498L27 54.675C27 55.959 27.8955 57 29 57C30.1046 57 31 55.9591 31 54.675L31 3.32498Z"
+      fill="#0A93E2" stroke="#0A93E2" stroke-width="2" />
+  </symbol>
   <symbol id="icon-logo-circle" viewBox="0 0 63 60">
     <g clip-path="url(#clip0)">
       <path

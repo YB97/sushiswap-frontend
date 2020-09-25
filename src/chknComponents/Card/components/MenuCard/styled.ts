@@ -27,7 +27,7 @@ export const StyledWrapper = styled.div`
     width: 90%;
     height: 1px;
     margin: 0 auto;
-    background-color: #D9E5E9
+    background-color: #d9e5e9;
   }
 `
 
@@ -69,10 +69,10 @@ export const StyledImageWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-block;
-  width: 108px;
-  height: 108px;
-  border-radius: 100%;
-  background: #FFFFFF;
-  box-shadow: 0px 8px 20px rgba(55, 59, 70, 0.19);
-  border-radius: 66px;
+  /* width: 150px;
+  height: 130px; */
+  /* border-radius: 100%; */
+  /* background: #FFFFFF; */
+  /* box-shadow: 0px 8px 20px rgba(55, 59, 70, 0.19); */
+  /* border-radius: 66px; */
 `

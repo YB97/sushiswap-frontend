@@ -38,7 +38,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
     <StyledWrapper>
       <StyledImageWrapper>
         {/* <img src="egg-king.png" alt="Select" /> */}
-        <img src={burnChiliIcon} alt="Select" />
+        <img src={imgSrc || burnChiliIcon} alt="Select" />
       </StyledImageWrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle className={textClassName}>{subtitle}</StyledSubtitle>

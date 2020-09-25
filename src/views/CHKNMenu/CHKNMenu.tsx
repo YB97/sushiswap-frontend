@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { useWallet } from 'use-wallet'
 import { useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
@@ -20,6 +20,7 @@ import {
   CardWrapper,
   UnlockButtonWrapper,
 } from './styled'
+import AddModal from '../../chknComponents/AddModal'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -31,6 +32,7 @@ const CHKNMenu: FC = () => {
   const history = useHistory()
   const stakedValue = useAllStakedValue()
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
+  const [isAddModalVisible, setAddModalVisible] = useState(false)
 
   if (!account) {
     return (
@@ -104,8 +106,17 @@ const CHKNMenu: FC = () => {
               </CardWrapper>
             )
           })}
+          <CardWrapper>
+            <Card type="add" onCardClick={() => setAddModalVisible(true)} />
+          </CardWrapper>
         </CardList>
       </Main>
+      {isAddModalVisible && (
+        <AddModal
+          onOverlayClick={() => setAddModalVisible(false)}
+          onBtnClick={() => setAddModalVisible(false)}
+        />
+      )}
     </Container>
   )
 }

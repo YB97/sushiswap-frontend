@@ -15,7 +15,7 @@ export const StyledOverlay = styled.div`
   background-color: ${rgba('#1C1D24', 0.53)};
 `
 
-export const StyledPopupWrapper = styled.main<{isPromo: boolean}>`
+export const StyledPopupWrapper = styled.main<{ isPromo?: boolean }>`
   margin: auto;
   position: relative;
   display: flex;

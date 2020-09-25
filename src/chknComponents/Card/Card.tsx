@@ -9,6 +9,7 @@ import {
 } from './styled'
 import { MenuCardProps } from './components/MenuCard/MenuCard'
 import { BigNumber } from '../../sushi'
+import AddCard from './components/AddCard'
 
 interface CardProps extends MenuCardProps {
   iconName?: string
@@ -18,7 +19,7 @@ interface CardProps extends MenuCardProps {
   subtitle?: string
   className?: string
   btnText?: string
-  type?: 'menu' | 'info'
+  type?: 'menu' | 'info' | 'add'
   onCardClick?: () => void
   onBtnClick?: () => void
   bottomText?: string
@@ -31,6 +32,8 @@ interface CardProps extends MenuCardProps {
 const Card: React.FC<CardProps> = ({ isFooterVisible = false, ...props }) => {
   const renderCardByType = () => {
     switch (props.type) {
+      case 'add':
+        return <AddCard />
       case 'menu':
         return (
           <MenuCard

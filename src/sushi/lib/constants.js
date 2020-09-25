@@ -1,4 +1,19 @@
 import BigNumber from 'bignumber.js/bignumber'
+import EggKing from '../../assets/img/egg-king.png'
+import SuperShell from '../../assets/img/super-shell.png'
+import Artiste from '../../assets/img/gifted-artiste.png'
+import Tamago from '../../assets/img/tamago-boy.png'
+import Popular from '../../assets/img/mr-popular.png'
+import ChillGal from '../../assets/img/chill-gal.png'
+import OldEggy from '../../assets/img/old-eggy.png'
+import Swordsman from '../../assets/img/swordsman.png'
+import BookWorm from '../../assets/img/book-worm.png'
+import Fighter from '../../assets/img/friendly-fighter.png'
+import Banker from '../../assets/img/banker.png'
+import Yolk from '../../assets/img/yolk.png'
+import Shape from '../../assets/img/shape.png'
+import Zen from '../../assets/img/zen.png'
+import Amply from '../../assets/img/amply-plump.png'
 
 export const SUBTRACT_GAS_LIMIT = 100000
 
@@ -77,11 +92,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
     },
-    name: 'Sushi Party!',
+    name: 'Egg King',
     symbol: 'SUSHI-ETH UNI-V2 LP',
     tokenSymbol: 'SUSHI',
-    // imgSrc: 'src/assets/img/egg-king.png',
-    icon: '../../assets/img/egg-king.png',
+    icon: EggKing,
   },
   {
     pid: 0,
@@ -91,10 +105,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xdac17f958d2ee523a2206206994597c13d831ec7',
     },
-    name: 'Tether Turtle',
+    name: 'Super Shell',
     symbol: 'USDT-ETH UNI-V2 LP',
     tokenSymbol: 'USDT',
-    icon: '🐢',
+    icon: SuperShell,
   },
   {
     pid: 1,
@@ -104,10 +118,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     },
-    name: 'Circle Snail',
+    name: 'Gifted Artiste',
     symbol: 'USDC-ETH UNI-V2 LP',
     tokenSymbol: 'USDC',
-    icon: '🐌',
+    icon: Artiste,
   },
   {
     pid: 2,
@@ -117,10 +131,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x6b175474e89094c44da98b954eedeac495271d0f',
     },
-    name: 'Donald DAI',
+    name: 'Tamago Boy',
     symbol: 'DAI-ETH UNI-V2 LP',
     tokenSymbol: 'DAI',
-    icon: '🦆',
+    icon: Tamago,
   },
   {
     pid: 3,
@@ -130,10 +144,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x57ab1ec28d129707052df4df418d58a2d46d5f51',
     },
-    name: 'Spartan Dollar',
+    name: 'Mr. Popular',
     symbol: 'SUSD-ETH UNI-V2 LP',
     tokenSymbol: 'SUSD',
-    icon: '🦍',
+    icon: Popular,
   },
   {
     pid: 7,
@@ -143,10 +157,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x04fa0d235c4abf4bcf4787af4cf447de572ef828',
     },
-    name: 'Umami Squid',
+    name: 'Chill Gal',
     symbol: 'UMA-ETH UNI-V2 LP',
     tokenSymbol: 'UMA',
-    icon: '🦑',
+    icon: ChillGal,
   },
   {
     pid: 9,
@@ -156,10 +170,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xba11d00c5f74255f56a5e366f4f77f5a186d7f55',
     },
-    name: 'Band-osaurus',
+    name: 'Old Eggy',
     symbol: 'BAND-ETH UNI-V2 LP',
     tokenSymbol: 'BAND',
-    icon: '🦖',
+    icon: OldEggy,
   },
   {
     pid: 8,
@@ -169,10 +183,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x514910771af9ca656af840dff83e8264ecf986ca',
     },
-    name: 'Toadie Marine',
+    name: 'Swordsman',
     symbol: 'LINK-ETH UNI-V2 LP',
     tokenSymbol: 'LINK',
-    icon: '🐸',
+    icon: Swordsman,
   },
   {
     pid: 10,
@@ -182,10 +196,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xd46ba6d942050d489dbd938a2c909a5d5039a161',
     },
-    name: 'Ample Chicks',
+    name: 'Book Worm',
     symbol: 'AMPL-ETH UNI-V2 LP',
     tokenSymbol: 'AMPL',
-    icon: '🐥',
+    icon: BookWorm,
   },
   {
     pid: 4,
@@ -195,10 +209,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xc00e94cb662c3520282e6f5717214004a7f26888',
     },
-    name: 'Compound Truffle',
+    name: 'Friendly Fighter',
     symbol: 'COMP-ETH UNI-V2 LP',
     tokenSymbol: 'COMP',
-    icon: '🍄',
+    icon: Fighter,
   },
   {
     pid: 5,
@@ -208,10 +222,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x80fb784b7ed66730e8b1dbd9820afd29931aab03',
     },
-    name: 'Aave Boar',
+    name: 'Benevolent Banker',
     symbol: 'LEND-ETH UNI-V2 LP',
     tokenSymbol: 'LEND',
-    icon: '🐗',
+    icon: Banker,
   },
   {
     pid: 6,
@@ -221,10 +235,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f',
     },
-    name: 'Synthetic Snake',
+    name: 'Generous Yolk  ',
     symbol: 'SNX-ETH UNI-V2 LP',
     tokenSymbol: 'SNX',
-    icon: '🐍',
+    icon: Yolk,
   },
   {
     pid: 11,
@@ -234,10 +248,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e',
     },
-    name: 'YFI Whale',
+    name: 'Shapeshifter',
     symbol: 'YFI-ETH UNI-V2 LP',
     tokenSymbol: 'YFI',
-    icon: '🐋',
+    icon: Shape,
   },
   {
     pid: 13,
@@ -247,10 +261,10 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x408e41876cccdc0f92210600ef50372656052a38',
     },
-    name: 'REN Rhino',
+    name: 'Zen Farmer',
     symbol: 'REN-ETH UNI-V2 LP',
     tokenSymbol: 'REN',
-    icon: '🦏',
+    icon: Zen,
   },
   {
     pid: 14,
@@ -260,48 +274,48 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0x68A118Ef45063051Eac49c7e647CE5Ace48a68a5',
     },
-    name: 'BASED Bull',
+    name: 'Amply Plump',
     symbol: 'BASE-sUSD UNI-V2 LP',
     tokenSymbol: 'BASED',
-    icon: '🐂',
+    icon: Amply,
   },
-  {
-    pid: 15,
-    lpAddresses: {
-      1: '0xcc3d1ecef1f9fd25599dbea2755019dc09db3c54',
-    },
-    tokenAddresses: {
-      1: '0x476c5E26a75bd202a9683ffD34359C0CC15be0fF',
-    },
-    name: 'SRM Shark',
-    symbol: 'SRM-ETH UNI-V2 LP',
-    tokenSymbol: 'SRM',
-    icon: '🦈',
-  },
-  {
-    pid: 16,
-    lpAddresses: {
-      1: '0xa5904961f61bae7c4dd8478077556c91bf291cfd',
-    },
-    tokenAddresses: {
-      1: '0xaba8cac6866b83ae4eec97dd07ed254282f6ad8a',
-    },
-    name: 'SUSHIv2 SUSHI',
-    symbol: 'SUSHIv2-ETH UNI-V2 LP',
-    tokenSymbol: 'SUSHIv2',
-    icon: '🍠',
-  },
-  {
-    pid: 17,
-    lpAddresses: {
-      1: '0x3da1313ae46132a397d90d95b1424a9a7e3e0fce',
-    },
-    tokenAddresses: {
-      1: '0xD533a949740bb3306d119CC777fa900bA034cd52',
-    },
-    name: 'CRV Crocodile',
-    symbol: 'CRV-ETH UNI-V2 LP',
-    tokenSymbol: 'CRV',
-    icon: '🐊',
-  },
+  // {
+  //   pid: 15,
+  //   lpAddresses: {
+  //     1: '0xcc3d1ecef1f9fd25599dbea2755019dc09db3c54',
+  //   },
+  //   tokenAddresses: {
+  //     1: '0x476c5E26a75bd202a9683ffD34359C0CC15be0fF',
+  //   },
+  //   name: 'SRM Shark',
+  //   symbol: 'SRM-ETH UNI-V2 LP',
+  //   tokenSymbol: 'SRM',
+  //   icon: '🦈',
+  // },
+  // {
+  //   pid: 16,
+  //   lpAddresses: {
+  //     1: '0xa5904961f61bae7c4dd8478077556c91bf291cfd',
+  //   },
+  //   tokenAddresses: {
+  //     1: '0xaba8cac6866b83ae4eec97dd07ed254282f6ad8a',
+  //   },
+  //   name: 'SUSHIv2 SUSHI',
+  //   symbol: 'SUSHIv2-ETH UNI-V2 LP',
+  //   tokenSymbol: 'SUSHIv2',
+  //   icon: '🍠',
+  // },
+  // {
+  //   pid: 17,
+  //   lpAddresses: {
+  //     1: '0x3da1313ae46132a397d90d95b1424a9a7e3e0fce',
+  //   },
+  //   tokenAddresses: {
+  //     1: '0xD533a949740bb3306d119CC777fa900bA034cd52',
+  //   },
+  //   name: 'CRV Crocodile',
+  //   symbol: 'CRV-ETH UNI-V2 LP',
+  //   tokenSymbol: 'CRV',
+  //   icon: '🐊',
+  // },
 ]
