@@ -125,7 +125,7 @@ const CHKNMenuItem = () => {
           <img src={icon as string} alt="" />
           <H1>{name}</H1>
           <Text>
-            Deposit {id} Tokens and earn {earnTokenName}
+            Deposit {id} Eggs (Farm LP Tokens) and earn {earnTokenName}
           </Text>
         </Description>
         <CardList>
