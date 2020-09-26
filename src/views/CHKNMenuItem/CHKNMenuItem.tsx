@@ -18,7 +18,8 @@ import DepositModal from '../../views/Farm/components/DepositModal'
 import { getContract } from '../../utils/erc20'
 import { getBalanceNumber } from '../../utils/formatBalance'
 
-import burnChiliIcon from '../../assets/img/burn-chili.png'
+import chknIcon from '../../assets/img/chkn.svg'
+
 import {
   Wrapper,
   Description,
@@ -38,8 +39,8 @@ const CHKNMenuItem = () => {
     lpTokenAddress,
     // tokenAddress,
     earnToken,
-    // name,
-    // icon,
+    name,
+    icon,
   } = useFarm(id) || {
     pid: 0,
     lpToken: '',
@@ -49,6 +50,8 @@ const CHKNMenuItem = () => {
     name: '',
     icon: '',
   }
+
+  console.log('name', name, 'icon', icon)
   const { account, ethereum } = useWallet()
   const history = useHistory()
 
@@ -114,8 +117,8 @@ const CHKNMenuItem = () => {
     <Container>
       <Wrapper>
         <Description>
-          <img src={burnChiliIcon} alt="" />
-          <H1>Ghost Pepper Heat!</H1>
+          <img src={icon as string} alt="" />
+          <H1>{name}</H1>
           <Text>
             Deposit {id} Tokens and earn {earnTokenName}
           </Text>
@@ -127,8 +130,10 @@ const CHKNMenuItem = () => {
               title="0.00"
               subtitle="CHKN Earned"
               btnText="Approve"
+              iconWidth="100px"
               isBtnDisabled
               onBtnClick={() => console.log('btn click')}
+              imgSrc={chknIcon}
             />
           </CardWrapper>
           <CardWrapper>
@@ -143,6 +148,7 @@ const CHKNMenuItem = () => {
               onBtnClick={isNotAllowed ? handleApprove : onPresentWithdraw}
               hasAddBtn={!!allowance.toNumber()}
               onAddBtnClick={onPresentDeposit}
+              imgSrc={icon as string}
             />
           </CardWrapper>
         </CardList>
