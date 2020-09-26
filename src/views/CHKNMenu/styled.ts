@@ -10,6 +10,7 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 130px;
 `
 
 export const Logo = styled(Icon)`
@@ -30,7 +31,6 @@ export const CardList = styled.div`
   margin-bottom: 200px;
 
   @media (min-width: ${MD}) {
-    
   }
 `
 
