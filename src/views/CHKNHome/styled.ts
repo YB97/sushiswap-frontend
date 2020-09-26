@@ -9,8 +9,8 @@ export const LogoLarge = styled(Icon)`
   width: 110px;
   height: 110px;
   @media (min-width: ${MD}) {
-    width: 162px;
-    height: 167px;
+    width: 150px;
+    height: 157px;
   }
 `
 
