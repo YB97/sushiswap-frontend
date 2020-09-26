@@ -24,15 +24,15 @@ export const StyledIconWrapper = styled.div`
 
 export const StyledWrapper = styled.div`
   position: relative;
-  display: flex;
+  /* display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-  padding: 25px 20px;
-  padding-top: 65px;
-  min-height: 200px;
+  justify-content: center; */
+  padding: 25px 20px 15px 20px;
+  box-sizing: border-box;
+  min-height: 260px;
   cursor: pointer;
-  &::after {
+  /* &::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -40,11 +40,12 @@ export const StyledWrapper = styled.div`
     height: 1px;
     margin: 0 auto;
     background-color: #d9e5e9;
-  }
+  } */
 `
 export const StyledTitle = styled.div`
-  margin-top: 10px;
-  font-size: 22px;
+  /* margin-top: 10px; */
+  margin-top: 40px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
 `
@@ -56,7 +57,7 @@ export const StyledSubtitle = styled.div`
   font-size: 13px;
   line-height: 21px;
   color: #2f80ed;
-  margin-top: 5px;
+  margin-top: 10px;
   /* identical to box height */
 
   text-align: center;
@@ -69,7 +70,7 @@ export const StyledText = styled.div`
   line-height: 21px;
   text-align: center;
   letter-spacing: 0.03em;
-  margin-top: 5px;
+  margin-top: 20px;
 
   /* Gray */
 

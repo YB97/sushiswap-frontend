@@ -28,6 +28,8 @@ import {
   CardWrapper,
   CardItem,
 } from './styled'
+import useEarnings from '../../hooks/useEarnings'
+import useReward from '../../hooks/useReward'
 
 const CHKNMenuItem = () => {
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -51,7 +53,6 @@ const CHKNMenuItem = () => {
     icon: '',
   }
 
-  console.log('name', name, 'icon', icon)
   const { account, ethereum } = useWallet()
   const history = useHistory()
 
@@ -87,7 +88,11 @@ const CHKNMenuItem = () => {
   )
 
   const tokenBalance = useTokenBalance(lpContract.options.address)
+  const earnings = useEarnings(pid)
   const { onStake } = useStake(pid)
+
+  const [pendingTx, setPendingTx] = useState(false)
+  const { onReward } = useReward(pid)
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -127,12 +132,16 @@ const CHKNMenuItem = () => {
           <CardWrapper>
             <CardItem
               type="menu"
-              title="0.00"
+              title={getBalanceNumber(earnings).toString()}
               subtitle="CHKN Earned"
               btnText="Approve"
               iconWidth="100px"
-              isBtnDisabled
-              onBtnClick={() => console.log('btn click')}
+              isBtnDisabled={!earnings.toNumber() || pendingTx}
+              onBtnClick={async () => {
+                setPendingTx(true)
+                await onReward()
+                setPendingTx(false)
+              }}
               imgSrc={chknIcon}
             />
           </CardWrapper>

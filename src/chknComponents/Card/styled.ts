@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { WHITE, FW_MEDIUM, FONT_PTMONO, GRAY} from "../../styledVars";
+import styled from 'styled-components'
+import { WHITE, FW_MEDIUM, FONT_PTMONO, GRAY } from '../../styledVars'
 
 export const StyledWrapper = styled.div`
   position: relative;
@@ -10,16 +10,17 @@ export const StyledWrapper = styled.div`
   border-radius: 20px;
 `
 
-export const StyledBottomBlock = styled.div`
+export const StyledBottomBlock = styled.div<{ isInfo?: boolean }>`
   display: flex;
   justify-content: space-between;
   color: ${GRAY};
-  padding: 12px 20px;
+  padding: 15px 20px;
+  ${({ isInfo }) => isInfo && 'border-top: 1px solid #d9e5e9'}
 `
 
 export const StyledBottomValueWrapper = styled.div`
   font-weight: ${FW_MEDIUM};
-  color: #222A3F;
+  color: #222a3f;
 `
 
 export const StyledBottomValue = styled.span`

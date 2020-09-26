@@ -14,6 +14,7 @@ import Yolk from '../../assets/img/yolk.png'
 import Shape from '../../assets/img/shape.png'
 import Zen from '../../assets/img/zen.png'
 import Amply from '../../assets/img/amply-plump.png'
+import Plant from '../../assets/img/plant.png'
 
 export const SUBTRACT_GAS_LIMIT = 100000
 
@@ -118,11 +119,24 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     },
-    name: 'Gifted Artiste',
+    name: '茶叶蛋',
     symbol: 'USDC-ETH UNI-V2 LP',
     tokenSymbol: 'USDC',
-    icon: Artiste,
+    icon: Plant,
   },
+  // {
+  //   pid: 1,
+  //   lpAddresses: {
+  //     1: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+  //   },
+  //   tokenAddresses: {
+  //     1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+  //   },
+  //   name: 'Gifted Artiste',
+  //   symbol: 'USDC-ETH UNI-V2 LP',
+  //   tokenSymbol: 'USDC',
+  //   icon: Artiste,
+  // },
   {
     pid: 2,
     lpAddresses: {
@@ -189,18 +203,31 @@ export const supportedPools = [
     icon: Swordsman,
   },
   {
-    pid: 10,
+    pid: 1,
     lpAddresses: {
-      1: '0xc5be99a02c6857f9eac67bbce58df5572498f40c',
+      1: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
     },
     tokenAddresses: {
-      1: '0xd46ba6d942050d489dbd938a2c909a5d5039a161',
+      1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     },
-    name: 'Book Worm',
-    symbol: 'AMPL-ETH UNI-V2 LP',
-    tokenSymbol: 'AMPL',
-    icon: BookWorm,
+    name: 'Gifted Artiste',
+    symbol: 'USDC-ETH UNI-V2 LP',
+    tokenSymbol: 'USDC',
+    icon: Artiste,
   },
+  // {
+  //   pid: 10,
+  //   lpAddresses: {
+  //     1: '0xc5be99a02c6857f9eac67bbce58df5572498f40c',
+  //   },
+  //   tokenAddresses: {
+  //     1: '0xd46ba6d942050d489dbd938a2c909a5d5039a161',
+  //   },
+  //   name: 'Book Worm',
+  //   symbol: 'AMPL-ETH UNI-V2 LP',
+  //   tokenSymbol: 'AMPL',
+  //   icon: BookWorm,
+  // },
   {
     pid: 4,
     lpAddresses: {
@@ -235,7 +262,7 @@ export const supportedPools = [
     tokenAddresses: {
       1: '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f',
     },
-    name: 'Generous Yolk  ',
+    name: 'Generous Yolk',
     symbol: 'SNX-ETH UNI-V2 LP',
     tokenSymbol: 'SNX',
     icon: Yolk,

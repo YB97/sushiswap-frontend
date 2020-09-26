@@ -14,8 +14,8 @@ export const Main = styled.div`
 `
 
 export const Logo = styled(Icon)`
-  width: 93px;
-  height: 104px;
+  width: 107px;
+  height: 120px;
   @media (max-width: ${MD}) {
     width: 60px;
     height: 94px;

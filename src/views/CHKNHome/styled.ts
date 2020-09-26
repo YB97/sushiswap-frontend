@@ -38,14 +38,14 @@ export const InfoBlock = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 `
 
 export const CardList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   @media (min-width: 1600px) {
     margin-bottom: 35px;
@@ -60,11 +60,15 @@ export const CardList = styled.div`
 `
 
 export const StyledCard = styled(Card)`
-  display: block;
+  /* display: block; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   margin-right: 0;
   margin-top: 20px;
   padding: 0 10px;
+  min-height: 150px;
   &:first-child {
     margin-top: 0;
   }
@@ -90,6 +94,7 @@ export const Img = styled.img`
 `
 
 export const StyledButton = styled(Button)`
+  box-shadow: 0px 7px 30px rgba(55, 59, 70, 0.2);
   @media (max-width: ${MD}) {
     font-size: 14px;
   }
@@ -99,7 +104,6 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   width: auto;
   justify-content: center;
-  margin-top: 20px;
 `
 
 export const StyledButtonWrap = styled.div`

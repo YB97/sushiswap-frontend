@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const StyledMainBlock = styled.div`
   display: flex;
-  border-bottom: 1px solid #d9e5e9;
+  /* border-bottom: 1px solid #d9e5e9; */
   align-items: center;
   justify-content: space-between;
   padding-bottom: 24px;
@@ -15,7 +15,7 @@ export const StyledTitle = styled.div`
   font-weight: 500;
   font-size: 14px;
   color: ${GRAY};
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   /* @media (max-width: ${MD}) {
     font-size: 14px;
   } */

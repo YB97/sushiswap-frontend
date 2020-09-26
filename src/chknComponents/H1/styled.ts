@@ -6,7 +6,7 @@ export const StyledH1 = styled.h1`
   color: #222a3f;
   font-family: ${FONT_POPPINS};
   /* font-family: ${FONT_SALSA}; */
-  font-size: 34px;
+  font-size: 36px;
   font-weight: bold;
 
   @media (max-width: ${MD}) {

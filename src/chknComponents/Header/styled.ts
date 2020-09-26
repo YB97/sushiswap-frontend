@@ -6,7 +6,7 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
 
   @media (max-width: ${MD}) {
     padding: 10px;

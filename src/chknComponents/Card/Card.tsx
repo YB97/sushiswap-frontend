@@ -59,7 +59,7 @@ const Card: React.FC<CardProps> = ({ isFooterVisible = false, ...props }) => {
     <StyledWrapper className={props.className} onClick={props.onCardClick}>
       {renderCardByType()}
       {isFooterVisible && (
-        <StyledBottomBlock>
+        <StyledBottomBlock isInfo={!props.type || props.type === 'info'}>
           <div>{props.bottomText}</div>
           <StyledBottomValueWrapper>
             <StyledBottomValue>{props.bottomValue}</StyledBottomValue>

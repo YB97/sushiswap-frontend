@@ -18,7 +18,7 @@ export const StyledWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 25px 20px;
+  padding: 25px 20px 15px 20px;
   padding-top: 65px;
   &::after {
     content: '';
@@ -32,23 +32,24 @@ export const StyledWrapper = styled.div`
 `
 
 export const StyledTitle = styled.div`
-  margin-top: 10px;
-  font-size: 22px;
+  /* margin-top: 10px; */
+  font-size: 20px;
   font-weight: bold;
 `
 
 export const StyledSubtitle = styled.div`
-  margin-top: 5px;
-  font-size: 16px;
+  margin-top: 7px;
+  font-size: 14px;
   height: 32px;
   font-weight: ${FW_MEDIUM};
   color: ${LIGHT_BROWN};
+  line-height: 21px;
   text-align: center;
 `
 
 export const StyledBtn = styled(Button)`
   font-family: ${FONT_POPPINS};
-  margin-top: 37px;
+  margin-top: 25px;
   /* font-size: 16px;
   font-weight: ${FW_SEMI_BOLD};
   color: ${BLUE};
