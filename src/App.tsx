@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { UseWalletProvider } from 'use-wallet'
+import { useWallet, UseWalletProvider } from 'use-wallet'
 import DisclaimerModal from './components/DisclaimerModal'
 import MobileMenu from './components/MobileMenu'
 
@@ -18,9 +18,20 @@ import CHKNAbout from './views/CHKNAbout'
 import CHKNMenuItem from './views/CHKNMenuItem'
 import Header from './chknComponents/Header'
 import CHKNMenu from './views/CHKNMenu'
+import useSushi from './hooks/useSushi'
+import useTokenBalance from './hooks/useTokenBalance'
+import { getSushiAddress } from './sushi/utils'
+import { getBalanceNumber } from './utils/formatBalance'
+import CHKNBackground from './views/CHKNBackground'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
+
+  const [showChicks, setShowChicks] = useState(false)
+
+  setTimeout(() => {
+    window.requestAnimationFrame(() => setShowChicks(true))
+  }, 2000)
 
   const handleDismissMobileMenu = useCallback(() => {
     setMobileMenu(false)
@@ -33,31 +44,33 @@ const App: React.FC = () => {
   return (
     <Providers>
       <Router>
-        {/* <TopBar onPresentMobileMenu={handlePresentMobileMenu} /> */}
-        {/* <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} /> */}
-        <Header />
-        <Switch>
-          <Route path="/stake" exact>
-            {/* <Farms /> */}
-            <CHKNMenu />
-            {/* <Farms /> */}
-          </Route>
-          <Route exact path="/stake/:id">
-            <CHKNMenuItem />
-          </Route>
-          <Route path="/about" exact>
-            <CHKNAbout />
-          </Route>
-          <Route path="/staking" exact>
-            <Stake />
-          </Route>
-          <Route path="/" exact>
-            <CHKNHome />
-          </Route>
-          <Route path="*">
-            <CHKNHome />
-          </Route>
-        </Switch>
+        <CHKNBackground>
+          {/* <TopBar onPresentMobileMenu={handlePresentMobileMenu} /> */}
+          {/* <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} /> */}
+          <Header />
+          <Switch>
+            <Route path="/stake" exact>
+              {/* <Farms /> */}
+              <CHKNMenu />
+              {/* <Farms /> */}
+            </Route>
+            <Route exact path="/stake/:id">
+              <CHKNMenuItem />
+            </Route>
+            <Route path="/about" exact>
+              <CHKNAbout />
+            </Route>
+            <Route path="/staking" exact>
+              <Stake />
+            </Route>
+            <Route path="/" exact>
+              <CHKNHome />
+            </Route>
+            <Route path="*">
+              <CHKNHome />
+            </Route>
+          </Switch>
+        </CHKNBackground>
       </Router>
       <Disclaimer />
     </Providers>

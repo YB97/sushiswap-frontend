@@ -88,7 +88,7 @@ const CHKNMenu: FC = () => {
         <CardList>
           {rows.map((row: any) => {
             return (
-              <CardWrapper>
+              <CardWrapper key={row.name}>
                 <Card
                   type="menu"
                   onCardClick={() => console.log('onCardClick')}

@@ -1,75 +1,523 @@
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Regular.eot");
-  src: url("./assets/fonts/Poppins-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/Poppins-Regular.woff2") format("woff2"),
-    url("./assets/fonts/Poppins-Regular.woff") format("woff"),
-    url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.eot');
+  src: url('./assets/fonts/Poppins-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/Poppins-Regular.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Regular.woff') format('woff'),
+    url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Bold.eot");
-  src: url("./assets/fonts/Poppins-Bold.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/Poppins-Bold.woff2") format("woff2"),
-    url("./assets/fonts/Poppins-Bold.woff") format("woff"),
-    url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.eot');
+  src: url('./assets/fonts/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Poppins-Bold.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Bold.woff') format('woff'),
+    url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Medium.eot");
-  src: url("./assets/fonts/Poppins-Medium.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/Poppins-Medium.woff2") format("woff2"),
-    url("./assets/fonts/Poppins-Medium.woff") format("woff"),
-    url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Medium.eot');
+  src: url('./assets/fonts/Poppins-Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/Poppins-Medium.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-Medium.woff') format('woff'),
+    url('./assets/fonts/Poppins-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-SemiBold.eot");
-  src: url("./assets/fonts/Poppins-SemiBold.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/Poppins-SemiBold.woff2") format("woff2"),
-    url("./assets/fonts/Poppins-SemiBold.woff") format("woff"),
-    url("./assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-SemiBold.eot');
+  src: url('./assets/fonts/Poppins-SemiBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/Poppins-SemiBold.woff2') format('woff2'),
+    url('./assets/fonts/Poppins-SemiBold.woff') format('woff'),
+    url('./assets/fonts/Poppins-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Salsa";
-  src: url("./assets/fonts/Salsa-Regular.eot");
-  src: url("./assets/fonts/Salsa-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/Salsa-Regular.woff2") format("woff2"),
-    url("./assets/fonts/Salsa-Regular.woff") format("woff"),
-    url("./assets/fonts/Salsa-Regular.ttf") format("truetype");
+  font-family: 'Salsa';
+  src: url('./assets/fonts/Salsa-Regular.eot');
+  src: url('./assets/fonts/Salsa-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/Salsa-Regular.woff2') format('woff2'),
+    url('./assets/fonts/Salsa-Regular.woff') format('woff'),
+    url('./assets/fonts/Salsa-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "PTMono";
-  src: url("./assets/fonts/PTMono-Regular.eot");
-  src: url("./assets/fonts/PTMono-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets/fonts/PTMono-Regular.woff2") format("woff2"),
-    url("./assets/fonts/PTMono-Regular.woff") format("woff"),
-    url("./assets/fonts/PTMono-Regular.ttf") format("truetype");
+  font-family: 'PTMono';
+  src: url('./assets/fonts/PTMono-Regular.eot');
+  src: url('./assets/fonts/PTMono-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/PTMono-Regular.woff2') format('woff2'),
+    url('./assets/fonts/PTMono-Regular.woff') format('woff'),
+    url('./assets/fonts/PTMono-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+@keyframes chkn-born-15 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/15/background-15-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/15/background-15-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/15/background-15-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/15/background-15-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/15/background-15-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/15/background-15-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/15/background-15-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/15/background-15-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-1 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/1/background-1-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/1/background-1-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/1/background-1-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/1/background-1-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/1/background-1-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/1/background-1-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/1/background-1-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/1/background-1-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-2 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/2/background-2-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/2/background-2-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/2/background-2-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/2/background-2-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/2/background-2-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/2/background-2-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/2/background-2-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/2/background-2-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-3 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/3/background-3-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/3/background-3-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/3/background-3-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/3/background-3-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/3/background-3-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/3/background-3-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/3/background-3-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/3/background-3-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-4 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/4/background-4-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/4/background-4-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/4/background-4-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/4/background-4-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/4/background-4-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/4/background-4-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/4/background-4-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/4/background-4-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-5 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/5/background-5-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/5/background-5-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/5/background-5-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/5/background-5-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/5/background-5-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/5/background-5-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/5/background-5-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/5/background-5-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-6 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/6/background-6-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/6/background-6-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/6/background-6-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/6/background-6-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/6/background-6-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/6/background-6-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/6/background-6-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/6/background-6-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-7 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/7/background-7-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/7/background-7-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/7/background-7-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/7/background-7-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/7/background-7-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/7/background-7-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/7/background-7-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/7/background-7-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-8 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/8/background-8-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/8/background-8-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/8/background-8-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/8/background-8-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/8/background-8-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/8/background-8-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/8/background-8-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/8/background-8-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-9 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/9/background-9-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/9/background-9-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/9/background-9-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/9/background-9-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/9/background-9-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/9/background-9-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/9/background-9-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/9/background-9-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-10 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/10/background-10-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/10/background-10-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/10/background-10-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/10/background-10-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/10/background-10-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/10/background-10-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/10/background-10-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/10/background-10-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-11 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/11/background-11-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/11/background-11-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/11/background-11-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/11/background-11-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/11/background-11-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/11/background-11-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/11/background-11-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/11/background-11-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-12 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/12/background-12-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/12/background-12-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/12/background-12-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/12/background-12-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/12/background-12-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/12/background-12-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/12/background-12-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/12/background-12-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-13 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/13/background-13-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/13/background-13-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/13/background-13-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/13/background-13-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/13/background-13-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/13/background-13-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/13/background-13-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/13/background-13-frame-8.png');
+  }
+}
+
+@keyframes chkn-born-14 {
+  0% {
+    background-image: url('./assets/img/background-empty.png');
+  }
+  11% {
+    background-image: url('./assets/img/14/background-14-frame-1.png');
+  }
+  22% {
+    background-image: url('./assets/img/14/background-14-frame-2.png');
+  }
+  33% {
+    background-image: url('./assets/img/14/background-14-frame-3.png');
+  }
+  44% {
+    background-image: url('./assets/img/14/background-14-frame-4.png');
+  }
+  66% {
+    background-image: url('./assets/img/14/background-14-frame-5.png');
+  }
+  77% {
+    background-image: url('./assets/img/14/background-14-frame-6.png');
+  }
+  88% {
+    background-image: url('./assets/img/14/background-14-frame-7.png');
+  }
+  100% {
+    background-image: url('./assets/img/14/background-14-frame-8.png');
+  }
+}
 
 html {
   box-sizing: border-box;
@@ -91,9 +539,8 @@ html {
   }
 }
 
-
 body {
-  background-color: #B3E6F5;
+  background-color: #b3e6f5;
   margin: 0;
   overflow-x: hidden;
   min-width: 320px;
@@ -101,10 +548,10 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   min-height: 100vh;
-  background-image: url("./assets/img/background-empty.png");
+  /* background-image: url('./assets/img/background-empty.png');
   background-position: center bottom;
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -128,7 +575,8 @@ p {
   line-height: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -142,4 +590,83 @@ code {
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
+}
+
+/* .bg {
+  height: 100%;
+  min-height: 100vh;
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-1.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-2.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-3.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-4.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-5.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-6.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-7.png') -9999px -9999px,
+    url('./assets/img/15/background-15-frame-8.png') -9999px -9999px;
+  background-position: center bottom;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: all 0.15s linear;
+} */
+
+/* .bg-1 {
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-1.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-2.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-3.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-4.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-5.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-6.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-7.png') -9999px -9999px,
+  url('./assets/img/1/background-1-frame-8.png') -9999px -9999px;
+}
+.bg-2 {
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-1.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-2.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-3.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-4.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-5.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-6.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-7.png') -9999px -9999px,
+  url('./assets/img/2/background-2-frame-8.png') -9999px -9999px;
+}
+.bg-3 {
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-1.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-2.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-3.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-4.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-5.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-6.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-7.png') -9999px -9999px,
+  url('./assets/img/3/background-3-frame-8.png') -9999px -9999px;
+}
+.bg-4 {
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-1.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-2.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-3.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-4.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-5.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-6.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-7.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-8.png') -9999px -9999px;
+}
+.bg-4 {
+  background: url('./assets/img/background-empty.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-1.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-2.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-3.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-4.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-5.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-6.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-7.png') -9999px -9999px,
+  url('./assets/img/4/background-4-frame-8.png') -9999px -9999px;
+} */
+
+.animation {
+  background-image: url('./assets/img/15/background-15-frame-8.png');
+  animation: chkn-born-15 6s ease-in-out;
 }
