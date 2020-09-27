@@ -4,15 +4,16 @@ import { useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 
 import WalletProviderModal from '../../components/WalletProviderModal'
-import useModal from '../../hooks/useModal'
 import Button from '../../chknComponents/Button'
 import Card from '../../chknComponents/Card'
 import Container from '../../chknComponents/Container'
 import H1 from '../../chknComponents/H1'
 import P from '../../chknComponents/P'
 import useFarms from '../../hooks/useFarms'
-import { Farm } from '../../contexts/Farms'
+import useModal from '../../hooks/useModal'
 import useAllStakedValue, { StakedValue } from '../../hooks/useAllStakedValue'
+import AddModal from '../../chknComponents/AddModal'
+import { Farm } from '../../contexts/Farms'
 import {
   Main,
   Logo,
@@ -20,7 +21,6 @@ import {
   CardWrapper,
   UnlockButtonWrapper,
 } from './styled'
-import AddModal from '../../chknComponents/AddModal'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -91,7 +91,6 @@ const CHKNMenu: FC = () => {
               <CardWrapper key={row.name}>
                 <Card
                   type="menu"
-                  onCardClick={() => console.log('onCardClick')}
                   bottomText="APY"
                   bottomValue={''}
                   imgSrc={row.icon}

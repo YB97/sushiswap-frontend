@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
+import { useWallet } from 'use-wallet'
 import { useHistory } from 'react-router-dom'
+
+import Container from '../../chknComponents/Container'
+import InviteModal from '../../chknComponents/InviteModal'
+import useTokenBalance from '../../hooks/useTokenBalance'
+import useSushi from '../../hooks/useSushi'
+import { getBalanceNumber } from '../../utils/formatBalance'
+import { getSushiAddress, getSushiSupply } from '../../sushi/utils'
 import {
   Main,
   LogoLarge,
@@ -12,17 +20,9 @@ import {
   StyledButtonWrap,
   ButtonsWrapper,
 } from './styled'
-import Container from '../../chknComponents/Container'
-import { useWallet } from 'use-wallet'
-import InviteModal from '../../chknComponents/InviteModal'
-import { getBalanceNumber } from '../../utils/formatBalance'
-import useTokenBalance from '../../hooks/useTokenBalance'
-import { getSushiAddress, getSushiSupply } from '../../sushi/utils'
-import useSushi from '../../hooks/useSushi'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
-  const [isFirstWeek, setIsFirstWeek] = useState(false)
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const history = useHistory()
   const { account } = useWallet()
@@ -74,7 +74,7 @@ const Home = () => {
               bottomText="Pending Harvest"
               bottomValue="0.00"
               bottomUnits="CHKN"
-              onCardClick={() => console.log('click')}
+              // onCardClick={() => console.log('click')}
               isFooterVisible
             />
             <StyledCard
@@ -87,7 +87,7 @@ const Home = () => {
               bottomText="New rewards per block"
               bottomValue="1.00"
               bottomUnits="CHKN"
-              onCardClick={() => console.log('click1')}
+              // onCardClick={() => console.log('click1')}
               isFooterVisible
             />
           </CardList>
@@ -103,10 +103,7 @@ const Home = () => {
         </Main>
       </Container>
       {account && isOpenInviteModal && (
-        <InviteModal
-          onIsOpenChange={onToggleInviteModal}
-          isFirstWeek={isFirstWeek}
-        />
+        <InviteModal onIsOpenChange={onToggleInviteModal} />
       )}
     </>
   )

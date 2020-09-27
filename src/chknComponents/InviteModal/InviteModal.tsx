@@ -23,10 +23,8 @@ import {
 import headerImg from './img/header-img.svg'
 import headerBg from './img/header-bg.png'
 import getInviteLink from '../../views/CHKNHome/helpers/getInviteLink'
-import { COPIED_DELAY } from './constants'
 
 interface InviteModalProps {
-  isFirstWeek?: boolean
   onIsOpenChange?: () => void
 }
 
@@ -41,6 +39,10 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
     const promoEndDate = moment('2020-09-24').add(7, 'days').startOf('day')
 
     setIsPromo(moment().isSameOrBefore(promoEndDate))
+    console.log(
+      'moment().isSameOrBefore(promoEndDate)',
+      moment().isSameOrBefore(promoEndDate),
+    )
 
     return () => {
       document.body.style.overflow = ''
@@ -68,7 +70,11 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
     return (
       invitedLink && (
         <CopyToClipboard text={invitedLink}>
-          <Button shape="rect" theme="primary" onClick={onClickCopy}>
+          <Button
+            shape="rect"
+            theme="primary"
+            onClick={!isPromo && onClickCopy}
+          >
             {isCopied ? 'Copied' : 'Refer Now'}
           </Button>
         </CopyToClipboard>
@@ -91,7 +97,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
               <p>Share a referral link to them via SMS / Email</p>
               <span>Referral Code</span>
               <CopyToClipboard text="chkn.farm/CHKB0214">
-                <StyledPopupClickBoard onClick={onClickCopy}>
+                <StyledPopupClickBoard onClick={!isPromo && onClickCopy}>
                   {isCopied ? 'Copied' : 'chkn.farm/CHKB0214'}
                 </StyledPopupClickBoard>
               </CopyToClipboard>
