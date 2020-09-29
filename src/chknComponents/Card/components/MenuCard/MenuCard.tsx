@@ -13,6 +13,7 @@ export interface MenuCardProps {
   textClassName?: string
   imgSrc?: string
   iconWidth?: string
+  iconHeight?: string
   title?: string
   subtitle?: string
   btnText?: string
@@ -35,12 +36,18 @@ const MenuCard: React.FC<MenuCardProps> = ({
   isAddBtnDisabled = false,
   onAddBtnClick,
   iconWidth,
+  iconHeight,
 }) => {
   return (
     <StyledWrapper>
       <StyledImageWrapper>
         {/* <img src="egg-king.png" alt="Select" /> */}
-        <img width={iconWidth} src={imgSrc || burnChiliIcon} alt="Select" />
+        <img
+          width={iconWidth}
+          height={iconHeight}
+          src={imgSrc || burnChiliIcon}
+          alt="Select"
+        />
       </StyledImageWrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledSubtitle className={textClassName}>{subtitle}</StyledSubtitle>

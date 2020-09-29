@@ -98,6 +98,8 @@ const CHKNMenu: FC = () => {
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}
                   onBtnClick={() => history.push(`/stake/${row.id}`)}
                   isFooterVisible
+                  // iconWidth="130px"
+                  iconHeight="130px"
                 />
               </CardWrapper>
             )
