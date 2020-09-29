@@ -19,7 +19,8 @@ declare global {
 }
 
 const SushiProvider: React.FC = ({ children }) => {
-  const { ethereum }: { ethereum: any } = useWallet()
+  const { ethereum, chainId }: any = useWallet()
+  // const { ethereum }: { ethereum: any } = useWallet()
   const [sushi, setSushi] = useState<any>()
 
   // @ts-ignore
@@ -28,9 +29,11 @@ const SushiProvider: React.FC = ({ children }) => {
   window.eth = ethereum
 
   useEffect(() => {
+    console.log('ethereum', ethereum, 'chainId', chainId)
     if (ethereum) {
       const chainId = Number(ethereum.chainId)
-      console.log(chainId);
+      console.log('chainId', chainId)
+      // const sushiLib = new Sushi(ethereum, 4, false, {
       const sushiLib = new Sushi(ethereum, chainId, false, {
         defaultAccount: ethereum.selectedAddress,
         defaultConfirmations: 1,
@@ -44,7 +47,7 @@ const SushiProvider: React.FC = ({ children }) => {
       setSushi(sushiLib)
       window.sushisauce = sushiLib
     }
-  }, [ethereum])
+  }, [chainId, ethereum])
 
   return <Context.Provider value={{ sushi }}>{children}</Context.Provider>
 }
