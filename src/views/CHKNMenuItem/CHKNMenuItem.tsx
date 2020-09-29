@@ -122,7 +122,7 @@ const CHKNMenuItem = () => {
     <Container>
       <Wrapper>
         <Description>
-          <img src={icon as string} alt="" />
+          <img src={icon as string} height="130px" alt="" />
           <H1>{name}</H1>
           <Text>
             Deposit {id} Eggs (Farm LP Tokens) and earn {earnTokenName}
@@ -158,6 +158,7 @@ const CHKNMenuItem = () => {
               hasAddBtn={!!allowance.toNumber()}
               onAddBtnClick={onPresentDeposit}
               imgSrc={icon as string}
+              iconHeight="130px"
             />
           </CardWrapper>
         </CardList>
