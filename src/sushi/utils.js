@@ -30,6 +30,20 @@ export const getSushiContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.sushi
 }
 
+export const getRewardsPerBlock = async (masterChefContract, block) => {
+  if (masterChefContract) {
+    const perBlock = await masterChefContract.methods.chickenPerBlock().call()
+    const mult = await masterChefContract.methods
+      .getMintMultiplier(block, block + 1)
+      .call()
+    const res = new BigNumber(perBlock * mult)
+
+    return res.div(new BigNumber(10).pow(18)).toFixed(2)
+  }
+
+  return 0
+}
+
 export const getFarms = (sushi) => {
   return sushi
     ? sushi.contracts.pools.map(

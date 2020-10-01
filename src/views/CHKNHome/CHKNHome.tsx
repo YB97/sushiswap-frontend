@@ -8,7 +8,12 @@ import InviteModal from '../../chknComponents/InviteModal'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import useSushi from '../../hooks/useSushi'
 import { getBalanceNumber } from '../../utils/formatBalance'
-import { getSushiAddress, getSushiSupply } from '../../sushi/utils'
+import {
+  getMasterChefContract,
+  getRewardsPerBlock,
+  getSushiAddress,
+  getSushiSupply,
+} from '../../sushi/utils'
 import {
   Main,
   LogoLarge,
@@ -20,15 +25,19 @@ import {
   StyledButtonWrap,
   ButtonsWrapper,
 } from './styled'
+import useBlock from '../../hooks/useBlock'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
+  const [rewords, setRewords] = useState<any>()
   const history = useHistory()
   const { account } = useWallet()
   const sushi = useSushi()
+  const block = useBlock()
 
   const sushiBalance = useTokenBalance(getSushiAddress(sushi))
+  const masterChefContract = getMasterChefContract(sushi)
 
   useEffect(() => {
     async function fetchTotalSupply() {
@@ -39,6 +48,19 @@ const Home = () => {
       fetchTotalSupply()
     }
   }, [sushi, setTotalSupply])
+
+  useEffect(() => {
+    async function fetchRewords() {
+      const rewardsPerBlock = await getRewardsPerBlock(
+        masterChefContract,
+        block,
+      )
+
+      setRewords(rewardsPerBlock)
+    }
+
+    fetchRewords()
+  }, [block, masterChefContract, sushi])
 
   const onToggleInviteModal = () => {
     setIsOpenInviteModal(!isOpenInviteModal)
@@ -85,7 +107,7 @@ const Home = () => {
                   : 'Locked'
               }
               bottomText="New rewards per block"
-              bottomValue="1.00"
+              bottomValue={rewords?.toString()}
               bottomUnits="CHKN"
               // onCardClick={() => console.log('click1')}
               isFooterVisible
