@@ -30,7 +30,7 @@ import useBlock from '../../hooks/useBlock'
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
-  const [rewords, setRewords] = useState<any>()
+  const [rewards, setRewards] = useState<any>()
   const history = useHistory()
   const { account } = useWallet()
   const sushi = useSushi()
@@ -56,7 +56,7 @@ const Home = () => {
         block,
       )
 
-      setRewords(rewardsPerBlock)
+      setRewards(rewardsPerBlock)
     }
 
     fetchRewords()
@@ -107,7 +107,7 @@ const Home = () => {
                   : 'Locked'
               }
               bottomText="New rewards per block"
-              bottomValue={rewords?.toString()}
+              bottomValue={rewards?.toString()}
               bottomUnits="CHKN"
               // onCardClick={() => console.log('click1')}
               isFooterVisible
