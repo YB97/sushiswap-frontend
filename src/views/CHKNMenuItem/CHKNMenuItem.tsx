@@ -66,7 +66,7 @@ const CHKNMenuItem = () => {
 
   const stakedBalance = useStakedBalance(pid)
 
-  const lpContract = useMemo(() => {
+  const lpContract: any = useMemo(() => {
     return getContract(ethereum as provider, lpTokenAddress)
   }, [ethereum, lpTokenAddress])
 
@@ -112,7 +112,7 @@ const CHKNMenuItem = () => {
         setRequestedApproval(false)
       }
     } catch (e) {
-      console.error(e)
+      console.log(e)
     }
   }, [onApprove, setRequestedApproval])
 

@@ -40,7 +40,7 @@ const Farm: React.FC = () => {
   const sushi = useSushi()
   const { ethereum } = useWallet()
 
-  const lpContract = useMemo(() => {
+  const lpContract: any = useMemo(() => {
     return getContract(ethereum as provider, lpTokenAddress)
   }, [ethereum, lpTokenAddress])
 
