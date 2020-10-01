@@ -86,10 +86,12 @@ export const getTotalLPWethValue = async (
     .balanceOf(lpContract.options.address)
     .call()
   const tokenDecimals = await tokenContract.methods.decimals().call()
+
   // Get the share of lpContract that masterChefContract owns
   const balance = await lpContract.methods
     .balanceOf(masterChefContract.options.address)
     .call()
+
   // Convert that into the portion of total lpContract = p1
   const totalSupply = await lpContract.methods.totalSupply().call()
   // Get total weth value for the lpContract = w1
@@ -108,6 +110,7 @@ export const getTotalLPWethValue = async (
   const wethAmount = new BigNumber(lpContractWeth)
     .times(portionLp)
     .div(new BigNumber(10).pow(18))
+
   return {
     tokenAmount,
     wethAmount,

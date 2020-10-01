@@ -4,8 +4,8 @@ import ERC20Abi from './abi/erc20.json'
 import FryCookAbi from './abi/frycook.json'
 import ChknAbi from './abi/chickenToken.json'
 // import SushiAbi from './abi/sushi.json'
-import UNIV2PairAbi from './abi/uniswap_v2_router.json'
-// import UNIV2PairAbi from './abi/uni_v2_lp.json'
+// import UNIV2PairAbi from './abi/uniswap_v2_router.json'
+import UNIV2PairAbi from './abi/uni_v2_lp.json'
 import WETHAbi from './abi/weth.json'
 import {
   contractAddresses,

@@ -30,7 +30,7 @@ const SushiProvider: React.FC = ({ children }) => {
   useEffect(() => {
     if (ethereum) {
       const chainId = Number(ethereum.chainId)
-      console.log(chainId)
+
       // const sushiLib = new Sushi(ethereum, 4, false, {
       const sushiLib = new Sushi(ethereum, chainId, false, {
         defaultAccount: ethereum.selectedAddress,

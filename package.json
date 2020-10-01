@@ -9,6 +9,7 @@
     "@types/react": "^16.9.46",
     "bignumber.js": "^9.0.0",
     "debounce": "^1.2.0",
+    "moment-timezone": "^0.5.31",
     "numeral": "^2.0.6",
     "polished": "^3.6.7",
     "rc-dialog": "^8.3.4",

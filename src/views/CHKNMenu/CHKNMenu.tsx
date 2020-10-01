@@ -92,7 +92,15 @@ const CHKNMenu: FC = () => {
                 <Card
                   type="menu"
                   bottomText="APY"
-                  bottomValue={''}
+                  bottomValue={
+                    row.apy
+                      ? `${row.apy
+                          .times(new BigNumber(100))
+                          .toNumber()
+                          .toLocaleString('en-US')
+                          .slice(0, -1)}%`
+                      : ''
+                  }
                   imgSrc={row.icon}
                   title={row.name}
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}

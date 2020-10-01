@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from '../Button'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useWallet } from 'use-wallet'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 import {
   StyledOverlay,
@@ -36,13 +36,9 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    const promoEndDate = moment('2020-09-24').add(7, 'days').startOf('day')
+    const promoEndDate = moment.tz('2020-10-08 14:00', 'America/New_York')
 
     setIsPromo(moment().isSameOrBefore(promoEndDate))
-    console.log(
-      'moment().isSameOrBefore(promoEndDate)',
-      moment().isSameOrBefore(promoEndDate),
-    )
 
     return () => {
       document.body.style.overflow = ''
