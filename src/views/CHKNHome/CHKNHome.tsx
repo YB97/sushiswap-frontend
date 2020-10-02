@@ -33,21 +33,22 @@ const Home = () => {
   const [rewards, setRewards] = useState<any>()
   const history = useHistory()
   const { account } = useWallet()
-  const sushi = useSushi()
+  const chkn = useSushi()
   const block = useBlock()
 
-  const sushiBalance = useTokenBalance(getSushiAddress(sushi))
-  const masterChefContract = getMasterChefContract(sushi)
+  const sushiBalance = useTokenBalance(getSushiAddress(chkn))
+  const masterChefContract = getMasterChefContract(chkn)
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const supply = await getSushiSupply(sushi)
-      setTotalSupply(supply)
+      const supply = await getSushiSupply(chkn)
+      const base = new BigNumber(10).pow(18)
+      setTotalSupply(supply.minus(new BigNumber(2650000).multipliedBy(base)))
     }
-    if (sushi) {
+    if (chkn) {
       fetchTotalSupply()
     }
-  }, [sushi, setTotalSupply])
+  }, [chkn, setTotalSupply])
 
   useEffect(() => {
     async function fetchRewords() {
@@ -60,7 +61,7 @@ const Home = () => {
     }
 
     fetchRewords()
-  }, [block, masterChefContract, sushi])
+  }, [block, masterChefContract, chkn])
 
   const onToggleInviteModal = () => {
     setIsOpenInviteModal(!isOpenInviteModal)
@@ -100,7 +101,7 @@ const Home = () => {
               isFooterVisible
             />
             <StyledCard
-              title="Total CHKN Supply"
+              title="Total CHKN Supply Farmed"
               value={
                 totalSupply
                   ? getBalanceNumber(totalSupply).toString()
