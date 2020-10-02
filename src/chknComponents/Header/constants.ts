@@ -11,7 +11,7 @@ export const DEFAULT_HEADER_NAVLINKS: Array<MenuItemProps> = [
   },
   {
     title: 'Exchange',
-    to: 'https://exchange.chkn.farm/#/swap',
+    to: 'https://www.exchange.chkn.farm/#/swap',
     isNative: true,
     target: '_blank',
   },
