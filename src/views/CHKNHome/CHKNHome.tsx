@@ -43,7 +43,7 @@ const Home = () => {
     async function fetchTotalSupply() {
       const supply = await getSushiSupply(chkn)
       const base = new BigNumber(10).pow(18)
-      setTotalSupply(supply.minus(new BigNumber(2650000).multipliedBy(base)))
+      setTotalSupply(supply.minus(new BigNumber(2685000).multipliedBy(base)))
     }
     if (chkn) {
       fetchTotalSupply()
