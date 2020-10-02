@@ -104,7 +104,7 @@ const Home = () => {
               title="Total CHKN Supply Farmed"
               value={
                 totalSupply
-                  ? getBalanceNumber(totalSupply).toString()
+                  ? getBalanceNumber(totalSupply).toFixed(3).toString()
                   : 'Locked'
               }
               bottomText="New rewards per block"

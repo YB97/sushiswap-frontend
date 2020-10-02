@@ -118,6 +118,9 @@ const CHKNMenuItem = () => {
 
   const isNotAllowed = !allowance.toNumber()
 
+  const tokenName = id.split(' ')[0] || ''
+  const fullName = `${tokenName} Eggs (Farm LP Tokens)`
+
   return (
     <Container>
       <Wrapper>
@@ -125,7 +128,7 @@ const CHKNMenuItem = () => {
           <img src={icon as string} height="130px" alt="" />
           <H1>{name}</H1>
           <Text>
-            Deposit {id} Eggs (Farm LP Tokens) and earn {earnTokenName}
+            Deposit {fullName} and earn {earnTokenName}
           </Text>
         </Description>
         <CardList>
@@ -134,9 +137,10 @@ const CHKNMenuItem = () => {
               type="menu"
               title={getBalanceNumber(earnings).toString()}
               subtitle="CHKN Earned"
-              btnText="Approve"
+              btnText="Collect"
               iconWidth="100px"
               isBtnDisabled={!earnings.toNumber() || pendingTx}
+              isLoading={pendingTx}
               onBtnClick={async () => {
                 setPendingTx(true)
                 await onReward()
@@ -149,11 +153,12 @@ const CHKNMenuItem = () => {
             <CardItem
               type="menu"
               title={getBalanceNumber(stakedBalance).toString()}
-              subtitle={id}
+              subtitle={fullName}
               btnText={
                 isNotAllowed ? `Approve ${lpToken.toUpperCase()}` : 'Unstake'
               }
               isBtnDisabled={requestedApproval}
+              isLoading={requestedApproval}
               onBtnClick={isNotAllowed ? handleApprove : onPresentWithdraw}
               hasAddBtn={!!allowance.toNumber()}
               onAddBtnClick={onPresentDeposit}

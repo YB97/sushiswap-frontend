@@ -1,5 +1,6 @@
 import React from 'react'
 import burnChiliIcon from '../../../../assets/img/burn-chili.png'
+import Spinner from '../../../Spinner'
 import {
   StyledWrapper,
   StyledTitle,
@@ -7,6 +8,7 @@ import {
   StyledBtn,
   StyledAddBtn,
   StyledImageWrapper,
+  StyledHelpText,
 } from './styled'
 
 export interface MenuCardProps {
@@ -20,6 +22,7 @@ export interface MenuCardProps {
   isBtnDisabled?: boolean
   hasAddBtn?: boolean
   isAddBtnDisabled?: boolean
+  isLoading?: boolean
   onBtnClick?: () => void
   onAddBtnClick?: () => void
 }
@@ -34,6 +37,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
   isBtnDisabled = false,
   hasAddBtn = false,
   isAddBtnDisabled = false,
+  isLoading = false,
   onAddBtnClick,
   iconWidth,
   iconHeight,
@@ -56,12 +60,18 @@ const MenuCard: React.FC<MenuCardProps> = ({
         onClick={onBtnClick}
         disabled={isBtnDisabled}
       >
-        {btnText}
+        {isLoading ? <Spinner /> : btnText}
       </StyledBtn>
       {hasAddBtn && (
         <StyledAddBtn onClick={onAddBtnClick} disabled={isAddBtnDisabled}>
           +
         </StyledAddBtn>
+      )}
+      {isLoading && (
+        <StyledHelpText>
+          This can take a few seconds to a few minutes depending on how much gas
+          you used
+        </StyledHelpText>
       )}
     </StyledWrapper>
   )

@@ -3,10 +3,8 @@ import {
   LIGHT_BROWN,
   FONT_POPPINS,
   FW_SEMI_BOLD,
-  RED,
   LIGHT_BEIGE,
   BORDER_BEIGE,
-  GRAY,
   BLUE,
 } from './../../../../styledVars'
 import styled from 'styled-components'
@@ -76,4 +74,10 @@ export const StyledImageWrapper = styled.div`
   /* background: #FFFFFF; */
   /* box-shadow: 0px 8px 20px rgba(55, 59, 70, 0.19); */
   /* border-radius: 66px; */
+`
+
+export const StyledHelpText = styled.div`
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
 `

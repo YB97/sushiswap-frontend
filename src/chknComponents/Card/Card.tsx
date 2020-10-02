@@ -8,7 +8,6 @@ import {
   StyledWrapper,
 } from './styled'
 import { MenuCardProps } from './components/MenuCard/MenuCard'
-import { BigNumber } from '../../sushi'
 import AddCard from './components/AddCard'
 
 interface CardProps extends MenuCardProps {
@@ -27,6 +26,7 @@ interface CardProps extends MenuCardProps {
   bottomValue?: string
   isFooterVisible?: boolean
   isBtnDisabled?: boolean
+  isLoading?: boolean
 }
 
 const Card: React.FC<CardProps> = ({ isFooterVisible = false, ...props }) => {
