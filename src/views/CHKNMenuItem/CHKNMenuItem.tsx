@@ -65,6 +65,12 @@ const CHKNMenuItem = () => {
   }, [])
 
   const stakedBalance = useStakedBalance(pid)
+  console.log(
+    'stakedBalance',
+    stakedBalance,
+    'getBalance',
+    getBalanceNumber(stakedBalance).toString(),
+  )
 
   const lpContract: any = useMemo(() => {
     return getContract(ethereum as provider, lpTokenAddress)
@@ -89,6 +95,12 @@ const CHKNMenuItem = () => {
 
   const tokenBalance = useTokenBalance(lpContract.options.address)
   const earnings = useEarnings(pid)
+  console.log(
+    'earnings',
+    earnings,
+    'getBalanceNum',
+    getBalanceNumber(earnings).toString(),
+  )
   const { onStake } = useStake(pid)
 
   const [pendingTx, setPendingTx] = useState(false)
