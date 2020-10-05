@@ -17,7 +17,7 @@ export const BackgroundImg = styled.div<{ level: number }>`
   min-height: 100vh;
 `
 /* `background-image: url('/static/media/background/background-level-${level}.png')}`} */
-export const Chickens = styled.div<{ chicksNum: number }>`
+export const Chickens = styled.div<{ chicksNum: number; showChicks: boolean }>`
   height: 100%;
   min-height: 100vh;
   ${({ chicksNum }) => `
@@ -30,9 +30,12 @@ export const Chickens = styled.div<{ chicksNum: number }>`
     url('/static/media/background-${chicksNum}-frame-6.png') -9999px -9999px,
     url('/static/media/background-${chicksNum}-frame-7.png') -9999px -9999px,
     url('/static/media/background-${chicksNum}-frame-8.png') -9999px -9999px;
-  background-image: url('/static/media/background-${chicksNum}-frame-8.png');
-  animation: chkn-born-${chicksNum} 6s ease-in-out forwards;
+  
   `}
+  ${({ chicksNum, showChicks }) =>
+    showChicks &&
+    `animation: chkn-born-${chicksNum} 6s ease-in-out forwards;
+    background-image: url('/static/media/background-${chicksNum}-frame-8.png');`}
   background-position: center bottom;
   background-size: 100%;
   background-repeat: no-repeat;

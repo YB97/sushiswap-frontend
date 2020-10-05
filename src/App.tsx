@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   setTimeout(() => {
     window.requestAnimationFrame(() => setShowChicks(true))
-  }, 2000)
+  }, 3000)
 
   const handleDismissMobileMenu = useCallback(() => {
     setMobileMenu(false)
@@ -44,7 +44,7 @@ const App: React.FC = () => {
   return (
     <Providers>
       <Router>
-        <CHKNBackground>
+        <CHKNBackground showChicks={showChicks}>
           {/* <TopBar onPresentMobileMenu={handlePresentMobileMenu} /> */}
           {/* <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} /> */}
           <Header />

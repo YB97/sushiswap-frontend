@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { useWallet } from 'use-wallet'
 import useSushi from '../../hooks/useSushi'
@@ -7,7 +7,11 @@ import { getSushiAddress } from '../../sushi/utils'
 import { getBalanceNumber } from '../../utils/formatBalance'
 import { BackgroundImg, Chickens } from './styled'
 
-const CHKNBackground = ({ children }) => {
+interface IProps {
+  showChicks: boolean
+}
+
+const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
   const { account } = useWallet()
   const sushi = useSushi()
 
@@ -39,11 +43,19 @@ const CHKNBackground = ({ children }) => {
       return 5
     }
 
-    return 1
+    return 0
   }
+
+  const chicksNum = Math.floor(balance / 1000)
   return (
     <BackgroundImg level={getLevel()}>
-      <Chickens chicksNum={Math.floor(balance / 1000)}>{children}</Chickens>
+      {/* <Chickens chicksNum={chicksNum} showChicks={showChicks}> */}
+      <Chickens
+        chicksNum={chicksNum > 15 ? 15 : chicksNum}
+        showChicks={showChicks}
+      >
+        {children}
+      </Chickens>
     </BackgroundImg>
   )
 }

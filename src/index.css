@@ -71,7 +71,6 @@
 
 @keyframes chkn-born-15 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/15/background-15-frame-1.png');
@@ -101,7 +100,6 @@
 
 @keyframes chkn-born-1 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/1/background-1-frame-1.png');
@@ -131,7 +129,6 @@
 
 @keyframes chkn-born-2 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/2/background-2-frame-1.png');
@@ -161,7 +158,6 @@
 
 @keyframes chkn-born-3 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/3/background-3-frame-1.png');
@@ -221,7 +217,6 @@
 
 @keyframes chkn-born-5 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/5/background-5-frame-1.png');
@@ -251,7 +246,6 @@
 
 @keyframes chkn-born-6 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/6/background-6-frame-1.png');
@@ -281,7 +275,6 @@
 
 @keyframes chkn-born-7 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/7/background-7-frame-1.png');
@@ -311,7 +304,7 @@
 
 @keyframes chkn-born-8 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
+    /*  */
   }
   11% {
     background-image: url('./assets/img/8/background-8-frame-1.png');
@@ -341,7 +334,6 @@
 
 @keyframes chkn-born-9 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/9/background-9-frame-1.png');
@@ -371,7 +363,6 @@
 
 @keyframes chkn-born-10 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/10/background-10-frame-1.png');
@@ -401,7 +392,6 @@
 
 @keyframes chkn-born-11 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/11/background-11-frame-1.png');
@@ -431,7 +421,6 @@
 
 @keyframes chkn-born-12 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/12/background-12-frame-1.png');
@@ -461,7 +450,6 @@
 
 @keyframes chkn-born-13 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/13/background-13-frame-1.png');
@@ -491,7 +479,6 @@
 
 @keyframes chkn-born-14 {
   0% {
-    background-image: url('./assets/img/background-empty.png');
   }
   11% {
     background-image: url('./assets/img/14/background-14-frame-1.png');
@@ -548,7 +535,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   min-height: 100vh;
-  /* background-image: url('./assets/img/background-empty.png');
+  /* 
   background-position: center bottom;
   background-size: 100%;
   background-repeat: no-repeat; */
