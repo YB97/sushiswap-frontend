@@ -48,11 +48,18 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         </div>
 
         <Spacer />
-        <Button theme="light-blue" href={`https://etherscan.io/address/${account}`}>
+        <Button
+          theme="light-blue"
+          onClick={() =>
+            window.open(`https://etherscan.io/address/${account}`, '_blank')
+          }
+        >
           View on Etherscan
         </Button>
         <Spacer />
-        <Button theme="light-blue" onClick={handleSignOutClick}>Sign out</Button>
+        <Button theme="light-blue" onClick={handleSignOutClick}>
+          Sign out
+        </Button>
       </ModalContent>
       <ModalActions>
         <Button onClick={onDismiss}>Cancel</Button>
