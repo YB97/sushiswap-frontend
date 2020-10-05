@@ -84,7 +84,7 @@ const CHKNMenu: FC = () => {
       <Main>
         <Logo iconName="logo-medium" />
         <H1>Select how to hatch your Chicken</H1>
-        <P>Earn CHKN token by staking Uniswap V2 LP tokens</P>
+        <P>Earn CHKN token by staking Eggs (Farm LP Tokens)</P>
         <CardList>
           {rows.map((row: any) => {
             return (

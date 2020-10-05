@@ -65,13 +65,6 @@ const CHKNMenuItem = () => {
   }, [])
 
   const stakedBalance = useStakedBalance(pid)
-  console.log(
-    'stakedBalance',
-    stakedBalance,
-    'getBalance',
-    getBalanceNumber(stakedBalance).toString(),
-  )
-
   const lpContract: any = useMemo(() => {
     return getContract(ethereum as provider, lpTokenAddress)
   }, [ethereum, lpTokenAddress])
@@ -89,29 +82,19 @@ const CHKNMenuItem = () => {
     <WithdrawModal
       max={stakedBalance}
       onConfirm={onUnstake}
-      tokenName={lpToken.toUpperCase()}
+      tokenName={lpToken}
     />,
   )
 
   const tokenBalance = useTokenBalance(lpContract.options.address)
   const earnings = useEarnings(pid)
-  console.log(
-    'earnings',
-    earnings,
-    'getBalanceNum',
-    getBalanceNumber(earnings).toString(),
-  )
   const { onStake } = useStake(pid)
 
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useReward(pid)
 
   const [onPresentDeposit] = useModal(
-    <DepositModal
-      max={tokenBalance}
-      onConfirm={onStake}
-      tokenName={lpToken.toUpperCase()}
-    />,
+    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpToken} />,
   )
 
   const handleApprove = useCallback(async () => {
@@ -166,9 +149,7 @@ const CHKNMenuItem = () => {
               type="menu"
               title={getBalanceNumber(stakedBalance).toString()}
               subtitle={fullName}
-              btnText={
-                isNotAllowed ? `Approve ${lpToken.toUpperCase()}` : 'Unstake'
-              }
+              btnText={isNotAllowed ? `Approve ${lpToken}` : 'Unstake'}
               isBtnDisabled={requestedApproval}
               isLoading={requestedApproval}
               onBtnClick={isNotAllowed ? handleApprove : onPresentWithdraw}
