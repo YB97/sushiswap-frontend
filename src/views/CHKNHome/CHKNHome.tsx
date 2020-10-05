@@ -7,7 +7,7 @@ import Container from '../../chknComponents/Container'
 import InviteModal from '../../chknComponents/InviteModal'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import useSushi from '../../hooks/useSushi'
-import { getBalanceNumber } from '../../utils/formatBalance'
+import { getBalanceNumber, numberWithCommas } from '../../utils/formatBalance'
 import {
   getMasterChefContract,
   getRewardsPerBlock,
@@ -43,7 +43,8 @@ const Home = () => {
     async function fetchTotalSupply() {
       const supply = await getSushiSupply(chkn)
       const base = new BigNumber(10).pow(18)
-      setTotalSupply(supply.minus(new BigNumber(2685000).multipliedBy(base)))
+
+      setTotalSupply(supply.minus(new BigNumber(582685000).multipliedBy(base)))
     }
     if (chkn) {
       fetchTotalSupply()
@@ -101,10 +102,10 @@ const Home = () => {
               isFooterVisible
             />
             <StyledCard
-              title="Total CHKN Supply Farmed"
+              title="Total CHKN Supply Left to Farm"
               value={
                 totalSupply
-                  ? getBalanceNumber(totalSupply).toFixed(3).toString()
+                  ? numberWithCommas(getBalanceNumber(totalSupply).toFixed(3))
                   : 'Locked'
               }
               bottomText="New rewards per block"
