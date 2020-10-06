@@ -3,10 +3,13 @@ import styled from 'styled-components'
 
 import Spacer from '../Spacer'
 
-const ModalActions: React.FC = ({ children }) => {
+const ModalActions: React.FC<{ flexDirection?: string }> = ({
+  children,
+  flexDirection,
+}) => {
   const l = React.Children.toArray(children).length
   return (
-    <StyledModalActions>
+    <StyledModalActions flexDirection={flexDirection}>
       {React.Children.map(children, (child, i) => (
         <>
           <StyledModalAction>{child}</StyledModalAction>
@@ -17,12 +20,18 @@ const ModalActions: React.FC = ({ children }) => {
   )
 }
 
-const StyledModalActions = styled.div`
+const StyledModalActions = styled.div<{ flexDirection?: string }>`
   align-items: flex-start;
   background-color: ${(props) => props.theme.color.grey[100]}00;
   display: flex;
   margin: 0;
   padding: ${(props) => props.theme.spacing[4]}px;
+  ${({ flexDirection }) =>
+    flexDirection
+      ? `
+    flex-direction: ${flexDirection}
+  `
+      : ''}
 `
 
 const StyledModalAction = styled.div`

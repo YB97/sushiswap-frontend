@@ -20,7 +20,8 @@ const AlertInfoModal = () => {
               <img style={{ width: '456px' }} src={ComingSoon} alt="coming" />
             </StyledImage>
             <StyledText>
-              We're upgrading the system. Farming will be live in few hours.
+              Thanks for your patience, we're doing a system upgrade. Site will
+              be live again soon. Stay tuned.
             </StyledText>
           </StyledWrapper>
         </StyledPopup>

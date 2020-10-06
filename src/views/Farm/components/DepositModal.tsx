@@ -71,6 +71,17 @@ const DepositModal: React.FC<DepositModalProps> = ({
           )}
         </div>
       </ModalActions>
+      <StyledHelpText marginBottom="40px">
+        **PLEASE NOTE: CHKN.farm has updated 4 of its Egg FLP tokens into a new
+        FLP version. Your old Eggs for CHKN-ETH, CHKN-USDT, CHKN-SUSHI, and
+        CHKN-UNI all need to be migrated. If you have not migrated your Egg FLP
+        Tokens for these 4 pairs yet, they will not show up here and you will
+        not be able to stake. Please migrate them by going to the CHKN.farm
+        Exchange, clicking on Pool, clicking on one of these 4 pairs in the
+        list, and then clicking "Migrate". Upon migrating, your Egg FLP tokens
+        for these 4 pairs will appear here like normal and you will be able to
+        stake them to earn CHKN.
+      </StyledHelpText>
     </Modal>
   )
 }
