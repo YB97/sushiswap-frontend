@@ -7,7 +7,7 @@ import Popular from '../../assets/img/mr-popular.png'
 import ChillGal from '../../assets/img/chill-gal.png'
 import OldEggy from '../../assets/img/old-eggy.png'
 import Swordsman from '../../assets/img/swordsman.png'
-import BookWorm from '../../assets/img/book-worm.png'
+// import BookWorm from '../../assets/img/book-worm.png'
 import Fighter from '../../assets/img/friendly-fighter.png'
 import Banker from '../../assets/img/banker.png'
 import Yolk from '../../assets/img/yolk.png'
@@ -54,7 +54,7 @@ export const addressMap = {
   COMP: '0xc00e94Cb662C3520282E6f5717214004A7f26888',
   LEND: '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03',
   SUSHIYCRV: '0x2C7a51A357d5739C5C74Bf3C96816849d2c9F726',
-  CHKN: '0x1421952CB28739568DA9f8433B5f3634899781e6',
+  CHKN: '0x297c338da24beecd4c412a3537650ac9010ea628',
   USDT: '0xdac17f958d2ee523a2206206994597c13d831ec7',
   UNI: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
   SUSHI: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
@@ -65,12 +65,12 @@ export const addressMap = {
 
 export const contractAddresses = {
   sushi: {
-    1: '0x1421952CB28739568DA9f8433B5f3634899781e6',
+    1: '0x297c338da24beecd4c412a3537650ac9010ea628',
     // 4: '0x4C361b5CA7cB9CF6FD4CC3E53cd4845c2D271e07',
     // 1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
   },
   masterChef: {
-    1: '0xCdBF39421Db917320Ff5653d59Fad194cD1B9213',
+    1: '0x94039E06bCEee1B1A8108c46Be224C66Fc99C87e',
     // 4: '0xd52086D2F1DF2B1E8C8225dcbD80164cE54Fc78e',
     // 1: '0xc2edad668740f1aa35e4d8f227fb8e17dca888cd',
   },
@@ -102,10 +102,10 @@ export const supportedPools = [
   {
     pid: '0',
     lpAddresses: {
-      1: '0x7eD572C73Ab90667dae697FD456e029893d86Cb1',
+      1: '0xdaa2ea654623783446E9EDDbB2c94C2fE98B14eE',
     },
     tokenAddresses: {
-      1: '0x1421952CB28739568DA9f8433B5f3634899781e6',
+      1: '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
     },
     symbol: 'CHKN-ETH Eggs',
     tokenSymbol: 'CHKN',
@@ -115,10 +115,10 @@ export const supportedPools = [
   {
     pid: '1',
     lpAddresses: {
-      1: '0x0F507B49339fC64312f284094A7E8C86270d1486',
+      1: '0xd70e57B8C01e727e96F61aa2Da526EdAB2c032A7',
     },
     tokenAddresses: {
-      1: '0x1421952CB28739568DA9f8433B5f3634899781e6',
+      1: '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
       2: '0xdac17f958d2ee523a2206206994597c13d831ec7',
     },
     symbol: 'CHKN-USDT Eggs',
@@ -129,11 +129,11 @@ export const supportedPools = [
   {
     pid: '2',
     lpAddresses: {
-      1: '0xa47F5cCa0942c33545e6D000E038F18b89310cb2',
+      1: '0xd9c7C3CF7FEd9226910b8ee4b9CDA3926623EAe2',
     },
     tokenAddresses: {
-      1: '0x1421952CB28739568DA9f8433B5f3634899781e6',
-      2: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      1: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      2: '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
     },
     symbol: 'CHKN-UNI Eggs',
     tokenSymbol: 'CHKN-UNI',
@@ -143,10 +143,10 @@ export const supportedPools = [
   {
     pid: '3',
     lpAddresses: {
-      1: '0x99C91A9a06100055F46dD32c5ac977B42223b567',
+      1: '0x62637ff868629da4dBb8658372E76eC4C3f29Ccf',
     },
     tokenAddresses: {
-      1: '0x1421952CB28739568DA9f8433B5f3634899781e6',
+      1: '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
       2: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
     },
     symbol: 'CHKN-SUSHI Eggs',
