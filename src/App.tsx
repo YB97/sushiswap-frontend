@@ -23,7 +23,6 @@ import useTokenBalance from './hooks/useTokenBalance'
 import { getSushiAddress } from './sushi/utils'
 import { getBalanceNumber } from './utils/formatBalance'
 import CHKNBackground from './views/CHKNBackground'
-// import AlertInfoModal from './chknComponents/AlertInfoModal'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
