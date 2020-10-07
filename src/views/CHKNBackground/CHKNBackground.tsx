@@ -46,7 +46,8 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
-  const chicksNum = Math.floor(balance / 1000)
+  // const chicksNum = Math.floor(balance / 1000)
+  const chicksNum = 15;
 
   useEffect(() => {
     for (let i = 1; i < 9; i++) {
@@ -55,7 +56,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
       img.style.display = 'none'
       document.body.appendChild(img)
     }
-  })
+  }, [])
   return (
     <BackgroundImg level={getLevel()}>
       <Chickens
