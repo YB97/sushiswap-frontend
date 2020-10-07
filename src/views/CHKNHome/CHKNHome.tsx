@@ -26,7 +26,6 @@ import {
   ButtonsWrapper,
 } from './styled'
 import useBlock from '../../hooks/useBlock'
-import AlertInfoModal from '../../chknComponents/AlertInfoModal'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
@@ -127,7 +126,6 @@ const Home = () => {
           </ButtonsWrapper>
         </Main>
       </Container>
-      <AlertInfoModal />
 
       {account && isOpenInviteModal && (
         <InviteModal onIsOpenChange={onToggleInviteModal} />
