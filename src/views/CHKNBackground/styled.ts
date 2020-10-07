@@ -20,22 +20,8 @@ export const BackgroundImg = styled.div<{ level: number }>`
 export const Chickens = styled.div<{ chicksNum: number; showChicks: boolean }>`
   height: 100%;
   min-height: 100vh;
-  ${({ chicksNum }) => `
-  background: url('/static/media/background-empty.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-1.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-2.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-3.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-4.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-5.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-6.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-7.png') -9999px -9999px,
-    url('/static/media/background-${chicksNum}-frame-8.png') -9999px -9999px;
-  
-  `}
   ${({ chicksNum, showChicks }) =>
-    showChicks &&
-    `animation: chkn-born-${chicksNum} 6s ease-in-out forwards;
-    background-image: url('/static/media/background-${chicksNum}-frame-8.png');`}
+    showChicks && `animation: chkn-born-${chicksNum} 6s ease-in-out forwards;`}
   background-position: center bottom;
   background-size: 100%;
   background-repeat: no-repeat;

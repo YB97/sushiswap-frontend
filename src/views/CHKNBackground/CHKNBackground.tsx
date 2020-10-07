@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 
 import { useWallet } from 'use-wallet'
 import useSushi from '../../hooks/useSushi'
@@ -46,10 +46,19 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
-  const chicksNum = Math.floor(balance / 1000)
+  // const chicksNum = Math.floor(balance / 1000)
+  const chicksNum = 15
+
+  useEffect(() => {
+    for (let i = 1; i < 9; i++) {
+      const img = document.createElement('img')
+      img.src = `/image/${chicksNum}/background-${chicksNum}-frame-${i}.png`
+      img.style.display = 'none'
+      document.body.appendChild(img)
+    }
+  })
   return (
     <BackgroundImg level={getLevel()}>
-      {/* <Chickens chicksNum={chicksNum} showChicks={showChicks}> */}
       <Chickens
         chicksNum={chicksNum > 15 ? 15 : chicksNum}
         showChicks={showChicks}

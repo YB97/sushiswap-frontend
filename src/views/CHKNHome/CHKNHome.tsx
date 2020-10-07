@@ -106,7 +106,7 @@ const Home = () => {
               title="Total CHKN Supply Left to Farm"
               value={
                 totalSupply
-                  ? numberWithCommas(getBalanceNumber(totalSupply).toFixed(3))
+                  ? numberWithCommas(Math.abs(getBalanceNumber(totalSupply)).toFixed(3))
                   : 'Locked'
               }
               bottomText="New rewards per block"
@@ -127,7 +127,7 @@ const Home = () => {
           </ButtonsWrapper>
         </Main>
       </Container>
-      <AlertInfoModal />
+      {/* <AlertInfoModal /> */}
 
       {account && isOpenInviteModal && (
         <InviteModal onIsOpenChange={onToggleInviteModal} />
