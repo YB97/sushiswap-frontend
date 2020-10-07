@@ -94,7 +94,7 @@ const Home = () => {
               title="Your CHKN Balance"
               value={
                 !!account
-                  ? numberWithCommas(getBalanceNumber(sushiBalance).toString())
+                  ? numberWithCommas(getBalanceNumber(sushiBalance).toFixed(3))
                   : 'Locked'
               }
               bottomText="Pending Harvest"
