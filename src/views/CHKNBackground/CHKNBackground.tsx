@@ -46,8 +46,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
-  // const chicksNum = Math.floor(balance / 1000)
-  const chicksNum = 15
+  const chicksNum = Math.floor(balance / 1000)
 
   useEffect(() => {
     for (let i = 1; i < 9; i++) {
