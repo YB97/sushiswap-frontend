@@ -93,7 +93,9 @@ const Home = () => {
               iconName="logo-circle"
               title="Your CHKN Balance"
               value={
-                !!account ? getBalanceNumber(sushiBalance).toString() : 'Locked'
+                !!account
+                  ? numberWithCommas(getBalanceNumber(sushiBalance).toString())
+                  : 'Locked'
               }
               bottomText="Pending Harvest"
               bottomValue="0.00"
@@ -105,7 +107,9 @@ const Home = () => {
               title="Total CHKN Supply Left to Farm"
               value={
                 totalSupply
-                  ? numberWithCommas(Math.abs(getBalanceNumber(totalSupply)).toFixed(3))
+                  ? numberWithCommas(
+                      Math.abs(getBalanceNumber(totalSupply)).toFixed(3),
+                    )
                   : 'Locked'
               }
               bottomText="New rewards per block"
