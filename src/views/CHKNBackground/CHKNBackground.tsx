@@ -46,20 +46,20 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
-  let start = 0;
+  let start = 0
   const animChickens = (result, i) => () => {
-    if(Date.now() - start < 1200){
+    if (Date.now() - start < 1200) {
       requestAnimationFrame(animChickens(result, i))
       return
     }
-    if(i > 7) {
-      return 
+    if (i > 7) {
+      return
     }
-    if(i - 1 >= 0) {
-      result[i-1].style.opacity = '0';
+    if (i - 1 >= 0) {
+      result[i - 1].style.opacity = '0'
     }
-    result[i].style.opacity = '1';
-    i++;
+    result[i].style.opacity = '1'
+    i++
     start = Date.now()
     window.requestAnimationFrame(animChickens(result, i))
   }
@@ -67,6 +67,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
   const chicksNum = Math.floor(balance / 1000)
 
   useEffect(() => {
+    if (chicksNum === 0) return
     const result = []
     for (let i = 1; i < 9; i++) {
       const img = document.createElement('img')
@@ -79,12 +80,11 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
       img.style.left = '0'
       img.style.width = '100%'
       img.style.opacity = '0'
-      result.push(img);
+      result.push(img)
       document.body.appendChild(img)
     }
 
     window.requestAnimationFrame(animChickens(result, 0))
-
   }, [chicksNum])
   return (
     <BackgroundImg level={getLevel()}>
