@@ -117,7 +117,7 @@ export const StyledButtonWrap = styled.div`
 export const StyledImg = styled.div`
   position: absolute;
   left: -100%;
-  animation: plane-anim 15s linear infinite;
+  animation: plane-anim 20s linear infinite;
   img {
     width: 660px;
   }
