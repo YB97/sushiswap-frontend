@@ -148,8 +148,16 @@ code {
   -webkit-tap-highlight-color: transparent;
 }
 
-
 /* .animation {
   background-image: url('./assets/img/15/background-15-frame-8.png');
   animation: chkn-born-15 6s ease-in-out;
 } */
+
+@keyframes plane-anim {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}

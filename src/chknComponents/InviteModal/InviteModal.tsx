@@ -36,7 +36,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    const promoEndDate = moment.tz('2020-10-08 14:00', 'America/New_York')
+    const promoEndDate = moment.tz('2020-10-18 14:00', 'America/New_York')
 
     setIsPromo(moment().isSameOrBefore(promoEndDate))
 

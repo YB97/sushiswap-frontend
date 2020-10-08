@@ -3,7 +3,7 @@ import Card from '../../chknComponents/Card'
 import P from '../../chknComponents/P'
 import styled from 'styled-components'
 import Button from '../../chknComponents/Button'
-import { MD } from './../../styledVars'
+import { MD, SM } from './../../styledVars'
 
 export const LogoLarge = styled(Icon)`
   width: 110px;
@@ -111,5 +111,19 @@ export const StyledButtonWrap = styled.div`
   margin-left: 18px;
   &:first-child {
     margin-left: 0;
+  }
+`
+
+export const StyledImg = styled.div`
+  position: absolute;
+  left: -100%;
+  animation: plane-anim 15s linear infinite;
+  img {
+    width: 660px;
+  }
+  @media (max-width: ${SM}) {
+    img {
+      width: 400px;
+    }
   }
 `
