@@ -46,17 +46,46 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
-  // const chicksNum = Math.floor(balance / 1000)
-  const chicksNum = 15;
+  let start = 0;
+  const animChickens = (result, i) => () => {
+    if(Date.now() - start < 1200){
+      requestAnimationFrame(animChickens(result, i))
+      return
+    }
+    if(i > 7) {
+      return 
+    }
+    if(i - 1 >= 0) {
+      result[i-1].style.opacity = '0';
+    }
+    result[i].style.opacity = '1';
+    i++;
+    start = Date.now()
+    window.requestAnimationFrame(animChickens(result, i))
+  }
+
+  const chicksNum = Math.floor(balance / 1000)
 
   useEffect(() => {
+    const result = []
     for (let i = 1; i < 9; i++) {
       const img = document.createElement('img')
       img.src = `/image/${chicksNum}/background-${chicksNum}-frame-${i}.png`
-      img.style.display = 'none'
+      img.classList.add(`chkn-bg-${chicksNum}-frame-${i}`)
+      img.classList.add('chkn-bg')
+      img.style.display = 'block'
+      img.style.position = 'absolute'
+      img.style.bottom = '0'
+      img.style.left = '0'
+      img.style.width = '100%'
+      img.style.opacity = '0'
+      result.push(img);
       document.body.appendChild(img)
     }
-  }, [])
+
+    window.requestAnimationFrame(animChickens(result, 0))
+
+  }, [chicksNum])
   return (
     <BackgroundImg level={getLevel()}>
       <Chickens

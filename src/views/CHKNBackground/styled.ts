@@ -18,10 +18,9 @@ export const BackgroundImg = styled.div<{ level: number }>`
 `
 /* `background-image: url('/static/media/background/background-level-${level}.png')}`} */
 export const Chickens = styled.div<{ chicksNum: number; showChicks: boolean }>`
+  position: relative;
   height: 100%;
   min-height: 100vh;
-  ${({ chicksNum, showChicks }) =>
-    showChicks && `animation: chkn-born-${chicksNum} 6s ease-in-out forwards;`}
   background-position: center bottom;
   background-size: 100%;
   background-repeat: no-repeat;
