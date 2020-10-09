@@ -1,4 +1,6 @@
-import React, { FC, useEffect } from 'react'
+import { debounce } from 'debounce'
+
+import React, { FC, useEffect, useRef } from 'react'
 
 import { useWallet } from 'use-wallet'
 import useSushi from '../../hooks/useSushi'
@@ -17,6 +19,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
 
   const sushiBalance = useTokenBalance(getSushiAddress(sushi))
   const balance = !!account ? getBalanceNumber(sushiBalance) : 0
+  const chknContainerRef = useRef(null);
 
   const getLevel = () => {
     if (balance < 50000000) {
@@ -46,6 +49,16 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
     return 0
   }
 
+  const onResize = () => {
+    const imgs = Array.from(document.getElementsByClassName('chkn-bg'))
+    imgs.forEach((img: HTMLImageElement) => {
+      img.style.bottom = ''
+      img.style.bottom = '0'
+    })
+  }
+
+  const debouncedOnResize = debounce(onResize, 300)
+
   let start = 0
   const animChickens = (result, i) => () => {
     if (Date.now() - start < 1200) {
@@ -67,7 +80,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
   const chicksNum = Math.floor(balance / 1000)
 
   useEffect(() => {
-    if (chicksNum === 0) return
+    // if (chicksNum === 0) return
     const result = []
     for (let i = 1; i < 9; i++) {
       const img = document.createElement('img')
@@ -81,14 +94,22 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
       img.style.width = '100%'
       img.style.opacity = '0'
       result.push(img)
-      document.body.appendChild(img)
+      chknContainerRef.current.appendChild(img)
     }
 
     window.requestAnimationFrame(animChickens(result, 0))
   }, [chicksNum])
+
+  useEffect(() => {
+    window.addEventListener('resize', debouncedOnResize)
+    return () => {
+      window.removeEventListener('resize', debouncedOnResize)
+    }
+  }, [debouncedOnResize])
   return (
     <BackgroundImg level={getLevel()}>
       <Chickens
+        ref={chknContainerRef}
         chicksNum={chicksNum > 15 ? 15 : chicksNum}
         showChicks={showChicks}
       >
