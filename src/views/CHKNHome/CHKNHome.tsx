@@ -24,8 +24,10 @@ import {
   StyledCard,
   StyledButtonWrap,
   ButtonsWrapper,
+  StyledImg,
 } from './styled'
 import useBlock from '../../hooks/useBlock'
+import Plane from '../../assets/img/plane.png'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
@@ -84,6 +86,9 @@ const Home = () => {
     <>
       <Container>
         <Main>
+          <StyledImg>
+            <img src={Plane} alt="referral" />
+          </StyledImg>
           <InfoBlock>
             <LogoLarge iconName="logo-large" />
             <Text>Stake Eggs (farm LP tokens) to hatch your very own CHKN</Text>
