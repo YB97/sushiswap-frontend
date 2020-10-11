@@ -124,16 +124,21 @@ export const StyledPopupHeaderContent = styled.div`
 
 export const StyledPopupClickBoard = styled.div`
   margin-top: 8px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
-  padding: 16px 29px;
+  padding: 16px 15px;
   background: ${rgba('#F9FAFF', 0.66)};
   border: 2px dashed #ffffff;
   border-radius: 3px;
+  text-overflow: ellipsis;
+  width: 275px;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
 
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 27px;
   text-align: center;
   letter-spacing: 0.04em;

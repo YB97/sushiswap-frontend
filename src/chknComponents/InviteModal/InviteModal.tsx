@@ -110,6 +110,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
               <span>Referral Code</span>
               <CopyToClipboard text={currentLink || ''}>
                 <StyledPopupClickBoard
+                  title={currentLink || ''}
                   onClick={currentLink ? onClickCopy : generateAndGetValue}
                 >
                   {currentLink ? (

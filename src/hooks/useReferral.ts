@@ -27,16 +27,19 @@ const useReferral = () => {
   }, [account, lookupContract.methods])
 
   const getReferralLink = useCallback(async () => {
+    // const res =
+    //   '0x3444550000000000000000000000000000000000000000000000000000000000'
     const res = await lookupContract.methods.getKey(account).call()
 
     const link =
       res ===
       '0x0000000000000000000000000000000000000000000000000000000000000000'
         ? undefined
-        : 'https://www.exchange.chkn.farm/#/pool?referrer=' + res.slice(2)
+        : 'https://www.exchange.chkn.farm/#/pool?referrer=' +
+          res.slice(2).replace(/0*$/, '')
 
     setCurrentLink(link)
-  }, [account, lookupContract])
+  }, [account, lookupContract.methods])
 
   return { generate, getReferralLink, currentLink }
 }
