@@ -30,6 +30,10 @@ export const getSushiContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.sushi
 }
 
+export const getChknLookupContract = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.lookup
+}
+
 export const getRewardsPerBlock = async (masterChefContract, block) => {
   if (masterChefContract) {
     const perBlock = await masterChefContract.methods.chickenPerBlock().call()
@@ -203,4 +207,14 @@ export const redeem = async (masterChefContract, account) => {
   } else {
     alert('pool not active')
   }
+}
+
+export const generateReferral = async (lookupContract, account) => {
+  const randomBuffer = new Uint32Array(1)
+  window.crypto.getRandomValues(randomBuffer)
+  console.log('randomBuffer', randomBuffer)
+
+  const res = await lookupContract.methods.generateKey(account, randomBuffer[0])
+
+  // return e
 }

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../Button'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useWallet } from 'use-wallet'
-import moment from 'moment-timezone'
 
 import {
   StyledOverlay,
@@ -22,7 +20,10 @@ import {
 } from './styled'
 import headerImg from './img/header-img.svg'
 import headerBg from './img/header-bg.png'
-import getInviteLink from '../../views/CHKNHome/helpers/getInviteLink'
+import { getChknLookupContract } from '../../sushi/utils'
+import useSushi from '../../hooks/useSushi'
+import useReferral from '../../hooks/useReferral'
+import Spinner from '../Spinner'
 
 interface InviteModalProps {
   onIsOpenChange?: () => void
@@ -31,19 +32,37 @@ interface InviteModalProps {
 const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isPromo, setIsPromo] = useState(false)
-  const { account } = useWallet()
+  const [isGenerating, setIsGenerating] = useState(false)
+  const sushi = useSushi()
+  const lookup = getChknLookupContract(sushi)
+  const { generate, getReferralLink, currentLink } = useReferral()
+  // const lookupContract = getChknLookupContract(sushi)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    const promoEndDate = moment.tz('2020-10-18 14:00', 'America/New_York')
+    getReferralLink()
 
-    setIsPromo(moment().isSameOrBefore(promoEndDate))
+    // const promoEndDate = moment.tz('2020-10-18 14:00', 'America/New_York')
+
+    // setIsPromo(moment().isSameOrBefore(promoEndDate))
 
     return () => {
       document.body.style.overflow = ''
     }
-  }, [])
+  }, [getReferralLink])
+
+  const generateAndGetValue = async () => {
+    setIsGenerating(true)
+    try {
+      await generate()
+      await getReferralLink()
+    } catch (err) {
+      console.log('error', err)
+    } finally {
+      setIsGenerating(false)
+    }
+  }
 
   const onPopupClick = (e) => {
     e.preventDefault()
@@ -62,19 +81,16 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
   }
 
   const renderInviteButton = () => {
-    const invitedLink = account ? getInviteLink(account) : null
     return (
-      invitedLink && (
-        <CopyToClipboard text={invitedLink}>
-          <Button
-            shape="rect"
-            theme="primary"
-            onClick={!isPromo && onClickCopy}
-          >
-            {isCopied ? 'Copied' : 'Refer Now'}
-          </Button>
-        </CopyToClipboard>
-      )
+      <CopyToClipboard text={currentLink || ''}>
+        <Button
+          shape="rect"
+          theme="primary"
+          onClick={currentLink ? onClickCopy : generateAndGetValue}
+        >
+          {isCopied ? 'Copied' : 'Refer Now'}
+        </Button>
+      </CopyToClipboard>
     )
   }
 
@@ -92,9 +108,21 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
               <h3>Refer your friends and earn on everything they stake!</h3>
               <p>Share a referral link to them via SMS / Email</p>
               <span>Referral Code</span>
-              <CopyToClipboard text="chkn.farm/CHKB0214">
-                <StyledPopupClickBoard onClick={!isPromo && onClickCopy}>
-                  {isCopied ? 'Copied' : 'chkn.farm/CHKB0214'}
+              <CopyToClipboard text={currentLink || ''}>
+                <StyledPopupClickBoard
+                  onClick={currentLink ? onClickCopy : generateAndGetValue}
+                >
+                  {currentLink ? (
+                    isCopied ? (
+                      'Copied'
+                    ) : (
+                      currentLink
+                    )
+                  ) : isGenerating ? (
+                    <Spinner />
+                  ) : (
+                    'Click to generate'
+                  )}
                 </StyledPopupClickBoard>
               </CopyToClipboard>
             </StyledPopupHeaderContent>
@@ -124,8 +152,8 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
                 </p>
               </StyledPopupContentWrapper>
               <StyledPopupFooter>
-                <span>Current total reward pool size:</span>
-                <h2>$12,000,678</h2>
+                <span>First reward pool unlock</span>
+                <h2>$500,000</h2>
                 <StyledPopupFooterButtonWrapper>
                   {renderInviteButton()}
                 </StyledPopupFooterButtonWrapper>
