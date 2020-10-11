@@ -33,7 +33,7 @@ const useReferral = () => {
       res ===
       '0x0000000000000000000000000000000000000000000000000000000000000000'
         ? undefined
-        : 'https://www.exchange.chkn.farm/pool?referrer=' + res.slice(2)
+        : 'https://www.exchange.chkn.farm/#/pool?referrer=' + res.slice(2)
 
     setCurrentLink(link)
   }, [account, lookupContract])
