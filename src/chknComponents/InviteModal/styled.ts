@@ -1,4 +1,4 @@
-import { FONT_POPPINS, LG, SM } from './../../styledVars'
+import { FONT_POPPINS, LG, MD, SM } from './../../styledVars'
 import styled from 'styled-components'
 import { rgba, darken } from 'polished'
 
@@ -40,6 +40,7 @@ export const StyledPopup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `
 
 export const StyledPopupHeader = styled.div`
@@ -149,7 +150,7 @@ export const StyledPopupClickBoard = styled.div`
 `
 
 export const StyledPopupContentWrapper = styled.div`
-  padding: 38px 24px 38px 38px;
+  padding: 28px 24px 28px 38px;
   p {
     margin-top: 20px;
     display: block;
@@ -167,6 +168,8 @@ export const StyledPopupContentWrapper = styled.div`
 export const StyledPopupFooter = styled.footer`
   padding: 0 30px 25px 38px;
   position: relative;
+  display: flex;
+  align-items: center;
   span {
     display: block;
     font-style: italic;
@@ -182,18 +185,21 @@ export const StyledPopupFooter = styled.footer`
     font-size: calc(1.875rem + ((1vw - 3.75px) * 0.9709));
     line-height: 50px;
     letter-spacing: 0.03em;
-    color: #828795;
+    color: #222a3f;
   }
 `
 
 export const StyledPopupFooterButtonWrapper = styled.div`
   display: block;
-  margin-top: 10px;
   width: 50%;
 
   @media (min-width: ${SM}) {
     width: 40%;
   }
+`
+
+export const StyledPopupFooterTextWrapper = styled.div`
+  margin-left: 20px;
 `
 
 export const StyledPopupFooterLink = styled.a`

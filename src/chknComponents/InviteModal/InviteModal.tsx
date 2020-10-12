@@ -17,6 +17,7 @@ import {
   StyledRulesHeader,
   StyledRulesText,
   StyledBannerText,
+  StyledPopupFooterTextWrapper,
 } from './styled'
 import headerImg from './img/header-img.svg'
 import headerBg from './img/header-bg.png'
@@ -87,6 +88,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
           shape="rect"
           theme="primary"
           onClick={currentLink ? onClickCopy : generateAndGetValue}
+          height="60px"
         >
           {isCopied ? 'Copied' : 'Refer Now'}
         </Button>
@@ -132,35 +134,49 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
             <>
               <StyledPopupContentWrapper>
                 <p>
-                  - When your friend clicks your referral link, and then
-                  connects their wallet and stakes on chkn.farm, your ethereum
-                  address is credited with a certain number of points.
+                  <b>Rules</b>
                 </p>
                 <p>
-                  - The amount of points you earn is based on how much they
-                  stake and if you directly or indirectly invited them.
+                  - When a friend clicks your referral link, and then connects
+                  their wallet and stakes on chkn.farm, your ethereum address is
+                  credited with a certain number of points.
                 </p>
                 <p>
-                  - When the farm hits one of 10 total deposit milestones, you
-                  earn a share of the Referral Bonus pool that is unlocked (made
-                  up of the 5% staking fees).
+                  - The amount of points you earn is based on how much your
+                  friend stakes. To be eligible for points, you and each of the
+                  friends you invite personally must stake at least $200 worth
+                  of liquidity on chkn.farm and maintain that minimum balance.
                 </p>
                 <p>
-                  - Your share of the unlocked pool is calulated by the total
-                  points you have accumulated up to that point divided by the
-                  total points of everyone on the farm. The more points you have
-                  the more you earn so invite as many friends as possible!
+                  - If you invite 2 friends, then you also earn points on all of
+                  the liquidity staked by the people who they invite (75% as
+                  many points as if you referred their invites directly). And if
+                  you invite 3 or more friends, then you earn points on all of
+                  the liquidity staked by who your friends’ invites invite as
+                  well (50% as many points as if you referred their invites
+                  directly).
+                </p>
+                <p>
+                  - When the farm hits any of the liquidity market cap
+                  milestones below, 75% of the Referral Bonus Pool unlocks and
+                  you earn a share of the rewards based on the number of points
+                  you’ve accumulated divided by the total points of everyone on
+                  the farm. Final milestone unlocks 100%.
+                  <br />
+                  <b>
+                    Milestones: $500k, $1.25m, $2.5m, $5m, $12.5m, $25m, $50m,
+                    $100m, $250m, $500m
+                  </b>
                 </p>
               </StyledPopupContentWrapper>
               <StyledPopupFooter>
-                <span>First reward pool unlock</span>
-                <h2>$500,000</h2>
                 <StyledPopupFooterButtonWrapper>
                   {renderInviteButton()}
                 </StyledPopupFooterButtonWrapper>
-                <StyledPopupFooterLink href="https://google.com">
-                  How does it work?
-                </StyledPopupFooterLink>
+                <StyledPopupFooterTextWrapper>
+                  <span>Current total reward pool size:</span>
+                  <h2>$25,000</h2>
+                </StyledPopupFooterTextWrapper>
               </StyledPopupFooter>
             </>
           )}

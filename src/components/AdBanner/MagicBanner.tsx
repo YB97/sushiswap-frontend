@@ -8,7 +8,7 @@ import {
   StyledAdBannerSubtitle,
   StyledAdBannerButtonWrapper,
   StyledAdBannerButton,
-  StyledAdBannerOverlay
+  StyledAdBannerOverlay,
 } from './styled'
 
 const AdBanner = ({ onClick }) => {
@@ -30,7 +30,7 @@ const AdBanner = ({ onClick }) => {
               Stake CHKN
             </StyledAdBannerButton>
             <AdBannerButtonSuffix>
-              <span>2,838 CHKN</span> you staked so far
+              <span>0 CHKN</span> you staked so far
             </AdBannerButtonSuffix>
           </StyledAdBannerButtonWrapper>
         </StyledAdBannerContent>
