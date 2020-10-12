@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import AdBanner from '../../components/AdBanner'
 import Icon from '../../chknComponents/Icon'
 import { MD, XS } from './../../styledVars'
 
@@ -10,7 +10,7 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 130px;
+  padding-bottom: 350px;
 `
 
 export const Logo = styled(Icon)`
@@ -28,7 +28,7 @@ export const CardList = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
 
   @media (min-width: ${MD}) {
   }
@@ -62,4 +62,9 @@ export const CardWrapper = styled.div`
 export const UnlockButtonWrapper = styled.div`
   position: absolute;
   top: 50%;
+`
+
+export const StyledAdBanner = styled(AdBanner)`
+  @media (min-width: ${MD}) {
+  }
 `

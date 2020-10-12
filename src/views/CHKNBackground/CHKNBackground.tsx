@@ -80,7 +80,8 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
   const chicksNum = Math.floor(balance / 1000)
 
   useEffect(() => {
-    // if (chicksNum === 0) return
+    if (chicksNum === 0) return
+
     const result = []
     for (let i = 1; i < 9; i++) {
       const img = document.createElement('img')

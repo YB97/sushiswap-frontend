@@ -5,9 +5,10 @@ import {
   BLUE,
   SECONDARY_BLUE,
   FONT_POPPINS,
+  YELLOW
 } from './../../styledVars'
 import styled, { css } from 'styled-components'
-import { darken, rgba } from 'polished'
+import { darken, lighten, rgba } from 'polished'
 
 export const StyledButton = styled.button<{ shape: string }>`
   font-family: ${FONT_POPPINS};
@@ -74,7 +75,16 @@ export const StyledButton = styled.button<{ shape: string }>`
         }
       }
     `}
-
+  
+  ${(props) =>
+  props.theme === 'yellow' &&
+  css`
+    background-color: ${YELLOW};
+    color: white;
+    &:hover {
+      background-color: ${lighten(0.1, YELLOW)};
+    }
+  `}
 
 
 

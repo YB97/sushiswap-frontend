@@ -9,7 +9,7 @@ interface ButtonProps {
   shape?: 'rect' | 'half-round',
   type?: 'button' | 'submit' | 'reset',
   onClick?: (e) => void,
-  theme?: 'primary' | 'blue' | 'white' | 'light-blue'
+  theme?: 'primary' | 'blue' | 'white' | 'light-blue' | 'yellow'
 }
 
 const Button: React.FC<ButtonProps> = ({ className, theme, loading, disabled, ...props }) => {

@@ -20,6 +20,7 @@ import {
   CardList,
   CardWrapper,
   UnlockButtonWrapper,
+  StyledAdBanner,
 } from './styled'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
@@ -116,6 +117,7 @@ const CHKNMenu: FC = () => {
             <Card type="add" onCardClick={() => setAddModalVisible(true)} />
           </CardWrapper>
         </CardList>
+        <StyledAdBanner onClick={() => setAddModalVisible(true)} />
       </Main>
       {isAddModalVisible && (
         <AddModal
