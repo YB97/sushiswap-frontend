@@ -5,12 +5,12 @@ import {
   BLUE,
   SECONDARY_BLUE,
   FONT_POPPINS,
-  YELLOW
+  YELLOW,
 } from './../../styledVars'
 import styled, { css } from 'styled-components'
 import { darken, lighten, rgba } from 'polished'
 
-export const StyledButton = styled.button<{ shape: string }>`
+export const StyledButton = styled.button<{ shape: string; height?: string }>`
   font-family: ${FONT_POPPINS};
   font-weight: 600;
   font-size: 15px;
@@ -25,7 +25,7 @@ export const StyledButton = styled.button<{ shape: string }>`
   color: ${WHITE};
   border: 0;
   width: 100%;
-  height: 46px;
+  height: ${({ height }) => height || '46px'};
   outline: none;
   padding: 0 29px;
   box-sizing: border-box;
@@ -77,14 +77,14 @@ export const StyledButton = styled.button<{ shape: string }>`
     `}
   
   ${(props) =>
-  props.theme === 'yellow' &&
-  css`
-    background-color: ${YELLOW};
-    color: white;
-    &:hover {
-      background-color: ${lighten(0.1, YELLOW)};
-    }
-  `}
+    props.theme === 'yellow' &&
+    css`
+      background-color: ${YELLOW};
+      color: white;
+      &:hover {
+        background-color: ${lighten(0.1, YELLOW)};
+      }
+    `}
 
 
 

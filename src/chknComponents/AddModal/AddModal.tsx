@@ -15,6 +15,7 @@ import {
 } from './styled'
 
 const AddModal = ({
+  showText,
   onOverlayClick,
   onPopupClick = () => {},
   onBtnClick = () => {},
@@ -24,13 +25,15 @@ const AddModal = ({
       <StyledBg onClick={onPopupClick}>
         <StyledPopup>
           <StyledWrapper>
-            <StyledHeader>Vote for the Next Egg</StyledHeader>
+            {showText && <StyledHeader>Vote for the Next Egg</StyledHeader>}
             <StyledImage>
               <img style={{ width: '456px' }} src={ComingSoon} alt="coming" />
             </StyledImage>
-            <StyledText>
-              CHKN governance and new Egg voting coming soon!
-            </StyledText>
+            {showText && (
+              <StyledText>
+                CHKN governance and new Egg voting coming soon!
+              </StyledText>
+            )}
             <StyledButton>
               <Button shape="rect" onClick={onBtnClick}>
                 Okay

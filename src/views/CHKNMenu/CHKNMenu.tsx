@@ -34,6 +34,7 @@ const CHKNMenu: FC = () => {
   const stakedValue = useAllStakedValue()
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
   const [isAddModalVisible, setAddModalVisible] = useState(false)
+  const [showText, setShowText] = useState(true)
 
   if (!account) {
     return (
@@ -114,15 +115,27 @@ const CHKNMenu: FC = () => {
             )
           })}
           <CardWrapper>
-            <Card type="add" onCardClick={() => setAddModalVisible(true)} />
+            <Card
+              type="add"
+              onCardClick={() => {
+                setShowText(true)
+                setAddModalVisible(true)
+              }}
+            />
           </CardWrapper>
         </CardList>
-        <StyledAdBanner onClick={() => setAddModalVisible(true)} />
+        <StyledAdBanner
+          onClick={() => {
+            setShowText(false)
+            setAddModalVisible(true)
+          }}
+        />
       </Main>
       {isAddModalVisible && (
         <AddModal
           onOverlayClick={() => setAddModalVisible(false)}
           onBtnClick={() => setAddModalVisible(false)}
+          showText={showText}
         />
       )}
     </Container>
