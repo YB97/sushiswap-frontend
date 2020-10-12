@@ -27,7 +27,9 @@ import {
   StyledImg,
 } from './styled'
 import useBlock from '../../hooks/useBlock'
-import Plane from '../../assets/img/plane.png'
+// import Plane from '../../assets/img/plane.png'
+import PlaneRefferBonus from '../../assets/img/plane-referral-bonus-25000.png'
+// import AdPlaneBanner from '../../chknComponents/AdPlaneBanner'
 
 const Home = () => {
   const [isOpenInviteModal, setIsOpenInviteModal] = useState<boolean>(false)
@@ -87,7 +89,8 @@ const Home = () => {
       <Container>
         <Main>
           <StyledImg>
-            <img src={Plane} alt="referral" />
+            <img src={PlaneRefferBonus} alt="referral" />
+            {/* <AdPlaneBanner /> */}
           </StyledImg>
           <InfoBlock>
             <LogoLarge iconName="logo-large" />
