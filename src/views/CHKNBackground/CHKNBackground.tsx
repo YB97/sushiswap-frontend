@@ -7,6 +7,7 @@ import useSushi from '../../hooks/useSushi'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import { getSushiAddress } from '../../sushi/utils'
 import { getBalanceNumber } from '../../utils/formatBalance'
+import animChickens from './helpers/animChicks'
 import { BackgroundImg, Chickens } from './styled'
 
 interface IProps {
@@ -59,34 +60,20 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
 
   const debouncedOnResize = debounce(onResize, 300)
 
-  let start = 0
-  const animChickens = (result, i) => () => {
-    if (Date.now() - start < 1200) {
-      requestAnimationFrame(animChickens(result, i))
-      return
-    }
-    if (i > 7) {
-      return
-    }
-    if (i - 1 >= 0) {
-      result[i - 1].style.opacity = '0'
-    }
-    result[i].style.opacity = '1'
-    i++
-    start = Date.now()
-    window.requestAnimationFrame(animChickens(result, i))
-  }
 
   const chicksNum = Math.floor(balance / 1000)
 
+  console.log('chicksNum', chicksNum);
+
   useEffect(() => {
-    if (chicksNum === 0) return
+    const currentChicksNum = chicksNum > 15 ? 15 : chicksNum
+    if (currentChicksNum === 0) return
 
     const result = []
     for (let i = 1; i < 9; i++) {
       const img = document.createElement('img')
-      img.src = `/image/${chicksNum}/background-${chicksNum}-frame-${i}.png`
-      img.classList.add(`chkn-bg-${chicksNum}-frame-${i}`)
+      img.src = `/image/${currentChicksNum}/background-${currentChicksNum}-frame-${i}.png`
+      img.classList.add(`chkn-bg-${currentChicksNum}-frame-${i}`)
       img.classList.add('chkn-bg')
       img.style.display = 'block'
       img.style.position = 'absolute'
