@@ -10,7 +10,8 @@ interface ButtonProps {
   shape?: 'rect' | 'half-round'
   type?: 'button' | 'submit' | 'reset'
   onClick?: (e) => void
-  theme?: 'primary' | 'blue' | 'white' | 'light-blue' | 'yellow'
+  theme?: 'primary' | 'blue' | 'white' | 'light-blue' | 'yellow' | 'green'
+  size?: 'normal' | 'small'
 }
 
 const Button: React.FC<ButtonProps> = ({

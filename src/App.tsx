@@ -23,6 +23,7 @@ import useTokenBalance from './hooks/useTokenBalance'
 import { getSushiAddress } from './sushi/utils'
 import { getBalanceNumber } from './utils/formatBalance'
 import CHKNBackground from './views/CHKNBackground'
+import CHKNProfile from './views/CHKNProfile'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -56,6 +57,9 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/stake/:id">
               <CHKNMenuItem />
+            </Route>
+            <Route exact path="/profile">
+              <CHKNProfile />
             </Route>
             <Route path="/about" exact>
               <CHKNAbout />

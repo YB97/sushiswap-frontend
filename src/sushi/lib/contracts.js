@@ -4,6 +4,7 @@ import ERC20Abi from './abi/erc20.json'
 import FryCookAbi from './abi/frycook.json'
 import ChknAbi from './abi/chickenToken.json'
 import ChknLookupAbi from './abi/ReferralAddressLookup.json'
+import ChknPointsPoolAbi from './abi/pointspool.json'
 // import SushiAbi from './abi/sushi.json'
 // import UNIV2PairAbi from './abi/uniswap_v2_router.json'
 import UNIV2PairAbi from './abi/uni_v2_lp.json'
@@ -31,6 +32,7 @@ export class Contracts {
     // this.masterChef = new this.web3.eth.Contract(MasterChefAbi)
     this.weth = new this.web3.eth.Contract(WETHAbi)
     this.lookup = new this.web3.eth.Contract(ChknLookupAbi)
+    this.pointsPool = new this.web3.eth.Contract(ChknPointsPoolAbi)
 
     this.pools = supportedPools.map((pool) =>
       Object.assign(pool, {
@@ -56,6 +58,7 @@ export class Contracts {
     setProvider(this.masterChef, contractAddresses.masterChef[networkId])
     setProvider(this.weth, contractAddresses.weth[networkId])
     setProvider(this.lookup, contractAddresses.lookup[networkId])
+    setProvider(this.pointsPool, contractAddresses.pointsPool[networkId])
 
     this.pools.forEach(
       ({ lpContract, lpAddress, tokenContract, tokenAddress }) => {

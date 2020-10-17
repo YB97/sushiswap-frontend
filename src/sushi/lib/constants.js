@@ -81,6 +81,9 @@ export const contractAddresses = {
   lookup: {
     1: '0x058daf7Ac8049267D4a20F052406264850261f4B',
   },
+  pointsPool: {
+    1: '0x28236d58F07373e62996dC4b1667bDD3Fd2bc6C1',
+  },
 }
 
 /*

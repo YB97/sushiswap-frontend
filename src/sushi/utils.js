@@ -34,6 +34,10 @@ export const getChknLookupContract = (chkn) => {
   return chkn && chkn.contracts && chkn.contracts.lookup
 }
 
+export const getChknPointsPoolContract = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.pointsPool
+}
+
 export const getRewardsPerBlock = async (masterChefContract, block) => {
   if (masterChefContract) {
     const perBlock = await masterChefContract.methods.chickenPerBlock().call()
@@ -46,6 +50,50 @@ export const getRewardsPerBlock = async (masterChefContract, block) => {
   }
 
   return 0
+}
+
+export const getPoints = async (pointsPoolContract, account) => {
+  if (pointsPoolContract && account) {
+    const points = await pointsPoolContract.methods.points(account).call()
+    // console.log('RES', points)
+
+    return points
+  }
+
+  return 0
+}
+
+export const getQualified = async (pointsPoolContract, account) => {
+  if (pointsPoolContract && account) {
+    const points = await pointsPoolContract.methods.qualified(account).call()
+    // console.log('RES', points)
+
+    return points
+  }
+
+  return 0
+}
+
+export const getTotalPoints = async (pointsPoolContract) => {
+  if (pointsPoolContract) {
+    const points = await pointsPoolContract.methods.totalPoints().call()
+
+    return points
+  }
+
+  return undefined
+}
+
+export const getTotalQualifiedPoints = async (pointsPoolContract) => {
+  if (pointsPoolContract) {
+    const points = await pointsPoolContract.methods
+      .totalQualifiedPoints()
+      .call()
+
+    return points
+  }
+
+  return undefined
 }
 
 export const getFarms = (sushi) => {

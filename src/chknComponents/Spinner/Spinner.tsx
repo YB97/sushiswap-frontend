@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { StyledSpinnerWrapper, StyledSpinner } from './styled'
 
-const Spinner = () => {
+interface Props {
+  size?: 'small' | 'medium'
+  color?: string
+}
+
+const Spinner: FC<Props> = ({ size, color }) => {
   return (
-    <StyledSpinnerWrapper>
-      <StyledSpinner>
+    <StyledSpinnerWrapper size={size || 'medium'}>
+      <StyledSpinner size={size || 'medium'} color={color}>
         <div />
       </StyledSpinner>
     </StyledSpinnerWrapper>

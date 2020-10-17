@@ -6,6 +6,7 @@ import {
   SECONDARY_BLUE,
   FONT_POPPINS,
   YELLOW,
+  GREEN,
 } from './../../styledVars'
 import styled, { css } from 'styled-components'
 import { darken, lighten, rgba } from 'polished'
@@ -83,6 +84,16 @@ export const StyledButton = styled.button<{ shape: string; height?: string }>`
       color: white;
       &:hover {
         background-color: ${lighten(0.1, YELLOW)};
+      }
+    `}
+
+  ${(props) =>
+    props.theme === 'green' &&
+    css`
+      background-color: ${GREEN};
+      color: white;
+      &:hover {
+        background-color: ${darken(0.1, GREEN)};
       }
     `}
 

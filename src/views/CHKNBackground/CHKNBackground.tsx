@@ -20,7 +20,7 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
 
   const sushiBalance = useTokenBalance(getSushiAddress(sushi))
   const balance = !!account ? getBalanceNumber(sushiBalance) : 0
-  const chknContainerRef = useRef(null);
+  const chknContainerRef = useRef(null)
 
   const getLevel = () => {
     if (balance < 50000000) {
@@ -60,13 +60,11 @@ const CHKNBackground: FC<IProps> = ({ showChicks, children }) => {
 
   const debouncedOnResize = debounce(onResize, 300)
 
-
   const chicksNum = Math.floor(balance / 1000)
-
-  console.log('chicksNum', chicksNum);
 
   useEffect(() => {
     const currentChicksNum = chicksNum > 15 ? 15 : chicksNum
+    console.log('chicksNum', chicksNum)
     if (currentChicksNum === 0) return
 
     const result = []
