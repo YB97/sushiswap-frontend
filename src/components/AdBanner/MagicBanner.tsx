@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { LangContext } from '../../contexts/Lang'
 import {
   StyledAdBanner,
   AdBannerButtonSuffix,
@@ -12,25 +13,24 @@ import {
 } from './styled'
 
 const AdBanner = ({ onClick }) => {
+  const { messages } = useContext(LangContext)
   return (
     <StyledAdBanner>
       <StyledAdBannerOverlay>
         <StyledAdBannerContent>
           <StyledAdBannerTitle>
-            Stake your CHKN for a piece of the 10% Referral Bonus Pool rewards!
+            {messages.stake.banner.title}
           </StyledAdBannerTitle>
           <StyledAdBannerSubtitle>
-            10% of all Referral Bonus Pool rewards go to stakers of CHKN. The
-            more CHKN you have staked continuously, the more you earn from the
-            pool when it's unlocked
+            {messages.stake.banner.subtitle}
           </StyledAdBannerSubtitle>
 
           <StyledAdBannerButtonWrapper>
             <StyledAdBannerButton theme="yellow" shape="rect" onClick={onClick}>
-              Stake CHKN
+              {messages.stake.banner.button}
             </StyledAdBannerButton>
             <AdBannerButtonSuffix>
-              <span>0 CHKN</span> you staked so far
+              <span>0 CHKN</span> {messages.stake.banner.stacked}
             </AdBannerButtonSuffix>
           </StyledAdBannerButtonWrapper>
         </StyledAdBannerContent>

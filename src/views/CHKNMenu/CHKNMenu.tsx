@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useContext } from 'react'
 import { useWallet } from 'use-wallet'
 import { useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 
 import WalletProviderModal from '../../components/WalletProviderModal'
+import { LangContext } from '../../contexts/Lang'
 import Button from '../../chknComponents/Button'
 import Card from '../../chknComponents/Card'
 import Container from '../../chknComponents/Container'
@@ -28,6 +29,7 @@ interface FarmWithStakedValue extends Farm, StakedValue {
 }
 
 const CHKNMenu: FC = () => {
+  const { messages } = useContext(LangContext)
   const { account } = useWallet()
   const [farms] = useFarms()
   const history = useHistory()
@@ -48,7 +50,7 @@ const CHKNMenu: FC = () => {
       >
         <UnlockButtonWrapper>
           <Button onClick={onPresentWalletProviderModal}>
-            <span>🔓</span> Unlock Wallet
+            <span>🔓</span> {messages.button.unlock}
           </Button>
         </UnlockButtonWrapper>
       </div>
@@ -85,8 +87,8 @@ const CHKNMenu: FC = () => {
     <Container>
       <Main>
         <Logo iconName="logo-medium" />
-        <H1>Select how to hatch your Chicken</H1>
-        <P>Earn CHKN token by staking Eggs (Farm LP Tokens)</P>
+        <H1>{messages.stake.title}</H1>
+        <P>{messages.stake.subtitle}</P>
         <CardList>
           {rows.map((row: any) => {
             return (
@@ -104,7 +106,7 @@ const CHKNMenu: FC = () => {
                       : ''
                   }
                   imgSrc={row.icon}
-                  title={row.name}
+                  title={messages.stake.tokens[row.tokenSymbol]}
                   subtitle={`Deposit ${row.lpToken} Earn CHKN`}
                   onBtnClick={() => history.push(`/stake/${row.id}`)}
                   isFooterVisible

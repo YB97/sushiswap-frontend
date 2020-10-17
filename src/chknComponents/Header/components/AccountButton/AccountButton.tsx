@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useWallet } from 'use-wallet'
 import AccountModal from '../../../AccountModal'
 import WalletProviderModal from '../../../../components/WalletProviderModal'
 import useModal from '../../../../hooks/useModal'
 import { StyledUnclockButton } from './styled'
+import { LangContext } from '../../../../contexts/Lang'
 
 interface AccountButtonProps {}
 
 const AccountButton: React.FC<AccountButtonProps> = (props) => {
+  const { messages } = useContext(LangContext)
   const [onPresentAccountModal] = useModal(<AccountModal />)
   const [onPresentWalletProviderModal] = useModal(
     <WalletProviderModal />,
@@ -21,11 +23,11 @@ const AccountButton: React.FC<AccountButtonProps> = (props) => {
 
   return !account ? (
     <StyledUnclockButton onClick={handleUnlockClick}>
-      Unlock Wallet
+      {messages.button.unlock}
     </StyledUnclockButton>
   ) : (
     <StyledUnclockButton onClick={onPresentAccountModal}>
-      My Wallet
+      {messages.button.myWallet}
     </StyledUnclockButton>
   )
 }

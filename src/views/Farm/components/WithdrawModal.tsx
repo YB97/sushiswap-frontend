@@ -1,11 +1,12 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { StyledHelpText } from '../../../chknComponents/Card/components/MenuCard/styled'
 import Button from '../../../components/Button'
 import Modal, { ModalProps } from '../../../components/Modal'
 import ModalActions from '../../../components/ModalActions'
 import ModalTitle from '../../../components/ModalTitle'
 import TokenInput from '../../../components/TokenInput'
+import { LangContext } from '../../../contexts/Lang'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
 interface WithdrawModalProps extends ModalProps {
@@ -20,6 +21,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
   max,
   tokenName = '',
 }) => {
+  const { messages } = useContext(LangContext)
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const fullTokenName = `${tokenName.split(' ')[0] || ''} Eggs (Farm LP Tokens)`
@@ -65,8 +67,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
           />
           {pendingTx && (
             <StyledHelpText>
-              This can take a few seconds to a few minutes depending on how much
-              gas you used
+              {messages.text.trx_duration}
             </StyledHelpText>
           )}
         </div>

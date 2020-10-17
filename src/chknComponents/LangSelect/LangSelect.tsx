@@ -18,7 +18,7 @@ const LangSelect = (props) => {
   }
 
   const onItemClick = ({label}) => () => {
-    setLanguage
+    
   }
 
   const renderLangList = () => {
@@ -28,7 +28,7 @@ const LangSelect = (props) => {
         <LangList>
           <LangItem>
             <LangImage src={item.img} />
-            <span>{item.label}</span>
+            {/* <span>{item.label}</span> */}
           </LangItem>
         </LangList>
       )
@@ -39,7 +39,7 @@ const LangSelect = (props) => {
     <StyledLangSelect>
       <StyledLang onClick={onLangClick}>
         <LangImage src={UKFlag} />
-        <span>{language}</span>
+        {/* <span>{language}</span> */}
       </StyledLang>
       {renderLangList()}
     </StyledLangSelect>

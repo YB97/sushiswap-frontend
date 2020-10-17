@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Button from '../Button'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -25,12 +25,14 @@ import { getChknLookupContract } from '../../sushi/utils'
 import useSushi from '../../hooks/useSushi'
 import useReferral from '../../hooks/useReferral'
 import Spinner from '../Spinner'
+import { LangContext } from '../../contexts/Lang'
 
 interface InviteModalProps {
   onIsOpenChange?: () => void
 }
 
 const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
+  const { messages } = useContext(LangContext)
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isPromo, setIsPromo] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -107,9 +109,13 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
               </div>
             </StyledPopupHeaderImage>
             <StyledPopupHeaderContent>
-              <h3>Refer your friends and earn on everything they stake!</h3>
-              <p>Share a referral link to them via SMS / Email</p>
-              <span>Referral Code</span>
+              <h3>
+                {messages.modal.referral.title}
+              </h3>
+              <p>
+                {messages.modal.referral.subtitle}
+              </p>
+              <span>{messages.modal.referral.refTitle}</span>
               <CopyToClipboard text={currentLink || ''}>
                 <StyledPopupClickBoard
                   title={currentLink || ''}
@@ -124,7 +130,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
                   ) : isGenerating ? (
                     <Spinner />
                   ) : (
-                    'Click to generate'
+                    messages.modal.referral.generatePlaceholder
                   )}
                 </StyledPopupClickBoard>
               </CopyToClipboard>
@@ -134,38 +140,22 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
             <>
               <StyledPopupContentWrapper>
                 <p>
-                  <b>Rules</b>
+                  <b>{messages.modal.referral.rules}</b>
                 </p>
                 <p>
-                  - When a friend clicks your referral link, and then connects
-                  their wallet and stakes on chkn.farm, your ethereum address is
-                  credited with a certain number of points.
+                  - {messages.modal.referral.paragraph1}
                 </p>
                 <p>
-                  - The amount of points you earn is based on how much your
-                  friend stakes. To be eligible for points, you and each of the
-                  friends you invite personally must stake at least $200 worth
-                  of liquidity on chkn.farm and maintain that minimum balance.
+                  - {messages.modal.referral.paragraph2}
                 </p>
                 <p>
-                  - If you invite 2 friends, then you also earn points on all of
-                  the liquidity staked by the people who they invite (75% as
-                  many points as if you referred their invites directly). And if
-                  you invite 3 or more friends, then you earn points on all of
-                  the liquidity staked by who your friends’ invites invite as
-                  well (50% as many points as if you referred their invites
-                  directly).
+                  - {messages.modal.referral.paragraph3}
                 </p>
                 <p>
-                  - When the farm hits any of the liquidity market cap
-                  milestones below, 75% of the Referral Bonus Pool unlocks and
-                  you earn a share of the rewards based on the number of points
-                  you’ve accumulated divided by the total points of everyone on
-                  the farm. Final milestone unlocks 100%.
+                  - {messages.modal.referral.paragraph4}
                   <br />
                   <b>
-                    Milestones: $500k, $1.25m, $2.5m, $5m, $12.5m, $25m, $50m,
-                    $100m, $250m, $500m
+                  {messages.modal.referral.paragraph5}
                   </b>
                 </p>
               </StyledPopupContentWrapper>
@@ -174,7 +164,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
                   {renderInviteButton()}
                 </StyledPopupFooterButtonWrapper>
                 <StyledPopupFooterTextWrapper>
-                  <span>Current total reward pool size:</span>
+                  <span>{messages.modal.referral.poolSize}:</span>
                   <h2>$25,000</h2>
                 </StyledPopupFooterTextWrapper>
               </StyledPopupFooter>
@@ -182,12 +172,12 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
           )}
           {isPromo && (
             <StyledPopupContentWrapper>
-              <StyledRulesHeader>Rules</StyledRulesHeader>
+              <StyledRulesHeader>{messages.modal.referral.rules}</StyledRulesHeader>
               <StyledRulesText>
-                Stay tuned fot the rules, they will be posted here this week.
+                {messages.system_update_modal.week_text}
               </StyledRulesText>
               <StyledBannerText>
-                REFERRAL BONUS POOL LAUNCHING SOON
+                {messages.system_update_modal.soon_text}
               </StyledBannerText>
             </StyledPopupContentWrapper>
           )}
