@@ -62,7 +62,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         onClick={onBtnClick}
         disabled={isBtnDisabled}
       >
-        {isLoading ? <Spinner /> : btnText}
+        {isLoading ? <Spinner /> : messages.stake.buttons.select}
       </StyledBtn>
       {hasAddBtn && (
         <StyledAddBtn onClick={onAddBtnClick} disabled={isAddBtnDisabled}>
@@ -70,9 +70,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         </StyledAddBtn>
       )}
       {isLoading && (
-        <StyledHelpText>
-          {messages.text.trx_duration}
-        </StyledHelpText>
+        <StyledHelpText>{messages.text.trx_duration}</StyledHelpText>
       )}
     </StyledWrapper>
   )

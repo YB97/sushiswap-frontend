@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback, useState } from 'react'
+import React, { useEffect, useMemo, useCallback, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useWallet } from 'use-wallet'
 import { provider } from 'web3-core'
@@ -30,6 +30,7 @@ import {
 } from './styled'
 import useEarnings from '../../hooks/useEarnings'
 import useReward from '../../hooks/useReward'
+import { LangContext } from '../../contexts/Lang'
 
 const CHKNMenuItem = () => {
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -42,6 +43,7 @@ const CHKNMenuItem = () => {
     // tokenAddress,
     earnToken,
     name,
+    tokenSymbol,
     icon,
   } = useFarm(id) || {
     pid: 0,
@@ -115,13 +117,14 @@ const CHKNMenuItem = () => {
 
   const tokenName = id.split(' ')[0] || ''
   const fullName = `${tokenName} Eggs (Farm LP Tokens)`
+  const { messages } = useContext(LangContext)
 
   return (
     <Container>
       <Wrapper>
         <Description>
           <img src={icon as string} height="130px" alt="" />
-          <H1>{name}</H1>
+          <H1> {messages.stake.tokens[tokenSymbol]}</H1>
           <Text>
             Deposit {fullName} and earn {earnTokenName}
           </Text>
@@ -132,7 +135,7 @@ const CHKNMenuItem = () => {
               type="menu"
               title={getBalanceNumber(earnings).toString()}
               subtitle="CHKN Earned"
-              btnText="Collect"
+              btnText={messages.stake.buttons.collect}
               iconWidth="100px"
               isBtnDisabled={!earnings.toNumber() || pendingTx}
               isLoading={pendingTx}
@@ -149,7 +152,7 @@ const CHKNMenuItem = () => {
               type="menu"
               title={getBalanceNumber(stakedBalance).toString()}
               subtitle={fullName}
-              btnText={isNotAllowed ? `Approve ${lpToken}` : 'Unstake'}
+              btnText={isNotAllowed ? `Approve ${lpToken}` : messages.stake.buttons.unstake}
               isBtnDisabled={requestedApproval}
               isLoading={requestedApproval}
               onBtnClick={isNotAllowed ? handleApprove : onPresentWithdraw}

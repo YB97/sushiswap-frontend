@@ -16,7 +16,7 @@ export const LangContext = createContext<LangContext>({
 })
 
 const Lang: React.FC = ({ children }) => {
-  const [lang, setLang] = useState<LangType>('CN')
+  const [lang, setLang] = useState<LangType>('EN')
   const [messages, setMessages] = useState<MessageSctructureType>(CN)
 
   const hadleSetLang = (newLang: LangType) => {

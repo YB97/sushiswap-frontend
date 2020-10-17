@@ -16,21 +16,21 @@ export type MessageSctructureType = {
     deposit: string
     earned: string
     tokens: {
-      CHKN: string,
-      'CHKN-USDT': string,
-      'CHKN-UNI': string,
-      'CHKN-SUSHI': string,
-      'USDT': string,
-      'USDC': string,
-      DAI: string,
-      LINK: string,
-      UNI: string,
-      'DAI-USDT': string,
-      'YFII': string,
-      'LEND': string,
-      'SNX': string,
-      'YFI': string,
-      'AMPL': string,
+      CHKN: string
+      'CHKN-USDT': string
+      'CHKN-UNI': string
+      'CHKN-SUSHI': string
+      USDT: string
+      USDC: string
+      DAI: string
+      LINK: string
+      UNI: string
+      'DAI-USDT': string
+      YFII: string
+      LEND: string
+      SNX: string
+      YFI: string
+      AMPL: string
     }
     next_egg_card: {
       title: string
@@ -51,6 +51,7 @@ export type MessageSctructureType = {
     buttons: {
       select: string
       collect: string
+      unstake: string
     }
     approve: string
     eggs: string
@@ -142,17 +143,17 @@ export const CN: MessageSctructureType = {
       'CHKN-USDT': '超级壳',
       'CHKN-UNI': '茶叶蛋',
       'CHKN-SUSHI': '煎蛋男孩',
-      'USDT': '人气先生',
-      'USDC': '元气少女',
+      USDT: '人气先生',
+      USDC: '元气少女',
       DAI: '老蛋',
       LINK: '剑客',
       UNI: '天才艺人',
       'DAI-USDT': '友好战斗机',
-      'YFII': '仁慈的银行家',
-      'LEND': '慷慨的蛋黄',
-      'SNX': '变形者',
-      'YFI': '禅宗农夫',
-      'AMPL': '圆圆',
+      YFII: '仁慈的银行家',
+      LEND: '慷慨的蛋黄',
+      SNX: '变形者',
+      YFI: '禅宗农夫',
+      AMPL: '圆圆',
     },
     next_egg_card: {
       title: '为下一个鸡蛋投票',
@@ -175,6 +176,7 @@ export const CN: MessageSctructureType = {
     buttons: {
       select: '选择',
       collect: '收集',
+      unstake: "放心" // FROM GOOGLE
     },
     approve: '批准',
     eggs: '鸡蛋',
@@ -274,17 +276,17 @@ export const EN: MessageSctructureType = {
       'CHKN-USDT': 'Super Shell',
       'CHKN-UNI': '茶叶蛋',
       'CHKN-SUSHI': 'Tamago Boy',
-      'USDT': 'Mr. Popular',
-      'USDC': 'Chill Gal',
+      USDT: 'Mr. Popular',
+      USDC: 'Chill Gal',
       DAI: 'Old Eggy',
       LINK: 'Swordsman',
       UNI: 'Gifted Artiste',
       'DAI-USDT': 'Friendly Fighter',
-      'YFII': 'Benevolent Banker',
-      'LEND': 'Generous Yolk',
-      'SNX': 'Shapeshifter',
-      'YFI': 'Zen Farmer',
-      'AMPL': 'Amply Plump',
+      YFII: 'Benevolent Banker',
+      LEND: 'Generous Yolk',
+      SNX: 'Shapeshifter',
+      YFI: 'Zen Farmer',
+      AMPL: 'Amply Plump',
     },
     next_egg_card: {
       title: 'Vote for the Next Egg',
@@ -308,6 +310,7 @@ export const EN: MessageSctructureType = {
     buttons: {
       select: 'Select',
       collect: 'Collect',
+      unstake: 'Unstake',
     },
     approve: 'Approve',
     eggs: 'Eggs',
