@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 // import Modal from '../Modal'
 import ComingSoon from '../../assets/img/coming-soon.png'
 import Modal from '../../components/Modal'
+import { LangContext } from '../../contexts/Lang'
 import Button from '../Button'
 import { StyledOverlay, StyledPopup } from '../InviteModal/styled'
 
@@ -20,23 +21,24 @@ const AddModal = ({
   onPopupClick = () => {},
   onBtnClick = () => {},
 }) => {
+  const { messages } = useContext(LangContext)
   return (
     <StyledOverlay onClick={onOverlayClick}>
       <StyledBg onClick={onPopupClick}>
         <StyledPopup>
           <StyledWrapper>
-            {showText && <StyledHeader>Vote for the Next Egg</StyledHeader>}
+            {showText && (
+              <StyledHeader>{messages.stake.next_egg_modal.title}</StyledHeader>
+            )}
             <StyledImage>
               <img style={{ width: '456px' }} src={ComingSoon} alt="coming" />
             </StyledImage>
             {showText && (
-              <StyledText>
-                CHKN governance and new Egg voting coming soon!
-              </StyledText>
+              <StyledText>{messages.stake.next_egg_modal.text}</StyledText>
             )}
             <StyledButton>
               <Button shape="rect" onClick={onBtnClick}>
-                Okay
+                {messages.stake.next_egg_modal.button}
               </Button>
             </StyledButton>
           </StyledWrapper>

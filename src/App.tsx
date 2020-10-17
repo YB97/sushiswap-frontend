@@ -8,6 +8,7 @@ import MobileMenu from './components/MobileMenu'
 import TopBar from './components/TopBar'
 import FarmsProvider from './contexts/Farms'
 import ModalsProvider from './contexts/Modals'
+import LangProvider from './contexts/Lang'
 import TransactionProvider from './contexts/Transactions'
 import SushiProvider from './contexts/SushiProvider'
 import useModal from './hooks/useModal'
@@ -84,21 +85,23 @@ const App: React.FC = () => {
 const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <UseWalletProvider
-        // chainId={4}
-        chainId={1}
-        connectors={{
-          walletconnect: { rpcUrl: 'https://mainnet.eth.aragon.network/' },
-        }}
-      >
-        <SushiProvider>
-          <TransactionProvider>
-            <FarmsProvider>
-              <ModalsProvider>{children}</ModalsProvider>
-            </FarmsProvider>
-          </TransactionProvider>
-        </SushiProvider>
-      </UseWalletProvider>
+      <LangProvider>
+        <UseWalletProvider
+          // chainId={4}
+          chainId={1}
+          connectors={{
+            walletconnect: { rpcUrl: 'https://mainnet.eth.aragon.network/' },
+          }}
+        >
+          <SushiProvider>
+            <TransactionProvider>
+              <FarmsProvider>
+                <ModalsProvider>{children}</ModalsProvider>
+              </FarmsProvider>
+            </TransactionProvider>
+          </SushiProvider>
+        </UseWalletProvider>
+      </LangProvider>
     </ThemeProvider>
   )
 }

@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyledLink, StyledListItem, StyledNavLink } from './styled'
+import { LangContext } from '../../contexts/Lang'
+
+
 
 export interface MenuItemProps {
   title: string
@@ -9,10 +12,11 @@ export interface MenuItemProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ title, to, isNative, target }) => {
+  const { messages } = useContext(LangContext);
   const renderNavLink = (title: string, to: string) => {
     return (
       <StyledNavLink exact to={to}>
-        {title}
+        {messages.navbar[title]}
       </StyledNavLink>
     )
   }
@@ -21,7 +25,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, to, isNative, target }) => {
     <StyledListItem key={title}>
       {isNative ? (
         <StyledLink target={target} href={to}>
-          {title}
+          {messages.navbar[title]}
         </StyledLink>
       ) : (
         renderNavLink(title, to)

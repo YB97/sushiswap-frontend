@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { LangContext } from '../../../../contexts/Lang'
 
 import Icon from '../../../Icon'
 import {
@@ -10,17 +11,15 @@ import {
 } from './styled'
 
 const AddCard = () => {
+  const { messages } = useContext(LangContext)
   return (
     <StyledWrapper>
       <StyledIconWrapper>
         <Icon iconName="add" />
       </StyledIconWrapper>
-      <StyledTitle>Vote for the Next Egg</StyledTitle>
-      <StyledSubtitle>CHKN is your governance token</StyledSubtitle>
-      <StyledText>
-        As a CHKN holder, you will get to vote on which Eggs the farm launches
-        in the next phase of the platform.
-      </StyledText>
+      <StyledTitle>{messages.stake.next_egg_card.title} </StyledTitle>
+      <StyledSubtitle>{messages.stake.next_egg_card.subtitle}</StyledSubtitle>
+      <StyledText>{messages.stake.next_egg_card.text}</StyledText>
     </StyledWrapper>
   )
 }

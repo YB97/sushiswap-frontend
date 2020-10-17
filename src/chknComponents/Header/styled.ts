@@ -1,6 +1,7 @@
 import Icon from './../Icon'
-import { MD, LG } from './../../styledVars'
-import styled from 'styled-components'
+import LangSelect from '../LangSelect'
+import { MD, LG, RED } from './../../styledVars'
+import styled, { css } from 'styled-components'
 
 export const StyledNav = styled.nav`
   display: flex;
@@ -56,5 +57,31 @@ export const StyledAccountButton = styled.div`
   }
   @media (min-width: ${LG}) {
     margin-top: 0;
+  }
+`
+
+export const StyledLangSelect = styled.div`
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  @media (min-width: ${MD}) {
+    margin-top: 0;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+  }
+`
+
+export const StyledSpan = styled.span<{ active?: boolean }>`
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${RED};
+    `}
+
+  &:hover {
+    cursor: pointer;
+    color: ${RED};
   }
 `

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import burnChiliIcon from '../../../../assets/img/burn-chili.png'
+import { LangContext } from '../../../../contexts/Lang'
 import Spinner from '../../../Spinner'
 import {
   StyledWrapper,
@@ -42,6 +43,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
   iconWidth,
   iconHeight,
 }) => {
+  const { messages } = useContext(LangContext)
   return (
     <StyledWrapper>
       <StyledImageWrapper>
@@ -60,7 +62,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         onClick={onBtnClick}
         disabled={isBtnDisabled}
       >
-        {isLoading ? <Spinner /> : btnText}
+        {isLoading ? <Spinner /> : messages.stake.buttons.select}
       </StyledBtn>
       {hasAddBtn && (
         <StyledAddBtn onClick={onAddBtnClick} disabled={isAddBtnDisabled}>
@@ -68,10 +70,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         </StyledAddBtn>
       )}
       {isLoading && (
-        <StyledHelpText>
-          This can take a few seconds to a few minutes depending on how much gas
-          you used
-        </StyledHelpText>
+        <StyledHelpText>{messages.text.trx_duration}</StyledHelpText>
       )}
     </StyledWrapper>
   )

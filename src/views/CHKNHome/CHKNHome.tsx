@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { LangContext } from '../../contexts/Lang'
 import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
 import { useHistory } from 'react-router-dom'
@@ -39,6 +40,7 @@ const Home = () => {
   const { account } = useWallet()
   const chkn = useSushi()
   const block = useBlock()
+  const { messages } = useContext(LangContext)
 
   const sushiBalance = useTokenBalance(getSushiAddress(chkn))
   const masterChefContract = getMasterChefContract(chkn)
@@ -77,7 +79,7 @@ const Home = () => {
       account && (
         <StyledButtonWrap>
           <StyledButton theme="blue" onClick={onToggleInviteModal}>
-            Invite & Earn
+            {messages.button.invite}
           </StyledButton>
         </StyledButtonWrap>
       )
@@ -94,33 +96,33 @@ const Home = () => {
           </StyledImg>
           <InfoBlock>
             <LogoLarge iconName="logo-large" />
-            <Text>Stake Eggs (farm LP tokens) to hatch your very own CHKN</Text>
+            <Text>{messages.chknHome.subtitle}</Text>
           </InfoBlock>
           <CardList>
             <StyledCard
               iconName="logo-circle"
-              title="Your CHKN Balance"
+              title={messages.card.info.yourBalance}
               value={
                 !!account
                   ? numberWithCommas(getBalanceNumber(sushiBalance).toFixed(3))
-                  : 'Locked'
+                  : messages.card.info.balance
               }
-              bottomText="Pending Harvest"
+              bottomText={messages.card.info.pendingHarvest}
               bottomValue="0.00"
               bottomUnits="CHKN"
               // onCardClick={() => console.log('click')}
               isFooterVisible
             />
             <StyledCard
-              title="Total CHKN Supply Left to Farm"
+              title={messages.card.info.totalBalance}
               value={
                 totalSupply
                   ? numberWithCommas(
                       Math.abs(getBalanceNumber(totalSupply)).toFixed(3),
                     )
-                  : 'Locked'
+                  : messages.card.info.balance
               }
-              bottomText="New rewards per block"
+              bottomText={messages.card.info.rewards}
               bottomValue={rewards?.toString()}
               bottomUnits="CHKN"
               // onCardClick={() => console.log('click1')}
@@ -131,7 +133,7 @@ const Home = () => {
             <StyledButtonWrap>
               <StyledButton onClick={() => history.push('/stake')}>
                 {/* <Img src={chiliIcon} alt="add spice" /> */}
-                Stake
+                {messages.button.stake}
               </StyledButton>
             </StyledButtonWrap>
             {renderInviteButton()}
