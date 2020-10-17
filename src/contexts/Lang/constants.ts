@@ -4,6 +4,7 @@ export type MessageSctructureType = {
     stake: string
     about: string
     exchange: string
+    profile: string
   }
   chknHome: {
     subtitle: string
@@ -127,6 +128,7 @@ export const CN: MessageSctructureType = {
     stake: '持有',
     about: '关于',
     exchange: '交易所',
+    profile: 'Profile',
   },
   chknHome: {
     subtitle: '持有鸡蛋（收获 LP代币）孵化自己的CHKN',
@@ -176,7 +178,7 @@ export const CN: MessageSctructureType = {
     buttons: {
       select: '选择',
       collect: '收集',
-      unstake: "放心" // FROM GOOGLE
+      unstake: '放心', // FROM GOOGLE
     },
     approve: '批准',
     eggs: '鸡蛋',
@@ -260,6 +262,7 @@ export const EN: MessageSctructureType = {
     stake: 'Stake',
     about: 'About',
     exchange: 'Exchange',
+    profile: 'My Profile',
   },
   chknHome: {
     subtitle: 'Stake Eggs (farm LP tokens) to hatch your very own CHKN',
