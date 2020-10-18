@@ -10,7 +10,14 @@ interface ButtonProps {
   shape?: 'rect' | 'half-round'
   type?: 'button' | 'submit' | 'reset'
   onClick?: (e) => void
-  theme?: 'primary' | 'blue' | 'white' | 'light-blue' | 'yellow' | 'green'
+  theme?:
+    | 'primary'
+    | 'blue'
+    | 'white'
+    | 'light-blue'
+    | 'yellow'
+    | 'green'
+    | 'light-red'
   size?: 'normal' | 'small'
 }
 

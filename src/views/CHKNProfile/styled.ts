@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `
 export const PaperWrapper = styled.div`
   margin-top: 80px;
-  width: 90%;
+  width: 70%;
   margin-bottom: 350px;
   /* height: 974px; */
 
@@ -47,7 +47,7 @@ export const Item = styled.div<{ hasLeftBorder?: boolean }>`
 
 export const Title = styled.div`
   font-weight: 600;
-  font-size: 22px;
+  font-size: 26px;
   line-height: 40px;
   color: #222a3f;
 

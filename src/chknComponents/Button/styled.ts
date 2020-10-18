@@ -97,6 +97,16 @@ export const StyledButton = styled.button<{ shape: string; height?: string }>`
       }
     `}
 
+  ${(props) =>
+    props.theme === 'light-red' &&
+    css`
+      background-color: ${lighten(0.1, RED)};
+      color: white;
+      &:hover {
+        background-color: ${lighten(0.05, RED)};
+      }
+    `}
+
 
 
   /* shape */

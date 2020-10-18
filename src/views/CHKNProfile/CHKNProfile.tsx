@@ -140,7 +140,7 @@ const CHKNProfile = () => {
               <Text>current reward pool</Text>
             </SectionWrapper>
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice isBlackColor>
                 {!isNaN(Number(pointsShare)) && pointsShare}%
               </PoolPrice>
               <FlexBox alignItems="center" addMedia>
@@ -157,7 +157,7 @@ const CHKNProfile = () => {
               </FlexBox>
             </SectionWrapper>
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice isBlackColor>
                 $
                 {rewardShare !== undefined && !isNaN(Number(rewardShare)) ? (
                   numberWithCommas(
@@ -165,7 +165,7 @@ const CHKNProfile = () => {
                   )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
-                    <Spinner color="#407aeb" />
+                    <Spinner color="#222A3F" />
                   </span>
                 )}
               </PoolPrice>
@@ -235,12 +235,12 @@ const CHKNProfile = () => {
               <Text>current reward pool</Text>
             </SectionWrapper>
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice isBlackColor>
                 {stackRewardPrc !== undefined ? (
                   stackRewardPrc.toFixed(2)
                 ) : (
                   <span style={{ marginRight: '5px' }}>
-                    <Spinner color="#407aeb" />
+                    <Spinner color="#222A3F" />
                   </span>
                 )}
                 %
@@ -248,13 +248,13 @@ const CHKNProfile = () => {
               <Text>% of the pool you own</Text>
             </SectionWrapper>
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice isBlackColor>
                 $
                 {stackRewardPrc !== undefined ? (
                   numberWithCommas((stackRewardPrc * 50000).toFixed(2))
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
-                    <Spinner color="#407aeb" />
+                    <Spinner color="#222A3F" />
                   </span>
                 )}
               </PoolPrice>
@@ -277,7 +277,7 @@ const CHKNProfile = () => {
                   </Button>
                 </StakeButton>
                 <UnstakeButton>
-                  <Button shape="rect" theme="primary" height="60px">
+                  <Button shape="rect" theme="light-red" height="60px">
                     Unstake
                   </Button>
                 </UnstakeButton>
