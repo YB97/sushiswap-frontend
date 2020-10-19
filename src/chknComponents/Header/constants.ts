@@ -3,7 +3,7 @@ import { MenuItemProps } from '../MenuItem'
 export const DEFAULT_HEADER_NAVLINKS: Array<MenuItemProps> = [
   { title: 'home', to: '/' },
   { title: 'stake', to: '/stake' },
-  { title: 'profile', to: '/profile' },
+  // { title: 'profile', to: '/profile' },
   {
     title: 'about',
     to: 'https://medium.com/@chknfarm/chkn-farm-fa178c712aed ',
