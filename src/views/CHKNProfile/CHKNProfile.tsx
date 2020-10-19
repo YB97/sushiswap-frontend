@@ -10,6 +10,7 @@ import useReferral from '../../hooks/useReferral'
 import useSushi from '../../hooks/useSushi'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import {
+  getChknReferralRewardPool,
   getChknStakeRewardPool,
   getSushiAddress,
   getSushiSupply,
@@ -45,6 +46,8 @@ const CHKNProfile = () => {
   const chkn = useSushi()
   const chknBalance = useTokenBalance(getSushiAddress(chkn))
   const { generate, getReferralLink, currentLink } = useReferral()
+  const stakeRewardContract = getChknStakeRewardPool(chkn)
+  const referralRewartContract = getChknReferralRewardPool(chkn)
 
   const { messages } = useContext(LangContext)
 
@@ -228,7 +231,17 @@ const CHKNProfile = () => {
                 {messages.profile.referral.unlocked}
               </Text>
               <FlexBox margin="5px 0 0 0">
-                <Button shape="rect" theme="green" height="60px">
+                <Button
+                  shape="rect"
+                  theme="green"
+                  height="60px"
+                  onClick={async () => {
+                    const res = await referralRewartContract.methods
+                      .claim()
+                      .call()
+                    console.log('stake referrer', res)
+                  }}
+                >
                   {messages.profile.buttons.collect}
                 </Button>
               </FlexBox>
@@ -333,7 +346,15 @@ const CHKNProfile = () => {
                 USDT {messages.profile.stake.unlocked}
               </Text>
               <FlexBox margin="5px 0 0 0">
-                <Button shape="rect" theme="green" height="60px">
+                <Button
+                  shape="rect"
+                  theme="green"
+                  height="60px"
+                  onClick={async () => {
+                    const res = await stakeRewardContract.methods.claim().call()
+                    console.log('stake res', res)
+                  }}
+                >
                   {messages.profile.buttons.collect}
                 </Button>
               </FlexBox>
