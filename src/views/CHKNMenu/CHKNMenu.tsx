@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext } from 'react'
+import React, { FC, useState, useContext, useEffect } from 'react'
 import { useWallet } from 'use-wallet'
 import { useHistory } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
@@ -23,6 +23,9 @@ import {
   UnlockButtonWrapper,
   StyledAdBanner,
 } from './styled'
+import { getMasterChefContract, getRewardsPerBlock } from '../../sushi/utils'
+import useSushi from '../../hooks/useSushi'
+import useBlock from '../../hooks/useBlock'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -33,10 +36,27 @@ const CHKNMenu: FC = () => {
   const { account } = useWallet()
   const [farms] = useFarms()
   const history = useHistory()
+  const [rewards, setRewards] = useState<any>()
   const stakedValue = useAllStakedValue()
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
   const [isAddModalVisible, setAddModalVisible] = useState(false)
   const [showText, setShowText] = useState(true)
+  const chkn = useSushi()
+  const block = useBlock()
+  const masterChefContract = getMasterChefContract(chkn)
+
+  useEffect(() => {
+    async function fetchRewords() {
+      const rewardsPerBlock = await getRewardsPerBlock(
+        masterChefContract,
+        block,
+      )
+
+      setRewards(rewardsPerBlock)
+    }
+
+    fetchRewords()
+  }, [block, masterChefContract])
 
   if (!account) {
     return (
@@ -58,7 +78,7 @@ const CHKNMenu: FC = () => {
   }
 
   const sushiIndex = farms.findIndex(
-    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
+    ({ tokenSymbol }) => tokenSymbol === 'CHKN',
   )
 
   const sushiPrice =
@@ -67,7 +87,6 @@ const CHKNMenu: FC = () => {
       : new BigNumber(0)
 
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
-  const CHKN_PER_BLOCK = new BigNumber(1000)
 
   const rows = farms.map((farm, i) => {
     return {
@@ -75,7 +94,7 @@ const CHKNMenu: FC = () => {
       ...stakedValue[i],
       apy: stakedValue[i]
         ? sushiPrice
-            .times(CHKN_PER_BLOCK)
+            .times(rewards)
             .times(BLOCKS_PER_YEAR)
             .times(stakedValue[i].poolWeight)
             .div(stakedValue[i].totalWethValue)
@@ -98,12 +117,14 @@ const CHKNMenu: FC = () => {
                   bottomText="APY"
                   bottomValue={
                     row.apy
-                      ? `${row.apy
-                          .times(new BigNumber(100))
-                          .toNumber()
-                          .toLocaleString('en-US')
-                          .slice(0, -1)}%`
-                      : ''
+                      ? `${
+                          row.apy
+                            .times(new BigNumber(100))
+                            .toNumber()
+                            .toLocaleString('en-US')
+                            .slice(0, -1) || '- '
+                        }%`
+                      : 'Loading...'
                   }
                   imgSrc={row.icon}
                   title={messages.stake.tokens[row.tokenSymbol]}
