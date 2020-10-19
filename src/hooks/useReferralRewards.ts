@@ -20,77 +20,86 @@ const useReferralRewards = () => {
 
   const { account } = useWallet()
   const chkn = useSushi()
-  const referralRewartContract = getChknReferralRewardPool(chkn)
+  const referralRewardContract = getChknReferralRewardPool(chkn)
 
   const getInvitedNumber = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods
         .referralCount(account)
         .call()
 
       setInvitedNum(res)
     }
-  }, [account, referralRewartContract])
+  }, [account, referralRewardContract])
 
   const getReferralPoints = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods.points(account).call()
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods.points(account).call()
       const point = getBalanceNumber(new BigNumber(res)).toFixed(2)
 
       setPoints(point)
     }
-  }, [account, referralRewartContract])
+  }, [account, referralRewardContract])
 
   const getTotalReferralPoints = useCallback(async () => {
-    if (referralRewartContract) {
+    if (referralRewardContract) {
       setTotalLoading(true)
-      const res = await referralRewartContract.methods.totalPoints().call()
+      const res = await referralRewardContract.methods.totalPoints().call()
       const total = getBalanceNumber(new BigNumber(res)).toFixed(2)
 
       setTotalReferralPoints(total)
       setTotalLoading(false)
     }
-  }, [referralRewartContract])
+  }, [referralRewardContract])
 
   const getMilestone = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods.milestoneGoal().call()
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods.milestoneGoal().call()
       const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
 
       setMilestone(value)
     }
-  }, [referralRewartContract])
+  }, [referralRewardContract])
 
   const getMilestoneProgress = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods
         .milestoneProgress()
         .call()
       const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
 
       setMilestoneProgress(value)
     }
-  }, [referralRewartContract])
+  }, [referralRewardContract])
 
   const getReferralReward = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods.reward(account).call()
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods.reward(account).call()
       const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
 
       setReferralReward(value)
     }
-  }, [account, referralRewartContract])
+  }, [account, referralRewardContract])
 
   const getInclaimedReward = useCallback(async () => {
-    if (referralRewartContract) {
-      const res = await referralRewartContract.methods
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods
         .unclaimedReward(account)
         .call()
       const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
 
       setReferralUnclaimedReward(value)
     }
-  }, [account, referralRewartContract])
+  }, [account, referralRewardContract])
+
+  const referralClaim = useCallback(async () => {
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods.claim().call()
+      console.log('referralClaim', res)
+
+      setReferralReward(res)
+    }
+  }, [referralRewardContract])
 
   useEffect(() => {
     getInvitedNumber()
@@ -119,6 +128,7 @@ const useReferralRewards = () => {
     milestoneProgress,
     referralReward,
     referralUnclaimedReward,
+    referralClaim,
   }
 }
 

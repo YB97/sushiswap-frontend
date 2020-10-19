@@ -41,13 +41,22 @@ const useStakedRewards = () => {
     }
   }, [account, stakeRewardContract])
 
+  const stakedClaim = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods.claim().call()
+      console.log('staked claim', res)
+
+      setStakedReward(res)
+    }
+  }, [stakeRewardContract])
+
   useEffect(() => {
     getMilestone()
     getMilestoneProgress()
     getStakedReward()
   }, [getMilestone, getMilestoneProgress, getStakedReward])
 
-  return { stakeMilestone, stakeMilestoneProgress, stakedReward }
+  return { stakeMilestone, stakeMilestoneProgress, stakedReward, stakedClaim }
 }
 
 export default useStakedRewards

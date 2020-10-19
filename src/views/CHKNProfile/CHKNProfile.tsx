@@ -59,12 +59,14 @@ const CHKNProfile = () => {
     milestone,
     milestoneProgress,
     referralReward,
+    referralClaim,
   } = useReferralRewards()
 
   const {
     stakeMilestone,
     stakeMilestoneProgress,
     stakedReward,
+    stakedClaim,
   } = useStakedRewards()
 
   const [isCopied, setCopied] = useState<boolean>(false)
@@ -235,12 +237,7 @@ const CHKNProfile = () => {
                   shape="rect"
                   theme="green"
                   height="60px"
-                  onClick={async () => {
-                    const res = await referralRewartContract.methods
-                      .claim()
-                      .call()
-                    console.log('stake referrer', res)
-                  }}
+                  onClick={referralClaim}
                 >
                   {messages.profile.buttons.collect}
                 </Button>
@@ -350,10 +347,7 @@ const CHKNProfile = () => {
                   shape="rect"
                   theme="green"
                   height="60px"
-                  onClick={async () => {
-                    const res = await stakeRewardContract.methods.claim().call()
-                    console.log('stake res', res)
-                  }}
+                  onClick={stakedClaim}
                 >
                   {messages.profile.buttons.collect}
                 </Button>
