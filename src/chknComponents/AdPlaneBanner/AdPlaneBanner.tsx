@@ -8,17 +8,25 @@ import {
   AdPlaneBannerText,
 } from './styled'
 
-const AdPlaneBanner = () => {
+interface IProps {
+  price?: string
+  progress?: string
+}
+
+const AdPlaneBanner: React.FC<IProps> = ({
+  price = '500,000',
+  progress = '0%',
+}) => {
   return (
     <StyledAdPlaneBanner>
       <AdPlaneBannerHeader>
         <AdPlaneBannerText>
           <span>REFERRAL</span>BONUS POOL
         </AdPlaneBannerText>
-        <AdPlaneBannerPrice>$25,000</AdPlaneBannerPrice>
+        <AdPlaneBannerPrice>${price}</AdPlaneBannerPrice>
       </AdPlaneBannerHeader>
       <AdPlaneBannerProgressBar isLock={false}>
-        <AdPlaneBannerProgressBarActive />
+        <AdPlaneBannerProgressBarActive progress={progress} />
       </AdPlaneBannerProgressBar>
     </StyledAdPlaneBanner>
   )

@@ -116,6 +116,7 @@ export const StyledButtonWrap = styled.div`
 
 export const StyledImg = styled.div`
   position: absolute;
+  /* left: 20px; */
   left: -100%;
   animation: plane-anim 20s linear infinite;
   img {
@@ -126,4 +127,8 @@ export const StyledImg = styled.div`
       width: 400px;
     }
   }
+`
+
+export const StyledWrapper = styled.div`
+  position: relative;
 `

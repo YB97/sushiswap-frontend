@@ -38,6 +38,14 @@ export const getChknPointsPoolContract = (chkn) => {
   return chkn && chkn.contracts && chkn.contracts.pointsPool
 }
 
+export const getChknStakeRewardPool = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.stakeRewardPool
+}
+
+export const getChknReferralRewardPool = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.referralRewardPool
+}
+
 export const getRewardsPerBlock = async (masterChefContract, block) => {
   if (masterChefContract) {
     const perBlock = await masterChefContract.methods.chickenPerBlock().call()
@@ -55,7 +63,6 @@ export const getRewardsPerBlock = async (masterChefContract, block) => {
 export const getPoints = async (pointsPoolContract, account) => {
   if (pointsPoolContract && account) {
     const points = await pointsPoolContract.methods.points(account).call()
-    // console.log('RES', points)
 
     return points
   }
@@ -66,7 +73,6 @@ export const getPoints = async (pointsPoolContract, account) => {
 export const getQualified = async (pointsPoolContract, account) => {
   if (pointsPoolContract && account) {
     const points = await pointsPoolContract.methods.qualified(account).call()
-    // console.log('RES', points)
 
     return points
   }

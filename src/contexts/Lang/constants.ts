@@ -120,6 +120,34 @@ export type MessageSctructureType = {
     referModal: string
     myWallet: string
   }
+  profile: {
+    title: string
+    referral: {
+      title: string
+      points: string
+      invited: string
+      rewardPool: string
+      own: string
+      estimatedReward: string
+      inviteMore: string
+      unlocked: string
+    }
+    stake: {
+      title: string
+      currentPool: string
+      rewardPool: string
+      own: string
+      estimatedReward: string
+      staked: string
+      unlocked: string
+    }
+    buttons: {
+      generate: string
+      collect: string
+      stake: string
+      unstake: string
+    }
+  }
 }
 
 export const CN: MessageSctructureType = {
@@ -128,7 +156,7 @@ export const CN: MessageSctructureType = {
     stake: '持有',
     about: '关于',
     exchange: '交易所',
-    profile: 'Profile',
+    profile: '我的个人资料',
   },
   chknHome: {
     subtitle: '持有鸡蛋（收获 LP代币）孵化自己的CHKN',
@@ -253,6 +281,34 @@ export const CN: MessageSctructureType = {
     unlock: '关联钱包',
     referModal: '立即邀请',
     myWallet: '我的钱包',
+  },
+  profile: {
+    title: '我的个人资料',
+    referral: {
+      points: '积分',
+      title: '我的推荐奖励',
+      invited: '您邀请的人数 #',
+      rewardPool: '当前奖励池',
+      own: '您拥有奖金池的百分之*',
+      estimatedReward: '当前奖金（USDT）',
+      inviteMore: '邀请更多人',
+      unlocked: '已解锁',
+    },
+    stake: {
+      title: '我的持有奖励',
+      currentPool: '当前已持有的CHKN池',
+      rewardPool: '当前奖励池',
+      own: '您拥有奖金池的百分之*',
+      estimatedReward: '当前奖金（USDT）',
+      staked: '已持有',
+      unlocked: '已解锁',
+    },
+    buttons: {
+      collect: '收集我的奖励',
+      stake: '抵押我的CHKN',
+      unstake: '取出',
+      generate: '点击生成',
+    },
   },
 }
 
@@ -392,5 +448,33 @@ export const EN: MessageSctructureType = {
     unlock: 'Unlock Wallet',
     referModal: 'Refer now',
     myWallet: 'My Wallet',
+  },
+  profile: {
+    title: 'My Profile',
+    referral: {
+      points: 'points',
+      title: 'My Referral Rewards ',
+      invited: '# of people you invited',
+      rewardPool: 'current reward pool',
+      own: '% of the pool you own',
+      estimatedReward: 'my current estimated USDT reward',
+      inviteMore: 'invite more people',
+      unlocked: 'unlocked',
+    },
+    stake: {
+      title: 'My Staking Rewards',
+      currentPool: 'current staked CHKN pool',
+      rewardPool: 'current reward pool',
+      own: '% of the pool you own',
+      estimatedReward: 'my current estimated USDT reward',
+      staked: 'staked',
+      unlocked: 'unlocked',
+    },
+    buttons: {
+      collect: 'Collect My Rewards',
+      stake: 'Stake My CHKN',
+      unstake: 'Unstake',
+      generate: 'Click to generate',
+    },
   },
 }

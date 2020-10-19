@@ -59,9 +59,9 @@ const App: React.FC = () => {
             <Route exact path="/stake/:id">
               <CHKNMenuItem />
             </Route>
-            {/* <Route exact path="/profile">
+            <Route exact path="/profile">
               <CHKNProfile />
-            </Route> */}
+            </Route>
             <Route path="/about" exact>
               <CHKNAbout />
             </Route>

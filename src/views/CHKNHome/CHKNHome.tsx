@@ -26,10 +26,14 @@ import {
   StyledButtonWrap,
   ButtonsWrapper,
   StyledImg,
+  StyledWrapper,
 } from './styled'
 import useBlock from '../../hooks/useBlock'
 // import Plane from '../../assets/img/plane.png'
 import PlaneRefferBonus from '../../assets/img/plane-referral-bonus-25000.png'
+import PlaneEmpty from '../../assets/img/plane-empty.png'
+import AdPlaneBanner from '../../chknComponents/AdPlaneBanner'
+import useReferralRewards from '../../hooks/useReferralRewards'
 // import AdPlaneBanner from '../../chknComponents/AdPlaneBanner'
 
 const Home = () => {
@@ -40,6 +44,7 @@ const Home = () => {
   const { account } = useWallet()
   const chkn = useSushi()
   const block = useBlock()
+  const { milestone, milestoneProgress } = useReferralRewards()
   const { messages } = useContext(LangContext)
 
   const sushiBalance = useTokenBalance(getSushiAddress(chkn))
@@ -91,8 +96,13 @@ const Home = () => {
       <Container>
         <Main>
           <StyledImg>
-            <img src={PlaneRefferBonus} alt="referral" />
-            {/* <AdPlaneBanner /> */}
+            <StyledWrapper>
+              <img src={PlaneEmpty} alt="referral" />
+              <AdPlaneBanner
+                price={milestone && numberWithCommas(milestone).slice(0, -3)}
+                progress={`${Number(milestoneProgress) / Number(milestone)}%`}
+              />
+            </StyledWrapper>
           </StyledImg>
           <InfoBlock>
             <LogoLarge iconName="logo-large" />

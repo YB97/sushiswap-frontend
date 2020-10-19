@@ -88,16 +88,21 @@ const CHKNMenu: FC = () => {
 
   const BLOCKS_PER_YEAR = new BigNumber(2336000)
 
+  const poolWeightsSum = stakedValue.reduce((acc, item) => {
+    return acc.plus(item.poolWeight)
+  }, new BigNumber(0))
+
   const rows = farms.map((farm, i) => {
     return {
       ...farm,
       ...stakedValue[i],
       apy: stakedValue[i]
         ? sushiPrice
-            .times(rewards)
+            .times(new BigNumber(rewards))
             .times(BLOCKS_PER_YEAR)
             .times(stakedValue[i].poolWeight)
             .div(stakedValue[i].totalWethValue)
+            .div(poolWeightsSum)
         : null,
     }
   })
@@ -117,13 +122,11 @@ const CHKNMenu: FC = () => {
                   bottomText="APY"
                   bottomValue={
                     row.apy
-                      ? `${
-                          row.apy
-                            .times(new BigNumber(100))
-                            .toNumber()
-                            .toLocaleString('en-US')
-                            .slice(0, -1) || '- '
-                        }%`
+                      ? isFinite(row.apy.times(new BigNumber(100)).toNumber())
+                        ? `${Math.round(
+                            row.apy.times(new BigNumber(100)).toNumber(),
+                          ).toLocaleString('en-US')}%`
+                        : '- %'
                       : 'Loading...'
                   }
                   imgSrc={row.icon}

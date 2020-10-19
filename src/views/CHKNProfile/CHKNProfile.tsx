@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
@@ -9,7 +9,11 @@ import usePoints from '../../hooks/usePoints'
 import useReferral from '../../hooks/useReferral'
 import useSushi from '../../hooks/useSushi'
 import useTokenBalance from '../../hooks/useTokenBalance'
-import { getSushiAddress, getSushiSupply } from '../../sushi/utils'
+import {
+  getChknStakeRewardPool,
+  getSushiAddress,
+  getSushiSupply,
+} from '../../sushi/utils'
 import { getBalanceNumber, numberWithCommas } from '../../utils/formatBalance'
 import {
   Wrapper,
@@ -32,19 +36,33 @@ import {
 } from './styled'
 import UnlockWallet from '../../chknComponents/UnlockWallet'
 import AddModal from '../../chknComponents/AddModal'
+import useReferralRewards from '../../hooks/useReferralRewards'
+import useStakedRewards from '../../hooks/useStakedRewards'
+import { LangContext } from '../../contexts/Lang'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
   const chkn = useSushi()
   const chknBalance = useTokenBalance(getSushiAddress(chkn))
-  const {
-    pointsShare,
-    points,
-    totalPoints,
-    isTotalPointsLoading,
-    rewardShare,
-  } = usePoints()
   const { generate, getReferralLink, currentLink } = useReferral()
+
+  const { messages } = useContext(LangContext)
+
+  const {
+    points: referralPoints,
+    invitedNum,
+    totalReferralPoints,
+    isTotalLoading,
+    milestone,
+    milestoneProgress,
+    referralReward,
+  } = useReferralRewards()
+
+  const {
+    stakeMilestone,
+    stakeMilestoneProgress,
+    stakedReward,
+  } = useStakedRewards()
 
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -52,7 +70,6 @@ const CHKNProfile = () => {
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const [modalVisible, setModalVisible] = useState(false)
 
-  // const chickenContract = getSushiContract(chkn)
   useEffect(() => {
     if (account) {
       getReferralLink() // get exiting referral link
@@ -78,8 +95,6 @@ const CHKNProfile = () => {
 
     setStackRewardPrc(num)
   }, [chknBalance, totalSupply])
-
-  const totalReferralRewardPool = 243750
 
   if (!account) {
     return <UnlockWallet />
@@ -109,20 +124,17 @@ const CHKNProfile = () => {
       <PaperWrapper>
         <Paper>
           <Item>
-            <Title>My Referral Rewards</Title>
+            <Title>{messages.profile.referral.title}</Title>
             <SectionWrapper>
-              <LargeNumber>23</LargeNumber>
-              <Text># of people you invited</Text>
+              <LargeNumber>{invitedNum}</LargeNumber>
+              <Text>{messages.profile.referral.invited}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice>
                 $
-                {rewardShare !== undefined &&
-                !isNaN(Number(rewardShare)) &&
-                !isNaN(Number(totalReferralRewardPool)) ? (
-                  numberWithCommas(
-                    (Number(rewardShare) * totalReferralRewardPool).toFixed(2),
-                  )
+                {milestoneProgress !== undefined &&
+                !isNaN(Number(milestoneProgress)) ? (
+                  numberWithCommas(Number(milestoneProgress).toFixed(2))
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
@@ -131,37 +143,56 @@ const CHKNProfile = () => {
               </PoolPrice>
               <FlexBox alignItems="center">
                 <ProgressBar isLock={false}>
-                  <ProgressBarActive progress={`${rewardShare}%`} />
+                  <ProgressBarActive
+                    progress={`${
+                      (milestoneProgress &&
+                        milestone &&
+                        Number(milestoneProgress) / Number(milestone)) ||
+                      0
+                    }%`}
+                  />
                 </ProgressBar>
                 <ProgressNumber>
-                  ${numberWithCommas(totalReferralRewardPool.toString())}
+                  {milestone ? (
+                    `$${numberWithCommas(milestone)}`
+                  ) : (
+                    <Spinner size="small" color="#a3abbf" />
+                  )}
+                  {/* ${numberWithCommas(totalReferralRewardPool.toString())} */}
                 </ProgressNumber>
               </FlexBox>
-              <Text>current reward pool</Text>
+              <Text>{messages.profile.referral.rewardPool}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
-                {!isNaN(Number(pointsShare)) && pointsShare}%
+                {!isNaN(Number(referralReward)) &&
+                  !isNaN(Number(milestone)) &&
+                  (
+                    (Number(referralReward) * 0.65 * 0.75) /
+                    Number(milestone)
+                  ).toFixed(2)}
+                %
               </PoolPrice>
               <FlexBox alignItems="center" addMedia>
-                <Text>% of the pool you own</Text>
+                <Text>{messages.profile.referral.own}</Text>
                 <SecondaryText>
-                  {points} /{' '}
-                  {isTotalPointsLoading || totalPoints === undefined ? (
+                  {referralPoints} /{' '}
+                  {isTotalLoading || totalReferralPoints === undefined ? (
                     <Spinner size="small" color="#a3abbf" />
                   ) : (
-                    totalPoints
+                    totalReferralPoints
                   )}{' '}
-                  points
+                  {messages.profile.referral.points}
                 </SecondaryText>
               </FlexBox>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
                 $
-                {rewardShare !== undefined && !isNaN(Number(rewardShare)) ? (
+                {referralReward !== undefined &&
+                !isNaN(Number(referralReward)) ? (
                   numberWithCommas(
-                    (Number(rewardShare) * totalReferralRewardPool).toFixed(2),
+                    (Number(referralReward) * 0.65 * 0.75).toFixed(2),
                   )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
@@ -169,10 +200,10 @@ const CHKNProfile = () => {
                   </span>
                 )}
               </PoolPrice>
-              <Text>my current estimated USDT reward</Text>
+              <Text>{messages.profile.referral.estimatedReward}</Text>
             </SectionWrapper>
             <SectionWrapper>
-              <Text>invite more people</Text>
+              <Text>{messages.profile.referral.inviteMore}</Text>
               <CopyToClipboard text={currentLink || ''}>
                 <InviteLink
                   onClick={currentLink ? onClickCopy : generateAndGetValue}
@@ -186,22 +217,25 @@ const CHKNProfile = () => {
                   ) : isGenerating ? (
                     <Spinner />
                   ) : (
-                    'Click to generate'
+                    messages.profile.buttons.generate
                   )}
                 </InviteLink>
               </CopyToClipboard>
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
-              <Text>$1,234 USDT unlocked</Text>
+              <Text>
+                ${(Number(milestoneProgress) * 0.65 * 0.75).toFixed(2)} USDT{' '}
+                {messages.profile.referral.unlocked}
+              </Text>
               <FlexBox margin="5px 0 0 0">
                 <Button shape="rect" theme="green" height="60px">
-                  Collect My Rewards
+                  {messages.profile.buttons.collect}
                 </Button>
               </FlexBox>
             </FlexBox>
           </Item>
           <Item hasLeftBorder>
-            <Title>My Staking Rewards</Title>
+            <Title>{messages.profile.stake.title}</Title>
             <SectionWrapper>
               <LargeNumber>
                 {/* {false ? ( */}
@@ -211,13 +245,13 @@ const CHKNProfile = () => {
                   <Spinner color="#407aeb" />
                 )}
               </LargeNumber>
-              <Text>current staked CHKN pool</Text>
+              <Text>{messages.profile.stake.currentPool}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice>
                 $
-                {stackRewardPrc !== undefined ? (
-                  numberWithCommas((stackRewardPrc * 50000).toFixed(2))
+                {stakeMilestoneProgress ? (
+                  numberWithCommas(stakeMilestoneProgress)
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
@@ -230,14 +264,22 @@ const CHKNProfile = () => {
                     progress={`${stackRewardPrc?.toFixed(2) || 0}%`}
                   />
                 </ProgressBar>
-                <ProgressNumber>$50,000</ProgressNumber>
+                <ProgressNumber>
+                  {stakeMilestone ? (
+                    `$${numberWithCommas(stakeMilestone)}`
+                  ) : (
+                    <Spinner size="small" color="#a3abbf" />
+                  )}
+                </ProgressNumber>
               </FlexBox>
-              <Text>current reward pool</Text>
+              <Text>{messages.profile.stake.rewardPool}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
-                {stackRewardPrc !== undefined ? (
-                  stackRewardPrc.toFixed(2)
+                {stakedReward && stakeMilestone ? (
+                  numberWithCommas(
+                    (Number(stakedReward) / Number(stakeMilestone)).toFixed(2),
+                  )
                 ) : (
                   <span style={{ marginRight: '5px' }}>
                     <Spinner color="#222A3F" />
@@ -245,20 +287,20 @@ const CHKNProfile = () => {
                 )}
                 %
               </PoolPrice>
-              <Text>% of the pool you own</Text>
+              <Text>{messages.profile.stake.own}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
                 $
-                {stackRewardPrc !== undefined ? (
-                  numberWithCommas((stackRewardPrc * 50000).toFixed(2))
+                {stakedReward ? (
+                  numberWithCommas(stakedReward)
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#222A3F" />
                   </span>
                 )}
               </PoolPrice>
-              <Text>my current estimated USDT reward</Text>
+              <Text>{messages.profile.stake.estimatedReward}</Text>
             </SectionWrapper>
             <SectionWrapper>
               <Text>
@@ -273,21 +315,26 @@ const CHKNProfile = () => {
                     height="60px"
                     onClick={() => setModalVisible(true)}
                   >
-                    Stake My CHKN
+                    {messages.profile.buttons.stake}
                   </Button>
                 </StakeButton>
                 <UnstakeButton>
                   <Button shape="rect" theme="light-red" height="60px">
-                    Unstake
+                    {messages.profile.buttons.unstake}
                   </Button>
                 </UnstakeButton>
               </FlexBox>
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
-              <Text>$234 USDT unlocked</Text>
+              <Text>
+                $
+                {milestoneProgress &&
+                  (Number(milestoneProgress) * 0.1).toFixed(2)}{' '}
+                USDT {messages.profile.stake.unlocked}
+              </Text>
               <FlexBox margin="5px 0 0 0">
                 <Button shape="rect" theme="green" height="60px">
-                  Collect My Rewards
+                  {messages.profile.buttons.collect}
                 </Button>
               </FlexBox>
             </FlexBox>

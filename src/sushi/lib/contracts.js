@@ -5,6 +5,8 @@ import FryCookAbi from './abi/frycook.json'
 import ChknAbi from './abi/chickenToken.json'
 import ChknLookupAbi from './abi/ReferralAddressLookup.json'
 import ChknPointsPoolAbi from './abi/pointspool.json'
+import ChknStakeRewardPoolAbi from './abi/tokenStakeRewardPool.json'
+import ChknReferralRewardPoolAbi from './abi/referralRewardPool.json'
 // import SushiAbi from './abi/sushi.json'
 // import UNIV2PairAbi from './abi/uniswap_v2_router.json'
 import UNIV2PairAbi from './abi/uni_v2_lp.json'
@@ -33,6 +35,10 @@ export class Contracts {
     this.weth = new this.web3.eth.Contract(WETHAbi)
     this.lookup = new this.web3.eth.Contract(ChknLookupAbi)
     this.pointsPool = new this.web3.eth.Contract(ChknPointsPoolAbi)
+    this.stakeRewardPool = new this.web3.eth.Contract(ChknStakeRewardPoolAbi)
+    this.referralRewardPool = new this.web3.eth.Contract(
+      ChknReferralRewardPoolAbi,
+    )
 
     this.pools = supportedPools.map((pool) =>
       Object.assign(pool, {
@@ -59,6 +65,14 @@ export class Contracts {
     setProvider(this.weth, contractAddresses.weth[networkId])
     setProvider(this.lookup, contractAddresses.lookup[networkId])
     setProvider(this.pointsPool, contractAddresses.pointsPool[networkId])
+    setProvider(
+      this.stakeRewardPool,
+      contractAddresses.stakeRewardPool[networkId],
+    )
+    setProvider(
+      this.referralRewardPool,
+      contractAddresses.referralRewardPool[networkId],
+    )
 
     this.pools.forEach(
       ({ lpContract, lpAddress, tokenContract, tokenAddress }) => {
