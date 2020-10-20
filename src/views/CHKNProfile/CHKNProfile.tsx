@@ -413,6 +413,7 @@ const CHKNProfile = () => {
             e.stopPropagation()
             setStakeModalVisible(false)
           }}
+          isStake
           onCancel={() => setStakeModalVisible(false)}
           onBtnClick={async (amount: string) => {
             if (amount && !isNaN(Number(amount))) {
@@ -443,6 +444,7 @@ const CHKNProfile = () => {
             e.stopPropagation()
             setStakeModalVisible(false)
           }}
+          max={stakedValue}
           onCancel={() => setUnstakeModalVisible(false)}
           title="Unstake CHKN"
           onBtnClick={async (amount: string) => {
