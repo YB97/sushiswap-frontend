@@ -31,6 +31,7 @@ import {
 import useSushi from '../../hooks/useSushi'
 import useBlock from '../../hooks/useBlock'
 import StakeModal from '../../chknComponents/StakeModal'
+import { decToBn } from '../../utils'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -180,7 +181,7 @@ const CHKNMenu: FC = () => {
               const res = await stakeRewardContract.methods
                 .deposit(
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
-                  new BigNumber(amount),
+                  decToBn(Number(amount)),
                 )
                 .call()
 

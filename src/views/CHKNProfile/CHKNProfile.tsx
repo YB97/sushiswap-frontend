@@ -41,6 +41,7 @@ import useReferralRewards from '../../hooks/useReferralRewards'
 import useStakedRewards from '../../hooks/useStakedRewards'
 import { LangContext } from '../../contexts/Lang'
 import StakeModal from '../../chknComponents/StakeModal'
+import { decToBn } from '../../utils'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
@@ -401,7 +402,7 @@ const CHKNProfile = () => {
               const res = await stakeRewardContract.methods
                 .deposit(
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
-                  new BigNumber(amount),
+                  decToBn(Number(amount)),
                 )
                 .call()
 
@@ -421,7 +422,7 @@ const CHKNProfile = () => {
               const res = await stakeRewardContract.methods
                 .withdraw(
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
-                  new BigNumber(amount),
+                  decToBn(Number(amount)),
                 )
                 .call()
 
