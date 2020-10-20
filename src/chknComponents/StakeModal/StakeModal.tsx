@@ -12,6 +12,7 @@ import { getChknStakeRewardPool, getSushiContract } from '../../sushi/utils'
 import useSushi from '../../hooks/useSushi'
 import { BigNumber } from '../../sushi'
 import { bnToDec } from '../../utils'
+import useAllowance from '../../hooks/useAllowance'
 
 const StakeModal: any = ({
   onOverlayClick,
@@ -36,6 +37,7 @@ const StakeModal: any = ({
 
   const tokenStakeRewardPoolContract = getChknStakeRewardPool(chkn)
   const { onApprove } = useApprove(chknContract, tokenStakeRewardPoolContract)
+  const allowance = useAllowance(chknContract, tokenStakeRewardPoolContract)
   const tokenBalance = useTokenBalance(chknContract.options.address)
   const tokenBalanceDec = bnToDec(new BigNumber(tokenBalance))
   const maxDec = bnToDec(new BigNumber(max))
@@ -91,7 +93,11 @@ const StakeModal: any = ({
               <div style={{ marginLeft: '10px' }}>
                 <Button
                   shape="rect"
-                  onClick={approved ? handleClick : handleApprove}
+                  onClick={
+                    approved || !!allowance.toNumber()
+                      ? handleClick
+                      : handleApprove
+                  }
                   disabled={
                     !value ||
                     isNaN(Number(value)) ||
@@ -99,7 +105,7 @@ const StakeModal: any = ({
                       Number(isStake ? tokenBalanceDec.toString() : maxDec)
                   }
                 >
-                  {approved ? title : 'Approve'}
+                  {approved || !!allowance.toNumber() ? title : 'Approve'}
                 </Button>
               </div>
             </div>

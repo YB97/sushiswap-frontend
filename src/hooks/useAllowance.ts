@@ -9,11 +9,11 @@ import { Contract } from 'web3-eth-contract'
 import { getAllowance } from '../utils/erc20'
 import { getMasterChefContract } from '../sushi/utils'
 
-const useAllowance = (lpContract: Contract) => {
+const useAllowance = (lpContract: Contract, allowanceContract?: Contract) => {
   const [allowance, setAllowance] = useState(new BigNumber(0))
   const { account }: { account: string; ethereum: provider } = useWallet()
   const sushi = useSushi()
-  const masterChefContract = getMasterChefContract(sushi)
+  const masterChefContract = allowanceContract || getMasterChefContract(sushi)
 
   const fetchAllowance = useCallback(async () => {
     const allowance = await getAllowance(
@@ -30,6 +30,7 @@ const useAllowance = (lpContract: Contract) => {
     }
     let refreshInterval = setInterval(fetchAllowance, 10000)
     return () => clearInterval(refreshInterval)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, masterChefContract, lpContract])
 
   return allowance
