@@ -179,7 +179,9 @@ const CHKNProfile = () => {
                 </ProgressBar>
                 <ProgressNumber>
                   {milestone ? (
-                    `$${numberWithCommas(milestone)}`
+                    `$${numberWithCommas(
+                      (Number(milestone) * 0.65 * 0.75).toFixed(2),
+                    )}`
                   ) : (
                     <Spinner size="small" color="#a3abbf" />
                   )}
@@ -299,7 +301,9 @@ const CHKNProfile = () => {
                 </ProgressBar>
                 <ProgressNumber>
                   {stakeMilestone ? (
-                    `$${numberWithCommas(stakeMilestone)}`
+                    `$${numberWithCommas(
+                      (Number(stakeMilestone) * 0.1).toFixed(2),
+                    )}`
                   ) : (
                     <Spinner size="small" color="#a3abbf" />
                   )}
