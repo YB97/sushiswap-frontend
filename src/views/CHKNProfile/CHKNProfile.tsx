@@ -5,12 +5,10 @@ import { useWallet } from 'use-wallet'
 
 import Button from '../../chknComponents/Button'
 import Spinner from '../../chknComponents/Spinner'
-import usePoints from '../../hooks/usePoints'
 import useReferral from '../../hooks/useReferral'
 import useSushi from '../../hooks/useSushi'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import {
-  getChknReferralRewardPool,
   getChknStakeRewardPool,
   getSushiAddress,
   getSushiSupply,
@@ -49,7 +47,6 @@ const CHKNProfile = () => {
   const chknBalance = useTokenBalance(getSushiAddress(chkn))
   const { generate, getReferralLink, currentLink } = useReferral()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
-  const referralRewartContract = getChknReferralRewardPool(chkn)
 
   const { messages } = useContext(LangContext)
 
@@ -70,6 +67,9 @@ const CHKNProfile = () => {
     stakeMilestoneProgress,
     stakedReward,
     stakeUnclaimedReward,
+    stakePoints,
+    qualified,
+    totalQualifiedPoints,
     stakedClaim,
   } = useStakedRewards()
 
@@ -90,7 +90,6 @@ const CHKNProfile = () => {
           .call()
 
         setStakedValue(res)
-        // console.log('res', res)
       }
     }
 
@@ -243,7 +242,7 @@ const CHKNProfile = () => {
                     isCopied ? (
                       'Copied'
                     ) : (
-                      currentLink
+                      currentLink.slice(12)
                     )
                   ) : isGenerating ? (
                     <Spinner />
@@ -318,9 +317,13 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
-                {stakedReward && stakeMilestone ? (
+                {stakePoints && totalQualifiedPoints ? (
                   numberWithCommas(
-                    (Number(stakedReward) / Number(stakeMilestone)).toFixed(2),
+                    qualified
+                      ? (
+                          Number(stakePoints) / Number(totalQualifiedPoints)
+                        ).toFixed(2)
+                      : '0.00',
                   )
                 ) : (
                   <span style={{ marginRight: '5px' }}>
@@ -408,7 +411,6 @@ const CHKNProfile = () => {
       {stakeModalVisible && (
         <StakeModal
           onOverlayClick={(e) => {
-            console.log('hello')
             e.preventDefault()
             e.stopPropagation()
             setStakeModalVisible(false)
@@ -460,9 +462,9 @@ const CHKNProfile = () => {
                   return tx.transactionHash
                 })
 
-              setUnstakeModalVisible(false)
+              console.log('withdraw', res)
 
-              console.log('res', res)
+              setUnstakeModalVisible(false)
             }
           }}
         />

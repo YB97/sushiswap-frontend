@@ -11,6 +11,9 @@ const useStakedRewards = () => {
   const [stakeMilestoneProgress, setStakeMilestoneProgress] = useState<string>()
   const [stakedReward, setStakedReward] = useState<string>()
   const [stakeUnclaimedReward, setStakeUnclaimedReward] = useState<string>()
+  const [stakePoints, setStakePoints] = useState<string>()
+  const [qualified, setQualified] = useState<boolean>()
+  const [totalQualifiedPoints, setTotalQualifiedPoints] = useState<string>()
   const { account } = useWallet()
   const chkn = useSushi()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
@@ -49,8 +52,6 @@ const useStakedRewards = () => {
         .call()
       const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
 
-      console.log('vakye', value, res)
-
       setStakeUnclaimedReward(value)
     }
   }, [account, stakeRewardContract])
@@ -64,18 +65,63 @@ const useStakedRewards = () => {
     }
   }, [stakeRewardContract])
 
+  const getStakedPoints = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods.points(account).call()
+      const value = getBalanceNumber(new BigNumber(res)).toFixed(2)
+
+      setStakePoints(value)
+    }
+  }, [account, stakeRewardContract])
+
+  const getQualified = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods.qualified(account).call()
+      console.log('getQualified', res)
+
+      setQualified(res)
+    }
+  }, [account, stakeRewardContract])
+
+  const getTotalQualifiedPoints = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods
+        .totalQualifiedPoints()
+        .call()
+
+      const value = getBalanceNumber(new BigNumber(res)).toFixed(2)
+
+      console.log('getTotalQualifiedPoints', value)
+      setTotalQualifiedPoints(value)
+    }
+  }, [stakeRewardContract])
+
   useEffect(() => {
     getMilestone()
     getMilestoneProgress()
     getStakedReward()
     getUnclaimedReward()
-  }, [getMilestone, getMilestoneProgress, getStakedReward, getUnclaimedReward])
+    getStakedPoints()
+    getQualified()
+    getTotalQualifiedPoints()
+  }, [
+    getMilestone,
+    getMilestoneProgress,
+    getQualified,
+    getStakedPoints,
+    getStakedReward,
+    getTotalQualifiedPoints,
+    getUnclaimedReward,
+  ])
 
   return {
     stakeMilestone,
     stakeMilestoneProgress,
     stakedReward,
     stakeUnclaimedReward,
+    stakePoints,
+    qualified,
+    totalQualifiedPoints,
     stakedClaim,
   }
 }

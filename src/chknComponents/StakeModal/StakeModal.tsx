@@ -10,6 +10,8 @@ import circleLogo from '../../assets/img/chkn.svg'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import { getChknStakeRewardPool, getSushiContract } from '../../sushi/utils'
 import useSushi from '../../hooks/useSushi'
+import { BigNumber } from '../../sushi'
+import { bnToDec } from '../../utils'
 
 const StakeModal: any = ({
   onOverlayClick,
@@ -35,9 +37,8 @@ const StakeModal: any = ({
   const tokenStakeRewardPoolContract = getChknStakeRewardPool(chkn)
   const { onApprove } = useApprove(chknContract, tokenStakeRewardPoolContract)
   const tokenBalance = useTokenBalance(chknContract.options.address)
-
-  console.log('tokenBalance', tokenBalance.toString())
-  console.log('max', max)
+  const tokenBalanceDec = bnToDec(new BigNumber(tokenBalance))
+  const maxDec = bnToDec(new BigNumber(max))
 
   const handleApprove = useCallback(async () => {
     try {
@@ -71,7 +72,11 @@ const StakeModal: any = ({
                   <Button
                     shape="rect"
                     onClick={() =>
-                      setValue(isStake ? tokenBalance.toString() : max)
+                      setValue(
+                        isStake
+                          ? tokenBalanceDec.toString()
+                          : maxDec.toString(),
+                      )
                     }
                   >
                     MAX
@@ -91,7 +96,7 @@ const StakeModal: any = ({
                     !value ||
                     isNaN(Number(value)) ||
                     Number(value) >
-                      Number(isStake ? tokenBalance.toString() : max)
+                      Number(isStake ? tokenBalanceDec.toString() : maxDec)
                   }
                 >
                   {approved ? title : 'Approve'}
