@@ -85,10 +85,10 @@ export const contractAddresses = {
     1: '0x28236d58F07373e62996dC4b1667bDD3Fd2bc6C1',
   },
   stakeRewardPool: {
-    1: '0xD13A327e4Dfe044f879Ea5D9D3b0810EAdA9B2FA',
+    1: '0x5b80ED50b875b804698917F100b3324c8149BF17',
   },
   referralRewardPool: {
-    1: '0xD39cF6923d41d3b6a857a6eC15e7d2AcFEF13282',
+    1: '0x2Be25E3EDEf4b260B4A291C32067D1548aaA069E',
   },
 }
 

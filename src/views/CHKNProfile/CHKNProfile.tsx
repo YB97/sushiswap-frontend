@@ -396,6 +396,12 @@ const CHKNProfile = () => {
       )}
       {stakeModalVisible && (
         <StakeModal
+          onOverlayClick={(e) => {
+            console.log('hello')
+            e.preventDefault()
+            e.stopPropagation()
+            setStakeModalVisible(false)
+          }}
           onCancel={() => setStakeModalVisible(false)}
           onBtnClick={async (amount: string) => {
             if (amount && !isNaN(Number(amount))) {
@@ -420,6 +426,12 @@ const CHKNProfile = () => {
       )}
       {unstakeModalVisible && (
         <StakeModal
+          onOverlayClick={(e) => {
+            console.log('hello')
+            e.preventDefault()
+            e.stopPropagation()
+            setStakeModalVisible(false)
+          }}
           onCancel={() => setUnstakeModalVisible(false)}
           title="Unstake CHKN"
           onBtnClick={async (amount: string) => {
