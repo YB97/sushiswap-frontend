@@ -101,16 +101,43 @@ const CHKNMenu: FC = () => {
   }, new BigNumber(0))
 
   const rows = farms.map((farm, i) => {
+    const isDaiUsdt = farm.tokenSymbol === 'DAI-USDT'
+    const isChknUsdt = farm.tokenSymbol === 'CHKN-USDT'
+    const isChknUni = farm.tokenSymbol === 'CHKN-UNI'
+    const isChknSushi = farm.tokenSymbol === 'CHKN-SUSHI'
+
+    const hardcodedApy = isDaiUsdt
+      ? '9.49'
+      : isChknUsdt
+      ? '12.41'
+      : isChknUni
+      ? '8.72'
+      : isChknSushi
+      ? '10.93'
+      : null
+
+    const apy = stakedValue[i]
+      ? sushiPrice
+          .times(new BigNumber(rewards))
+          .times(BLOCKS_PER_YEAR)
+          .times(stakedValue[i].poolWeight)
+          .div(stakedValue[i].totalWethValue)
+          .div(poolWeightsSum)
+      : null
+
     return {
       ...farm,
       ...stakedValue[i],
+
       apy: stakedValue[i]
-        ? sushiPrice
-            .times(new BigNumber(rewards))
-            .times(BLOCKS_PER_YEAR)
-            .times(stakedValue[i].poolWeight)
-            .div(stakedValue[i].totalWethValue)
-            .div(poolWeightsSum)
+        ? hardcodedApy
+          ? new BigNumber(hardcodedApy)
+          : sushiPrice
+              .times(new BigNumber(rewards))
+              .times(BLOCKS_PER_YEAR)
+              .times(stakedValue[i].poolWeight)
+              .div(stakedValue[i].totalWethValue)
+              .div(poolWeightsSum)
         : null,
     }
   })
