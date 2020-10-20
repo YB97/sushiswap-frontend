@@ -206,7 +206,7 @@ const CHKNProfile = () => {
               <PoolPrice isBlackColor>
                 {referralQualified
                   ? (
-                      Number(referralPoints) /
+                      (Number(referralPoints) * 100) /
                       Number(totalQualifiedReferralPoints)
                     ).toFixed(2)
                   : '0.00'}
@@ -228,10 +228,15 @@ const CHKNProfile = () => {
             <SectionWrapper>
               <PoolPrice isBlackColor>
                 $
-                {referralReward !== undefined &&
-                !isNaN(Number(referralReward)) ? (
+                {referralPoints && totalQualifiedReferralPoints && milestone ? (
                   numberWithCommas(
-                    (Number(referralReward) * 0.65 * 0.75).toFixed(2),
+                    (
+                      (Number(referralPoints) /
+                        Number(totalQualifiedReferralPoints)) *
+                      Number(milestone) *
+                      0.65 *
+                      0.75
+                    ).toFixed(),
                   )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
@@ -330,7 +335,8 @@ const CHKNProfile = () => {
                   numberWithCommas(
                     qualified
                       ? (
-                          Number(stakePoints) / Number(totalQualifiedPoints)
+                          (Number(stakePoints) * 100) /
+                          Number(totalQualifiedPoints)
                         ).toFixed(2)
                       : '0.00',
                   )
@@ -346,8 +352,14 @@ const CHKNProfile = () => {
             <SectionWrapper>
               <PoolPrice isBlackColor>
                 $
-                {stakedReward ? (
-                  numberWithCommas(stakedReward)
+                {stakePoints && totalQualifiedPoints && stakeMilestone ? (
+                  numberWithCommas(
+                    (
+                      (Number(stakePoints) / Number(totalQualifiedPoints)) *
+                      Number(stakeMilestone) *
+                      0.1
+                    ).toFixed(2),
+                  )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#222A3F" />
