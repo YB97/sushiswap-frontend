@@ -399,6 +399,7 @@ const CHKNProfile = () => {
           onCancel={() => setStakeModalVisible(false)}
           onBtnClick={async (amount: string) => {
             if (amount && !isNaN(Number(amount))) {
+              console.log('amount', amount, decToBn(Number(amount)))
               const res = await stakeRewardContract.methods
                 .deposit(
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
