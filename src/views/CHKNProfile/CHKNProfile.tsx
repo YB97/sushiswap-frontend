@@ -11,6 +11,7 @@ import useTokenBalance from '../../hooks/useTokenBalance'
 import {
   getChknStakeRewardPool,
   getSushiAddress,
+  getSushiContract,
   getSushiSupply,
 } from '../../sushi/utils'
 import { getBalanceNumber, numberWithCommas } from '../../utils/formatBalance'
@@ -47,6 +48,7 @@ const CHKNProfile = () => {
   const chknBalance = useTokenBalance(getSushiAddress(chkn))
   const { generate, getReferralLink, currentLink } = useReferral()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
+  const chknContract = getSushiContract(chkn)
 
   const { messages } = useContext(LangContext)
 
@@ -86,21 +88,22 @@ const CHKNProfile = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [stakeModalVisible, setStakeModalVisible] = useState(false)
   const [unstakeModalVisible, setUnstakeModalVisible] = useState(false)
-  // const [stakedValue, setStakedValue] = useState()
+  const [balance, setBalance] = useState<string>()
 
-  // useEffect(() => {
-  //   const getStakeOf = async () => {
-  //     if (stakeRewardContract) {
-  //       const res = await stakeRewardContract.methods
-  //         .stakeOf(account, '0x297c338da24beecd4c412a3537650ac9010ea628')
-  //         .call()
+  useEffect(() => {
+    const getBalance = async () => {
+      if (chknContract) {
+        const res = await chknContract.methods
+          .balanceOf(stakeRewardContract.options.address)
+          .call()
+        const balanceChkn = getBalanceNumber(new BigNumber(res))
 
-  //       setStakedValue(res)
-  //     }
-  //   }
+        setBalance(balanceChkn.toFixed(3))
+      }
+    }
 
-  //   getStakeOf()
-  // }, [account, stakeRewardContract])
+    getBalance()
+  }, [chknContract, stakeRewardContract])
 
   useEffect(() => {
     if (account) {
@@ -288,10 +291,8 @@ const CHKNProfile = () => {
             <SectionWrapper>
               <LargeNumber>
                 {/* {false ? ( */}
-                {stakedValue ? (
-                  numberWithCommas(
-                    getBalanceNumber(new BigNumber(stakedValue)).toFixed(3),
-                  )
+                {balance ? (
+                  numberWithCommas(balance)
                 ) : (
                   <Spinner color="#407aeb" />
                 )}
