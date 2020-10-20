@@ -16,6 +16,11 @@ const useReferralRewards = () => {
   >()
   const [milestoneProgress, setMilestoneProgress] = useState<string>()
   const [totalReferralPoints, setTotalReferralPoints] = useState<string>()
+  const [
+    totalQualifiedReferralPoints,
+    setTotalQualifiedReferralPoints,
+  ] = useState<string>()
+  const [referralQualified, setReferralQualified] = useState<boolean>()
   const [isTotalLoading, setTotalLoading] = useState(false)
 
   const { account } = useWallet()
@@ -101,6 +106,28 @@ const useReferralRewards = () => {
     }
   }, [referralRewardContract])
 
+  const getReferralQualifiedTotal = useCallback(async () => {
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods
+        .totalQualifiedPoints()
+        .call()
+
+      const value = getBalanceNumber(new BigNumber(res)).toFixed(2)
+      console.log('getReferralQualifiedTotal', value)
+
+      setTotalQualifiedReferralPoints(value)
+    }
+  }, [referralRewardContract])
+
+  const getQualified = useCallback(async () => {
+    if (referralRewardContract) {
+      const res = await referralRewardContract.methods.qualified(account).call()
+      console.log('getQualified', res)
+
+      setReferralQualified(res)
+    }
+  }, [account, referralRewardContract])
+
   useEffect(() => {
     getInvitedNumber()
     getTotalReferralPoints()
@@ -109,12 +136,16 @@ const useReferralRewards = () => {
     getMilestoneProgress()
     getReferralReward()
     getInclaimedReward()
+    getReferralQualifiedTotal()
+    getQualified()
   }, [
     getInclaimedReward,
     getInvitedNumber,
     getMilestone,
     getMilestoneProgress,
+    getQualified,
     getReferralPoints,
+    getReferralQualifiedTotal,
     getReferralReward,
     getTotalReferralPoints,
   ])
@@ -128,6 +159,8 @@ const useReferralRewards = () => {
     milestoneProgress,
     referralReward,
     referralUnclaimedReward,
+    totalQualifiedReferralPoints,
+    referralQualified,
     referralClaim,
   }
 }

@@ -59,8 +59,17 @@ const CHKNProfile = () => {
     milestoneProgress,
     referralReward,
     referralUnclaimedReward,
+    referralQualified,
+    totalQualifiedReferralPoints,
     referralClaim,
   } = useReferralRewards()
+
+  console.log(
+    'referralQualified',
+    referralQualified,
+    totalQualifiedReferralPoints,
+    referralPoints,
+  )
 
   const {
     stakeMilestone,
@@ -195,12 +204,12 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice isBlackColor>
-                {!isNaN(Number(referralReward)) &&
-                  !isNaN(Number(milestone)) &&
-                  (
-                    (Number(referralReward) * 0.65 * 0.75) /
-                    Number(milestone)
-                  ).toFixed(2)}
+                {referralQualified
+                  ? (
+                      Number(referralPoints) /
+                      Number(totalQualifiedReferralPoints)
+                    ).toFixed(2)
+                  : '0.00'}
                 %
               </PoolPrice>
               <FlexBox alignItems="center" addMedia>
