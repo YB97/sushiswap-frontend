@@ -33,8 +33,6 @@ const StakeModal: any = ({
   }
   const chknContract = getSushiContract(chkn)
 
-  console.log('chknContract', chknContract)
-
   const tokenStakeRewardPoolContract = getChknStakeRewardPool(chkn)
   const { onApprove } = useApprove(chknContract, tokenStakeRewardPoolContract)
   const allowance = useAllowance(chknContract, tokenStakeRewardPoolContract)

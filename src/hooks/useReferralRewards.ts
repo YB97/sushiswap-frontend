@@ -100,7 +100,6 @@ const useReferralRewards = () => {
   const referralClaim = useCallback(async () => {
     if (referralRewardContract) {
       const res = await referralRewardContract.methods.claim().call()
-      console.log('referralClaim', res)
 
       setReferralReward(res)
     }
@@ -113,7 +112,6 @@ const useReferralRewards = () => {
         .call()
 
       const value = getBalanceNumber(new BigNumber(res)).toFixed(2)
-      console.log('getReferralQualifiedTotal', value)
 
       setTotalQualifiedReferralPoints(value)
     }
@@ -122,7 +120,6 @@ const useReferralRewards = () => {
   const getQualified = useCallback(async () => {
     if (referralRewardContract) {
       const res = await referralRewardContract.methods.qualified(account).call()
-      console.log('getQualified', res)
 
       setReferralQualified(res)
     }

@@ -57,29 +57,26 @@ const CHKNProfile = () => {
     isTotalLoading,
     milestone,
     milestoneProgress,
-    referralReward,
+    // referralReward,
     referralUnclaimedReward,
     referralQualified,
     totalQualifiedReferralPoints,
     referralClaim,
   } = useReferralRewards()
 
-  console.log(
-    'referralQualified',
-    referralQualified,
-    totalQualifiedReferralPoints,
-    referralPoints,
-  )
-
   const {
     stakeMilestone,
     stakeMilestoneProgress,
-    stakedReward,
+    // stakedReward,
+    stakedValue,
     stakeUnclaimedReward,
     stakePoints,
     qualified,
     totalQualifiedPoints,
     stakedClaim,
+    getStakeOf,
+    getStakedPoints,
+    getTotalQualifiedPoints,
   } = useStakedRewards()
 
   const [isCopied, setCopied] = useState<boolean>(false)
@@ -89,21 +86,21 @@ const CHKNProfile = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [stakeModalVisible, setStakeModalVisible] = useState(false)
   const [unstakeModalVisible, setUnstakeModalVisible] = useState(false)
-  const [stakedValue, setStakedValue] = useState()
+  // const [stakedValue, setStakedValue] = useState()
 
-  useEffect(() => {
-    const getStakeOf = async () => {
-      if (stakeRewardContract) {
-        const res = await stakeRewardContract.methods
-          .stakeOf(account, '0x297c338da24beecd4c412a3537650ac9010ea628')
-          .call()
+  // useEffect(() => {
+  //   const getStakeOf = async () => {
+  //     if (stakeRewardContract) {
+  //       const res = await stakeRewardContract.methods
+  //         .stakeOf(account, '0x297c338da24beecd4c412a3537650ac9010ea628')
+  //         .call()
 
-        setStakedValue(res)
-      }
-    }
+  //       setStakedValue(res)
+  //     }
+  //   }
 
-    getStakeOf()
-  }, [account, stakeRewardContract])
+  //   getStakeOf()
+  // }, [account, stakeRewardContract])
 
   useEffect(() => {
     if (account) {
@@ -236,7 +233,7 @@ const CHKNProfile = () => {
                       Number(milestone) *
                       0.65 *
                       0.75
-                    ).toFixed(),
+                    ).toFixed(2),
                   )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
@@ -452,6 +449,10 @@ const CHKNProfile = () => {
                   return tx.transactionHash
                 })
 
+              await getStakeOf()
+              await getStakedPoints()
+              await getTotalQualifiedPoints()
+
               setStakeModalVisible(false)
 
               console.log('res', res)
@@ -462,7 +463,6 @@ const CHKNProfile = () => {
       {unstakeModalVisible && (
         <StakeModal
           onOverlayClick={(e) => {
-            console.log('hello')
             e.preventDefault()
             e.stopPropagation()
             setStakeModalVisible(false)
@@ -482,6 +482,10 @@ const CHKNProfile = () => {
                   console.log(tx)
                   return tx.transactionHash
                 })
+
+              await getStakeOf()
+              await getStakedPoints()
+              await getTotalQualifiedPoints()
 
               console.log('withdraw', res)
 

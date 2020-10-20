@@ -14,6 +14,7 @@ const useStakedRewards = () => {
   const [stakePoints, setStakePoints] = useState<string>()
   const [qualified, setQualified] = useState<boolean>()
   const [totalQualifiedPoints, setTotalQualifiedPoints] = useState<string>()
+  const [stakedValue, setStakedValue] = useState<string>()
   const { account } = useWallet()
   const chkn = useSushi()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
@@ -59,7 +60,6 @@ const useStakedRewards = () => {
   const stakedClaim = useCallback(async () => {
     if (stakeRewardContract) {
       const res = await stakeRewardContract.methods.claim().call()
-      console.log('staked claim', res)
 
       setStakedReward(res)
     }
@@ -77,7 +77,6 @@ const useStakedRewards = () => {
   const getQualified = useCallback(async () => {
     if (stakeRewardContract) {
       const res = await stakeRewardContract.methods.qualified(account).call()
-      console.log('getQualified', res)
 
       setQualified(res)
     }
@@ -91,10 +90,19 @@ const useStakedRewards = () => {
 
       const value = getBalanceNumber(new BigNumber(res)).toFixed(2)
 
-      console.log('getTotalQualifiedPoints', value)
       setTotalQualifiedPoints(value)
     }
   }, [stakeRewardContract])
+
+  const getStakeOf = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods
+        .stakeOf(account, '0x297c338da24beecd4c412a3537650ac9010ea628')
+        .call()
+
+      setStakedValue(res)
+    }
+  }, [account, stakeRewardContract])
 
   useEffect(() => {
     getMilestone()
@@ -104,10 +112,12 @@ const useStakedRewards = () => {
     getStakedPoints()
     getQualified()
     getTotalQualifiedPoints()
+    getStakeOf()
   }, [
     getMilestone,
     getMilestoneProgress,
     getQualified,
+    getStakeOf,
     getStakedPoints,
     getStakedReward,
     getTotalQualifiedPoints,
@@ -122,7 +132,11 @@ const useStakedRewards = () => {
     stakePoints,
     qualified,
     totalQualifiedPoints,
+    stakedValue,
     stakedClaim,
+    getStakeOf,
+    getStakedPoints,
+    getTotalQualifiedPoints,
   }
 }
 
