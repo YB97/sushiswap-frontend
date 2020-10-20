@@ -62,7 +62,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         onClick={onBtnClick}
         disabled={isBtnDisabled}
       >
-        {isLoading ? <Spinner /> : messages.stake.buttons.select}
+        {isLoading ? <Spinner /> : btnText || messages.stake.buttons.select}
       </StyledBtn>
       {hasAddBtn && (
         <StyledAddBtn onClick={onAddBtnClick} disabled={isAddBtnDisabled}>
