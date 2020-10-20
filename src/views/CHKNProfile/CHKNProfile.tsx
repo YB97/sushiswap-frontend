@@ -404,7 +404,11 @@ const CHKNProfile = () => {
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
                   decToBn(Number(amount)),
                 )
-                .call()
+                .send({ from: account })
+                .on('transactionHash', (tx) => {
+                  console.log(tx)
+                  return tx.transactionHash
+                })
 
               setStakeModalVisible(false)
 
@@ -424,7 +428,11 @@ const CHKNProfile = () => {
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
                   decToBn(Number(amount)),
                 )
-                .call()
+                .send({ from: account })
+                .on('transactionHash', (tx) => {
+                  console.log(tx)
+                  return tx.transactionHash
+                })
 
               setUnstakeModalVisible(false)
 
