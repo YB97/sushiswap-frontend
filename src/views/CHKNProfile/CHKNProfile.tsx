@@ -181,7 +181,8 @@ const CHKNProfile = () => {
                     progress={`${
                       (milestoneProgress &&
                         milestone &&
-                        Number(milestoneProgress) / Number(milestone)) ||
+                        (Number(milestoneProgress) / Number(milestone)) *
+                          100) ||
                       0
                     }%`}
                   />
@@ -216,7 +217,7 @@ const CHKNProfile = () => {
                   {isTotalLoading || totalReferralPoints === undefined ? (
                     <Spinner size="small" color="#a3abbf" />
                   ) : (
-                    totalReferralPoints
+                    totalQualifiedReferralPoints
                   )}{' '}
                   {messages.profile.referral.points}
                 </SecondaryText>
@@ -301,7 +302,9 @@ const CHKNProfile = () => {
               <PoolPrice>
                 $
                 {stakeMilestoneProgress ? (
-                  numberWithCommas(stakeMilestoneProgress)
+                  numberWithCommas(
+                    (Number(stakeMilestoneProgress) * 0.1).toFixed(2),
+                  )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
