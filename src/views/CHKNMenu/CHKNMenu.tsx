@@ -23,9 +23,14 @@ import {
   UnlockButtonWrapper,
   StyledAdBanner,
 } from './styled'
-import { getMasterChefContract, getRewardsPerBlock } from '../../sushi/utils'
+import {
+  getChknStakeRewardPool,
+  getMasterChefContract,
+  getRewardsPerBlock,
+} from '../../sushi/utils'
 import useSushi from '../../hooks/useSushi'
 import useBlock from '../../hooks/useBlock'
+import StakeModal from '../../chknComponents/StakeModal'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -41,9 +46,11 @@ const CHKNMenu: FC = () => {
   const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
   const [isAddModalVisible, setAddModalVisible] = useState(false)
   const [showText, setShowText] = useState(true)
+  const [stakeModalVisible, setStakeModalVisible] = useState(false)
   const chkn = useSushi()
   const block = useBlock()
   const masterChefContract = getMasterChefContract(chkn)
+  const stakeRewardContract = getChknStakeRewardPool(chkn)
 
   useEffect(() => {
     async function fetchRewords() {
@@ -152,8 +159,9 @@ const CHKNMenu: FC = () => {
         </CardList>
         <StyledAdBanner
           onClick={() => {
-            setShowText(false)
-            setAddModalVisible(true)
+            // setShowText(false)
+            setStakeModalVisible(true)
+            // setAddModalVisible(true)
           }}
         />
       </Main>
@@ -162,6 +170,25 @@ const CHKNMenu: FC = () => {
           onOverlayClick={() => setAddModalVisible(false)}
           onBtnClick={() => setAddModalVisible(false)}
           showText={showText}
+        />
+      )}
+      {stakeModalVisible && (
+        <StakeModal
+          onCancel={() => setStakeModalVisible(false)}
+          onBtnClick={async (amount: string) => {
+            if (amount && !isNaN(Number(amount))) {
+              const res = await stakeRewardContract.methods
+                .deposit(
+                  '0x297c338da24beecd4c412a3537650ac9010ea628',
+                  new BigNumber(amount),
+                )
+                .call()
+
+              setStakeModalVisible(false)
+
+              console.log('res', res)
+            }
+          }}
         />
       )}
     </Container>

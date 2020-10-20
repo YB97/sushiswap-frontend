@@ -40,6 +40,7 @@ import AddModal from '../../chknComponents/AddModal'
 import useReferralRewards from '../../hooks/useReferralRewards'
 import useStakedRewards from '../../hooks/useStakedRewards'
 import { LangContext } from '../../contexts/Lang'
+import StakeModal from '../../chknComponents/StakeModal'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
@@ -74,6 +75,24 @@ const CHKNProfile = () => {
   const [stackRewardPrc, setStackRewardPrc] = useState<number>()
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const [modalVisible, setModalVisible] = useState(false)
+  const [stakeModalVisible, setStakeModalVisible] = useState(false)
+  const [unstakeModalVisible, setUnstakeModalVisible] = useState(false)
+  const [stakedValue, setStakedValue] = useState()
+
+  useEffect(() => {
+    const getStakeOf = async () => {
+      if (stakeRewardContract) {
+        const res = await stakeRewardContract.methods
+          .stakeOf(account, '0x297c338da24beecd4c412a3537650ac9010ea628')
+          .call()
+
+        setStakedValue(res)
+        // console.log('res', res)
+      }
+    }
+
+    getStakeOf()
+  }, [account, stakeRewardContract])
 
   useEffect(() => {
     if (account) {
@@ -229,7 +248,8 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
               <Text>
-                ${(Number(milestoneProgress) * 0.65 * 0.75).toFixed(2)} USDT{' '}
+                $0.00 USDT{' '}
+                {/* ${(Number(milestoneProgress) * 0.65 * 0.75).toFixed(2)} USDT{' '} */}
                 {messages.profile.referral.unlocked}
               </Text>
               <FlexBox margin="5px 0 0 0">
@@ -249,8 +269,10 @@ const CHKNProfile = () => {
             <SectionWrapper>
               <LargeNumber>
                 {/* {false ? ( */}
-                {totalSupply ? (
-                  numberWithCommas(getBalanceNumber(totalSupply).toFixed(3))
+                {stakedValue ? (
+                  numberWithCommas(
+                    getBalanceNumber(new BigNumber(stakedValue)).toFixed(3),
+                  )
                 ) : (
                   <Spinner color="#407aeb" />
                 )}
@@ -323,13 +345,18 @@ const CHKNProfile = () => {
                     shape="rect"
                     theme="primary"
                     height="60px"
-                    onClick={() => setModalVisible(true)}
+                    onClick={() => setStakeModalVisible(true)}
                   >
                     {messages.profile.buttons.stake}
                   </Button>
                 </StakeButton>
                 <UnstakeButton>
-                  <Button shape="rect" theme="light-red" height="60px">
+                  <Button
+                    shape="rect"
+                    theme="light-red"
+                    height="60px"
+                    onClick={() => setUnstakeModalVisible(true)}
+                  >
                     {messages.profile.buttons.unstake}
                   </Button>
                 </UnstakeButton>
@@ -337,9 +364,9 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
               <Text>
-                $
-                {milestoneProgress &&
-                  (Number(milestoneProgress) * 0.1).toFixed(2)}{' '}
+                $0.00{' '}
+                {/* {milestoneProgress &&
+                  (Number(milestoneProgress) * 0.1).toFixed(2)}{' '} */}
                 USDT {messages.profile.stake.unlocked}
               </Text>
               <FlexBox margin="5px 0 0 0">
@@ -361,6 +388,45 @@ const CHKNProfile = () => {
           onOverlayClick={() => setModalVisible(false)}
           onBtnClick={() => setModalVisible(false)}
           showText={false}
+        />
+      )}
+      {stakeModalVisible && (
+        <StakeModal
+          onCancel={() => setStakeModalVisible(false)}
+          onBtnClick={async (amount: string) => {
+            if (amount && !isNaN(Number(amount))) {
+              const res = await stakeRewardContract.methods
+                .deposit(
+                  '0x297c338da24beecd4c412a3537650ac9010ea628',
+                  new BigNumber(amount),
+                )
+                .call()
+
+              setStakeModalVisible(false)
+
+              console.log('res', res)
+            }
+          }}
+        />
+      )}
+      {unstakeModalVisible && (
+        <StakeModal
+          onCancel={() => setUnstakeModalVisible(false)}
+          title="Unstake CHKN"
+          onBtnClick={async (amount: string) => {
+            if (amount && !isNaN(Number(amount))) {
+              const res = await stakeRewardContract.methods
+                .withdraw(
+                  '0x297c338da24beecd4c412a3537650ac9010ea628',
+                  new BigNumber(amount),
+                )
+                .call()
+
+              setUnstakeModalVisible(false)
+
+              console.log('res', res)
+            }
+          }}
         />
       )}
     </Wrapper>
