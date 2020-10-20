@@ -181,7 +181,7 @@ const CHKNMenu: FC = () => {
               const res = await stakeRewardContract.methods
                 .deposit(
                   '0x297c338da24beecd4c412a3537650ac9010ea628',
-                  decToBn(Number(amount)),
+                  decToBn(Number(amount)).toString(),
                 )
                 .send({ from: account })
                 .on('transactionHash', (tx) => {
