@@ -10,6 +10,7 @@ const useStakedRewards = () => {
   const [stakeMilestone, setStakeMilestone] = useState<string>()
   const [stakeMilestoneProgress, setStakeMilestoneProgress] = useState<string>()
   const [stakedReward, setStakedReward] = useState<string>()
+  const [stakeUnclaimedReward, setStakeUnclaimedReward] = useState<string>()
   const { account } = useWallet()
   const chkn = useSushi()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
@@ -41,6 +42,19 @@ const useStakedRewards = () => {
     }
   }, [account, stakeRewardContract])
 
+  const getUnclaimedReward = useCallback(async () => {
+    if (stakeRewardContract) {
+      const res = await stakeRewardContract.methods
+        .unclaimedReward(account)
+        .call()
+      const value = getBalanceNumber(new BigNumber(res), 6).toFixed(2)
+
+      console.log('vakye', value, res)
+
+      setStakeUnclaimedReward(value)
+    }
+  }, [account, stakeRewardContract])
+
   const stakedClaim = useCallback(async () => {
     if (stakeRewardContract) {
       const res = await stakeRewardContract.methods.claim().call()
@@ -54,9 +68,16 @@ const useStakedRewards = () => {
     getMilestone()
     getMilestoneProgress()
     getStakedReward()
-  }, [getMilestone, getMilestoneProgress, getStakedReward])
+    getUnclaimedReward()
+  }, [getMilestone, getMilestoneProgress, getStakedReward, getUnclaimedReward])
 
-  return { stakeMilestone, stakeMilestoneProgress, stakedReward, stakedClaim }
+  return {
+    stakeMilestone,
+    stakeMilestoneProgress,
+    stakedReward,
+    stakeUnclaimedReward,
+    stakedClaim,
+  }
 }
 
 export default useStakedRewards

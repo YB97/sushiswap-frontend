@@ -61,6 +61,7 @@ const CHKNProfile = () => {
     milestone,
     milestoneProgress,
     referralReward,
+    referralUnclaimedReward,
     referralClaim,
   } = useReferralRewards()
 
@@ -68,6 +69,7 @@ const CHKNProfile = () => {
     stakeMilestone,
     stakeMilestoneProgress,
     stakedReward,
+    stakeUnclaimedReward,
     stakedClaim,
   } = useStakedRewards()
 
@@ -159,7 +161,9 @@ const CHKNProfile = () => {
                 $
                 {milestoneProgress !== undefined &&
                 !isNaN(Number(milestoneProgress)) ? (
-                  numberWithCommas(Number(milestoneProgress).toFixed(2))
+                  numberWithCommas(
+                    (Number(milestoneProgress) * 0.65 * 0.75).toFixed(2),
+                  )
                 ) : (
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
@@ -251,7 +255,8 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
               <Text>
-                $0.00 USDT{' '}
+                {/* $0.00 USDT{' '} */}$
+                {Number(referralUnclaimedReward).toFixed(2)} USDT{' '}
                 {/* ${(Number(milestoneProgress) * 0.65 * 0.75).toFixed(2)} USDT{' '} */}
                 {messages.profile.referral.unlocked}
               </Text>
@@ -372,7 +377,9 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <FlexBox margin="40px 0 0 0" flexDirection="column">
               <Text>
-                $0.00{' '}
+                {/* $0.00{' '} */}
+                {stakeUnclaimedReward &&
+                  Number(stakeUnclaimedReward).toFixed(2)}{' '}
                 {/* {milestoneProgress &&
                   (Number(milestoneProgress) * 0.1).toFixed(2)}{' '} */}
                 USDT {messages.profile.stake.unlocked}

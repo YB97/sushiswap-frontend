@@ -18,7 +18,7 @@ const StakeModal: any = ({
   title = 'Stake CHKN',
 }) => {
   const { ethereum } = useWallet()
-  const [value, setValue] = useState()
+  const [value, setValue] = useState('')
   const [approved, setApproved] = useState(false)
   const handlePopupClick = (e) => {
     e.preventDefault()

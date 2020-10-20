@@ -99,7 +99,10 @@ const Home = () => {
             <StyledWrapper>
               <img src={PlaneEmpty} alt="referral" />
               <AdPlaneBanner
-                price={milestone && numberWithCommas(milestone).slice(0, -3)}
+                price={
+                  milestone &&
+                  numberWithCommas((Number(milestone) * 0.65 * 0.75).toFixed())
+                }
                 progress={`${Number(milestoneProgress) / Number(milestone)}%`}
               />
             </StyledWrapper>

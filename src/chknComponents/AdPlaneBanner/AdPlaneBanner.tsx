@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const AdPlaneBanner: React.FC<IProps> = ({
-  price = '500,000',
+  price = '243,750',
   progress = '0%',
 }) => {
   return (
