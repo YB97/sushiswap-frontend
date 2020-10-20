@@ -336,7 +336,10 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <Text>
-                {numberWithCommas(getBalanceNumber(chknBalance).toFixed(3))}{' '}
+                {stakedValue &&
+                  numberWithCommas(
+                    getBalanceNumber(new BigNumber(stakedValue)).toFixed(3),
+                  )}{' '}
                 CHKN staked
               </Text>
               <FlexBox margin="5px 0 0 0" addMedia>
