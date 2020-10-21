@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const AdPlaneBanner: React.FC<IProps> = ({
-  price = '243,750',
+  price = 'Locked',
   progress = '0%',
 }) => {
   return (
@@ -23,7 +23,9 @@ const AdPlaneBanner: React.FC<IProps> = ({
         <AdPlaneBannerText>
           <span>REFERRAL</span>BONUS POOL
         </AdPlaneBannerText>
-        <AdPlaneBannerPrice>${price}</AdPlaneBannerPrice>
+        <AdPlaneBannerPrice>
+          {price === 'Locked' ? price : `$${price}`}
+        </AdPlaneBannerPrice>
       </AdPlaneBannerHeader>
       <AdPlaneBannerProgressBar isLock={false}>
         <AdPlaneBannerProgressBarActive progress={progress} />

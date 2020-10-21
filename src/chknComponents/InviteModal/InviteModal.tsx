@@ -28,10 +28,11 @@ import Spinner from '../Spinner'
 import { LangContext } from '../../contexts/Lang'
 
 interface InviteModalProps {
+  price?: string
   onIsOpenChange?: () => void
 }
 
-const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
+const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange, price }) => {
   const { messages } = useContext(LangContext)
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isPromo, setIsPromo] = useState(false)
@@ -39,6 +40,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
   const sushi = useSushi()
   const lookup = getChknLookupContract(sushi)
   const { generate, getReferralLink, currentLink } = useReferral()
+
   // const lookupContract = getChknLookupContract(sushi)
 
   useEffect(() => {
@@ -109,12 +111,8 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
               </div>
             </StyledPopupHeaderImage>
             <StyledPopupHeaderContent>
-              <h3>
-                {messages.modal.referral.title}
-              </h3>
-              <p>
-                {messages.modal.referral.subtitle}
-              </p>
+              <h3>{messages.modal.referral.title}</h3>
+              <p>{messages.modal.referral.subtitle}</p>
               <span>{messages.modal.referral.refTitle}</span>
               <CopyToClipboard text={currentLink || ''}>
                 <StyledPopupClickBoard
@@ -142,21 +140,13 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
                 <p>
                   <b>{messages.modal.referral.rules}</b>
                 </p>
-                <p>
-                  - {messages.modal.referral.paragraph1}
-                </p>
-                <p>
-                  - {messages.modal.referral.paragraph2}
-                </p>
-                <p>
-                  - {messages.modal.referral.paragraph3}
-                </p>
+                <p>- {messages.modal.referral.paragraph1}</p>
+                <p>- {messages.modal.referral.paragraph2}</p>
+                <p>- {messages.modal.referral.paragraph3}</p>
                 <p>
                   - {messages.modal.referral.paragraph4}
                   <br />
-                  <b>
-                  {messages.modal.referral.paragraph5}
-                  </b>
+                  <b>{messages.modal.referral.paragraph5}</b>
                 </p>
               </StyledPopupContentWrapper>
               <StyledPopupFooter>
@@ -165,14 +155,16 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange }) => {
                 </StyledPopupFooterButtonWrapper>
                 <StyledPopupFooterTextWrapper>
                   <span>{messages.modal.referral.poolSize}:</span>
-                  <h2>$25,000</h2>
+                  <h2>${price || '25,000'}</h2>
                 </StyledPopupFooterTextWrapper>
               </StyledPopupFooter>
             </>
           )}
           {isPromo && (
             <StyledPopupContentWrapper>
-              <StyledRulesHeader>{messages.modal.referral.rules}</StyledRulesHeader>
+              <StyledRulesHeader>
+                {messages.modal.referral.rules}
+              </StyledRulesHeader>
               <StyledRulesText>
                 {messages.system_update_modal.week_text}
               </StyledRulesText>

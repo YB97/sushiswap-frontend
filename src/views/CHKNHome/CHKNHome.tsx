@@ -34,6 +34,7 @@ import PlaneRefferBonus from '../../assets/img/plane-referral-bonus-25000.png'
 import PlaneEmpty from '../../assets/img/plane-empty.png'
 import AdPlaneBanner from '../../chknComponents/AdPlaneBanner'
 import useReferralRewards from '../../hooks/useReferralRewards'
+import useStakedRewards from '../../hooks/useStakedRewards'
 // import AdPlaneBanner from '../../chknComponents/AdPlaneBanner'
 
 const Home = () => {
@@ -46,6 +47,7 @@ const Home = () => {
   const block = useBlock()
   const { milestone, milestoneProgress } = useReferralRewards()
   const { messages } = useContext(LangContext)
+  const { stakeMilestone, stakeMilestoneProgress } = useStakedRewards()
 
   const sushiBalance = useTokenBalance(getSushiAddress(chkn))
   const masterChefContract = getMasterChefContract(chkn)
@@ -101,9 +103,20 @@ const Home = () => {
               <AdPlaneBanner
                 price={
                   milestone &&
-                  numberWithCommas((Number(milestone) * 0.65 * 0.75).toFixed())
+                  stakeMilestone &&
+                  numberWithCommas(
+                    (
+                      Number(milestone) * 0.65 * 0.75 +
+                      Number(stakeMilestone) * 0.1
+                    ).toFixed(),
+                  )
                 }
-                progress={`${Number(milestoneProgress) / Number(milestone)}%`}
+                progress={`${
+                  (Number(milestoneProgress) * 0.65 * 0.75 +
+                    Number(stakeMilestoneProgress) * 0.1) /
+                  (Number(milestone) * 0.65 * 0.75 +
+                    Number(stakeMilestone) * 0.1)
+                }%`}
               />
             </StyledWrapper>
           </StyledImg>
@@ -155,7 +168,15 @@ const Home = () => {
       </Container>
 
       {account && isOpenInviteModal && (
-        <InviteModal onIsOpenChange={onToggleInviteModal} />
+        <InviteModal
+          onIsOpenChange={onToggleInviteModal}
+          price={numberWithCommas(
+            (
+              Number(milestone) * 0.65 * 0.75 +
+              Number(stakeMilestone) * 0.1
+            ).toFixed(2),
+          )}
+        />
       )}
     </>
   )
