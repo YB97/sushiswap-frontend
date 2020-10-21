@@ -96,11 +96,11 @@ export const PoolPrice = styled.span<{ isBlackColor?: boolean }>`
   white-space: nowrap;
   text-overflow: ellipsis;
   font-weight: bold;
-  font-size: 38px;
+  font-size: 28px;
   line-height: 45px;
   color: ${({ isBlackColor }) => (isBlackColor ? '#222A3F' : '#407aeb')};
   @media (max-width: ${XL}) {
-    font-size: 32px;
+    font-size: 26px;
     line-height: 40px;
   } ;
 `
