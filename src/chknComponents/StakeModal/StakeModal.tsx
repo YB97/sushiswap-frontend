@@ -13,6 +13,7 @@ import useSushi from '../../hooks/useSushi'
 import { BigNumber } from '../../sushi'
 import { bnToDec } from '../../utils'
 import useAllowance from '../../hooks/useAllowance'
+import ModalConfirm from '../ModalConfirm'
 
 const StakeModal: any = ({
   onOverlayClick,
@@ -25,6 +26,8 @@ const StakeModal: any = ({
 }) => {
   const [value, setValue] = useState('')
   const [approved, setApproved] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
   const chkn = useSushi()
   const handlePopupClick = (e) => {
     e.preventDefault()
@@ -42,6 +45,7 @@ const StakeModal: any = ({
 
   const handleApprove = useCallback(async () => {
     try {
+      setLoading(true)
       const txHash = await onApprove()
       setApproved(true)
       // user rejected tx or didn't go thru
@@ -50,10 +54,31 @@ const StakeModal: any = ({
       }
     } catch (e) {
       console.log(e)
+    } finally {
+      setLoading(false)
     }
   }, [onApprove])
 
-  const handleClick = () => onBtnClick(value)
+  const handleClick = async () => {
+    setLoading(true)
+
+    try {
+      await onBtnClick(value)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+  const handleAction = () => {
+    if (!isStake) {
+      setShowConfirm(true)
+
+      return
+    }
+
+    handleClick()
+  }
 
   return (
     <StyledOverlay onClick={onOverlayClick}>
@@ -93,15 +118,23 @@ const StakeModal: any = ({
                   shape="rect"
                   onClick={
                     approved || !!allowance.toNumber()
-                      ? handleClick
+                      ? handleAction
                       : handleApprove
                   }
+                  // old - onClick={
+                  //   approved || !!allowance.toNumber()
+                  //     ? handleClick
+                  //     : handleApprove
+                  // }
+
                   disabled={
                     !value ||
                     isNaN(Number(value)) ||
                     Number(value) >
                       Number(isStake ? tokenBalanceDec.toString() : maxDec)
                   }
+                  loading={loading}
+                  minWidth="130px"
                 >
                   {approved || !!allowance.toNumber() ? title : 'Approve'}
                 </Button>
@@ -110,6 +143,19 @@ const StakeModal: any = ({
           </StyledWrapper>
         </StyledPopup>
       </StyledBg>
+      {showConfirm && (
+        <ModalConfirm
+          onOverlayClick={() => setShowConfirm(false)}
+          onCancel={() => {
+            setShowConfirm(false)
+            onCancel()
+          }}
+          title="Are you sure?"
+          text="You are missing out on up to $500,000 in rewards"
+          onConfirm={handleClick}
+          confirmBtnText="Unstake"
+        />
+      )}
     </StyledOverlay>
   )
 }

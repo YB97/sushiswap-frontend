@@ -30,22 +30,25 @@ export const StyledText = styled.div`
   margin-bottom: 40px;
 `
 
-export const StyledBg = styled(StyledPopupWrapper)`
+export const StyledBg = styled(StyledPopupWrapper)<{
+  maxWidth?: string
+  minHeight?: string
+}>`
   background-size: contain;
   background-repeat: no-repeat;
   /* bottom: 0; */
   background-position: bottom;
   background-image: url(${Bg});
-  min-height: 550px;
+  min-height: ${({ minHeight }) => minHeight || '550px'};
   @media (min-width: ${SM}) {
-    max-width: 862px;
-    min-height: 550px;
+    max-width: ${({ maxWidth }) => maxWidth || '862px'};
+    min-height: ${({ minHeight }) => minHeight || '550px'};
     width: 85%;
   }
 
   @media (min-width: ${LG}) {
-    max-width: 862px;
-    min-height: 550px;
+    max-width: ${({ maxWidth }) => maxWidth || '862px'};
+    min-height: ${({ minHeight }) => minHeight || '550px'};
     width: 50%;
   }
 `

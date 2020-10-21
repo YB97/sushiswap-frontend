@@ -51,6 +51,8 @@ export const StyledNavLink = styled(NavLink).attrs({
   ${link}
 `
 
-export const StyledLink = styled.a`
+export const StyledLink = styled.a<{ fontSize?: string; margin?: string }>`
   ${link}
+  ${({ fontSize }) => fontSize && `font-size: ${fontSize}`}
+  ${({ margin }) => margin && `margin: ${margin}`}
 `

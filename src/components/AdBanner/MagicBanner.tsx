@@ -29,9 +29,9 @@ const AdBanner = ({ onClick }) => {
             <StyledAdBannerButton theme="yellow" shape="rect" onClick={onClick}>
               {messages.stake.banner.button}
             </StyledAdBannerButton>
-            <AdBannerButtonSuffix>
+            {/* <AdBannerButtonSuffix>
               <span>0 CHKN</span> {messages.stake.banner.stacked}
-            </AdBannerButtonSuffix>
+            </AdBannerButtonSuffix> */}
           </StyledAdBannerButtonWrapper>
         </StyledAdBannerContent>
         {/* <img src="../../assets/img/ad-banner-img.png" alt=""/> */}

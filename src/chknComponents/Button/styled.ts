@@ -11,7 +11,11 @@ import {
 import styled, { css } from 'styled-components'
 import { darken, lighten, rgba } from 'polished'
 
-export const StyledButton = styled.button<{ shape: string; height?: string }>`
+export const StyledButton = styled.button<{
+  shape: string
+  height?: string
+  minWidth?: string
+}>`
   font-family: ${FONT_POPPINS};
   font-weight: 600;
   font-size: 15px;
@@ -47,6 +51,21 @@ export const StyledButton = styled.button<{ shape: string; height?: string }>`
     width: 22px;
   }
 
+  ${(props) =>
+    props.minWidth &&
+    css`
+      min-width: ${props.minWidth};
+    `}
+
+  ${(props) =>
+    props.theme === 'blue' &&
+    css`
+      background-color: ${BLUE};
+      color: white;
+      &:hover {
+        background-color: ${darken(0.1, BLUE)};
+      }
+    `}
   ${(props) =>
     props.theme === 'blue' &&
     css`

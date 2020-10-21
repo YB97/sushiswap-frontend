@@ -33,6 +33,8 @@ import {
   InviteLink,
   StakeButton,
   UnstakeButton,
+  StyledIcon,
+  TextWrapper,
 } from './styled'
 import UnlockWallet from '../../chknComponents/UnlockWallet'
 import AddModal from '../../chknComponents/AddModal'
@@ -41,6 +43,9 @@ import useStakedRewards from '../../hooks/useStakedRewards'
 import { LangContext } from '../../contexts/Lang'
 import StakeModal from '../../chknComponents/StakeModal'
 import { decToBn } from '../../utils'
+import ModalConfirm from '../../chknComponents/ModalConfirm'
+import { StyledLink } from '../../chknComponents/MenuItem/styled'
+import Icon from '../../chknComponents/Icon'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
@@ -89,6 +94,11 @@ const CHKNProfile = () => {
   const [stakeModalVisible, setStakeModalVisible] = useState(false)
   const [unstakeModalVisible, setUnstakeModalVisible] = useState(false)
   const [balance, setBalance] = useState<string>()
+  const [showModalConfirm, setShowModalConfirm] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     const getBalance = async () => {
@@ -166,7 +176,8 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice>
-                $
+                Unlock Progress
+                {/* $
                 {milestoneProgress !== undefined &&
                 !isNaN(Number(milestoneProgress)) ? (
                   numberWithCommas(
@@ -176,7 +187,7 @@ const CHKNProfile = () => {
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
                   </span>
-                )}
+                )} */}
               </PoolPrice>
               <FlexBox alignItems="center">
                 <ProgressBar isLock={false}>
@@ -279,7 +290,12 @@ const CHKNProfile = () => {
                   shape="rect"
                   theme="green"
                   height="60px"
-                  onClick={referralClaim}
+                  onClick={
+                    Number(referralUnclaimedReward) === 0
+                      ? () => setShowModalConfirm(true)
+                      : referralClaim
+                  }
+                  // onClick={referralClaim}
                 >
                   {messages.profile.buttons.collect}
                 </Button>
@@ -297,11 +313,24 @@ const CHKNProfile = () => {
                   <Spinner color="#407aeb" />
                 )}
               </LargeNumber>
-              <Text>{messages.profile.stake.currentPool}</Text>
+              <TextWrapper>
+                <Text>{messages.profile.stake.currentPool}</Text>
+                <StyledLink
+                  fontSize="18px !important"
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  margin="10px 0"
+                >
+                  <StyledIcon iconName="share" /> View on Etherscan
+                </StyledLink>
+              </TextWrapper>
             </SectionWrapper>
+
             <SectionWrapper>
               <PoolPrice>
-                $
+                Unlock Progress
+                {/* $
                 {stakeMilestoneProgress ? (
                   numberWithCommas(
                     (Number(stakeMilestoneProgress) * 0.1).toFixed(2),
@@ -310,7 +339,7 @@ const CHKNProfile = () => {
                   <span style={{ marginLeft: '5px' }}>
                     <Spinner color="#407aeb" />
                   </span>
-                )}
+                )} */}
               </PoolPrice>
               <FlexBox alignItems="center">
                 <ProgressBar isLock={false}>
@@ -414,7 +443,11 @@ const CHKNProfile = () => {
                   shape="rect"
                   theme="green"
                   height="60px"
-                  onClick={stakedClaim}
+                  onClick={
+                    Number(stakeUnclaimedReward) === 0
+                      ? () => setShowModalConfirm(true)
+                      : stakedClaim
+                  }
                 >
                   {messages.profile.buttons.collect}
                 </Button>
@@ -496,6 +529,16 @@ const CHKNProfile = () => {
               setUnstakeModalVisible(false)
             }
           }}
+        />
+      )}
+      {showModalConfirm && (
+        <ModalConfirm
+          title="Wait for the Reward Pool to Unlock"
+          text="Keep inviting more people to stake liquidity on the farm so that the Reward Pool unlocks faster."
+          showOnlyConfirmBtn
+          onCancel={() => setShowModalConfirm(false)}
+          onOverlayClick={() => setShowModalConfirm(false)}
+          onConfirm={() => setShowModalConfirm(false)}
         />
       )}
     </Wrapper>

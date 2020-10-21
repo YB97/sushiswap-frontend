@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import OpenLockPng from '../../assets/img/lock.svg'
-import { LG, MD, SM, XL } from '../../styledVars'
+import Icon from '../../chknComponents/Icon'
+import { GRAY, LG, MD, SM, XL } from '../../styledVars'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -250,4 +251,17 @@ export const UnstakeButton = styled.div`
     margin-left: 0;
     margin-top: 10px;
   } ;
+`
+
+export const StyledIcon = styled(Icon)`
+  height: 15px;
+  width: 15px;
+  fill: ${GRAY};
+  margin-right: 5px;
+`
+
+export const TextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

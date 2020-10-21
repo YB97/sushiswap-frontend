@@ -188,7 +188,8 @@ const CHKNMenu: FC = () => {
         <StyledAdBanner
           onClick={() => {
             // setShowText(false)
-            setStakeModalVisible(true)
+            history.push('/profile')
+            // setStakeModalVisible(true)
             // setAddModalVisible(true)
           }}
         />

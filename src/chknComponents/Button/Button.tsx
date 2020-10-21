@@ -1,4 +1,5 @@
 import React from 'react'
+import Spinner from '../Spinner'
 import { StyledButton } from './styled'
 
 interface ButtonProps {
@@ -19,6 +20,7 @@ interface ButtonProps {
     | 'green'
     | 'light-red'
   size?: 'normal' | 'small'
+  minWidth?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -35,11 +37,12 @@ const Button: React.FC<ButtonProps> = ({
       shape={props.shape}
       height={height}
       theme={theme}
+      minWidth={props.minWidth}
       className={className}
       onClick={props.onClick}
       disabled={disabled}
     >
-      {loading ? 'loading...' : props.children}
+      {loading ? <Spinner color="#fff" /> : props.children}
     </StyledButton>
   )
 }
