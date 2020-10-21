@@ -37,7 +37,7 @@ const useReferral = () => {
         res ===
         '0x0000000000000000000000000000000000000000000000000000000000000000'
           ? undefined
-          : 'https://www.exchange.chkn.farm/#/pool?referrer=' +
+          : 'https://www.exchange.chkn.farm/#/@' +
             res.slice(2).replace(/0*$/, '')
     }
 
