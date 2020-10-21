@@ -175,7 +175,7 @@ const CHKNProfile = () => {
               <Text>{messages.profile.referral.invited}</Text>
             </SectionWrapper>
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice fontSize="28px">
                 Unlock Progress
                 {/* $
                 {milestoneProgress !== undefined &&
@@ -328,7 +328,7 @@ const CHKNProfile = () => {
             </SectionWrapper>
 
             <SectionWrapper>
-              <PoolPrice>
+              <PoolPrice fontSize="28px">
                 Unlock Progress
                 {/* $
                 {stakeMilestoneProgress ? (

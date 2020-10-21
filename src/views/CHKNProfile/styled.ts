@@ -91,16 +91,19 @@ export const Text = styled.div`
   } ;
 `
 
-export const PoolPrice = styled.span<{ isBlackColor?: boolean }>`
+export const PoolPrice = styled.span<{
+  isBlackColor?: boolean
+  fontSize?: string
+}>`
   display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-weight: bold;
-  font-size: 28px;
+  font-size: ${({ fontSize }) => fontSize || '38px'};
   line-height: 45px;
   color: ${({ isBlackColor }) => (isBlackColor ? '#222A3F' : '#407aeb')};
   @media (max-width: ${XL}) {
-    font-size: 26px;
+    font-size: ${({ fontSize }) => fontSize || '32px'};
     line-height: 40px;
   } ;
 `
