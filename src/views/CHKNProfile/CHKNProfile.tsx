@@ -317,7 +317,7 @@ const CHKNProfile = () => {
                 <Text>{messages.profile.stake.currentPool}</Text>
                 <StyledLink
                   fontSize="18px !important"
-                  href={`https://etherscan.io/address/0x297c338da24beecd4c412a3537650ac9010ea628`}
+                  href={`https://etherscan.io/address/0x5b80ED50b875b804698917F100b3324c8149BF17`}
                   target="_blank"
                   rel="noopener noreferrer"
                   margin="10px 0"
