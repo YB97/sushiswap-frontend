@@ -89,6 +89,7 @@ export const StyledSpan = styled.span<{ active?: boolean }>`
 export const StyledAuditContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: -10px;
 `
 export const StyledAuditText = styled.span`
   font-size: 12px;
