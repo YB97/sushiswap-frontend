@@ -85,3 +85,14 @@ export const StyledSpan = styled.span<{ active?: boolean }>`
     color: ${RED};
   }
 `
+
+export const StyledAuditContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+export const StyledAuditText = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 6px;
+  margin-left: 15px;
+`

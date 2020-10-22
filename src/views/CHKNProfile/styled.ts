@@ -268,3 +268,26 @@ export const TextWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+
+export const ReloadWrapper = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #407aeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  margin-left: 10px;
+`
+
+export const ReloadIcon = styled(Icon)`
+  fill: white;
+  width: 17px;
+  height: 17px;
+`
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`

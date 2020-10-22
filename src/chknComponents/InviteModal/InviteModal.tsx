@@ -123,7 +123,7 @@ const InviteModal: React.FC<InviteModalProps> = ({ onIsOpenChange, price }) => {
                     isCopied ? (
                       'Copied'
                     ) : (
-                      currentLink
+                      currentLink.slice(12)
                     )
                   ) : isGenerating ? (
                     <Spinner />

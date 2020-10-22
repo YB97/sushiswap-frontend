@@ -35,6 +35,9 @@ import {
   UnstakeButton,
   StyledIcon,
   TextWrapper,
+  ReloadIcon,
+  ReloadWrapper,
+  FlexWrapper,
 } from './styled'
 import UnlockWallet from '../../chknComponents/UnlockWallet'
 import AddModal from '../../chknComponents/AddModal'
@@ -176,7 +179,12 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice fontSize="28px">
+                {/* <FlexWrapper>
+                  <ReloadWrapper>
+                    <ReloadIcon iconName="reload" />
+                  </ReloadWrapper> */}
                 Unlock Progress
+                {/* </FlexWrapper> */}
                 {/* $
                 {milestoneProgress !== undefined &&
                 !isNaN(Number(milestoneProgress)) ? (
@@ -195,9 +203,12 @@ const CHKNProfile = () => {
                     progress={`${
                       (milestoneProgress &&
                         milestone &&
-                        (Number(milestoneProgress) / Number(milestone)) *
-                          100) ||
-                      0
+                        (Number(milestoneProgress) / Number(milestone)) * 100) >
+                      6
+                        ? milestoneProgress &&
+                          milestone &&
+                          (Number(milestoneProgress) / Number(milestone)) * 100
+                        : 0
                     }%`}
                   />
                 </ProgressBar>

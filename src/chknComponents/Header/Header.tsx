@@ -11,10 +11,13 @@ import {
   StyledLangSelect,
   StyledAccountButton,
   StyledSpan,
+  StyledAuditContainer,
+  StyledAuditText,
 } from './styled'
 import Container from '../../chknComponents/Container'
 import AccountButton from './components/AccountButton'
 import { LangContext } from '../../contexts/Lang'
+import BeosinLogo from '../../assets/img/beosin.png'
 import LangSelect from '../LangSelect'
 
 interface HeaderProps {
@@ -42,6 +45,7 @@ const Header: React.FC<HeaderProps> = ({ menuItems }) => {
     <Container>
       <StyledNav>
         <Logo iconName="logo-header" />
+
         <StyledMenuWrapper>
           <StyledList>{renderNavLinks()}</StyledList>
           <StyledAccountButton>
@@ -79,6 +83,10 @@ const Header: React.FC<HeaderProps> = ({ menuItems }) => {
           CN
         </StyledSpan>
       </StyledLangSelect>
+      <StyledAuditContainer>
+        <StyledAuditText>audited by</StyledAuditText>
+        <img src={BeosinLogo} width={90} alt="beosin" />
+      </StyledAuditContainer>
     </Container>
   )
 }
