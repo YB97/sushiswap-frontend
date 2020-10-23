@@ -100,7 +100,9 @@ const CHKNProfile = () => {
     getTotalQualifiedPoints,
   } = useStakedRewards()
 
-  const { holdingValue } = useWeathAssessor()
+  const { holdingValue, maxPair } = useWeathAssessor()
+
+  console.log('holdingValue', holdingValue)
 
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -197,10 +199,14 @@ const CHKNProfile = () => {
     try {
       setReloading(true)
 
+      console.log('maxPair', maxPair)
+      // '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
+      // '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+
       const res = await convertBuffer(
         rewardPoolTokenBuffer,
-        '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
-        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+        maxPair.token0,
+        maxPair.token1,
       )
         .send({ from: account })
         .on('transactionHash', (tx) => {
