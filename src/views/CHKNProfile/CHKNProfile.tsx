@@ -69,14 +69,18 @@ const CHKNProfile = () => {
 
   const {
     points: referralPoints,
+    getReferralPoints,
     invitedNum,
     totalReferralPoints,
+    getTotalReferralPoints,
     isTotalLoading,
     milestone,
     milestoneProgress,
     // referralReward,
     referralUnclaimedReward,
+    getInclaimedReward,
     referralQualified,
+    getReferralQualifiedTotal,
     totalQualifiedReferralPoints,
     referralClaim,
   } = useReferralRewards()
@@ -108,6 +112,7 @@ const CHKNProfile = () => {
   const [balance, setBalance] = useState<string>()
   const [showModalConfirm, setShowModalConfirm] = useState(false)
   const [totalProgress, setTotalProgress] = useState(0)
+  const [reloading, setReloading] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -189,18 +194,31 @@ const CHKNProfile = () => {
     isNaN(Number(holdingValue)) || Number(holdingValue) < 500
 
   const onReloadClick = async () => {
-    const res = await convertBuffer(
-      rewardPoolTokenBuffer,
-      '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    )
-      .send({ from: account })
-      .on('transactionHash', (tx) => {
-        console.log(tx)
-        return tx.transactionHash
-      })
+    try {
+      setReloading(true)
 
-    console.log('onReloadClick', res)
+      const res = await convertBuffer(
+        rewardPoolTokenBuffer,
+        '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
+        '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+      )
+        .send({ from: account })
+        .on('transactionHash', (tx) => {
+          console.log(tx)
+          return tx.transactionHash
+        })
+
+      getTotalReferralPoints?.()
+      getReferralPoints?.()
+      getReferralQualifiedTotal?.()
+      getInclaimedReward?.()
+
+      console.log('onReloadClick', res)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setReloading(false)
+    }
   }
 
   return (
@@ -220,7 +238,11 @@ const CHKNProfile = () => {
                     disabled={isReloadDisabled}
                     onClick={!isReloadDisabled ? onReloadClick : () => {}}
                   >
-                    <ReloadIcon iconName="reload" />
+                    {reloading ? (
+                      <Spinner size="small" color="#fff" />
+                    ) : (
+                      <ReloadIcon iconName="reload" />
+                    )}
                   </ReloadWrapper>
                   Unlock Progress
                 </FlexWrapper>
@@ -596,15 +618,15 @@ const CHKNProfile = () => {
           margin="0 0 450px 0"
           steps={[
             { active: totalProgress > 295000, label: '$295K' },
-            { active: totalProgress > 480000, label: '$480K' },
-            { active: totalProgress > 800000, label: '$800K' },
+            { active: totalProgress > 500000, label: '$500K' },
+            { active: totalProgress > 840000, label: '$840K' },
             { active: totalProgress > 1600000, label: '$1.6M' },
-            { active: totalProgress > 4500000, label: '$4.5M' },
-            { active: totalProgress > 8500000, label: '$8.5M' },
-            { active: totalProgress > 15800000, label: '$15.8M' },
-            { active: totalProgress > 31500000, label: '$31.5M' },
-            { active: totalProgress > 92400000, label: '$92.4M' },
-            { active: totalProgress > 159500000, label: '$159.5M' },
+            { active: totalProgress > 4800000, label: '$4.8M' },
+            { active: totalProgress > 8200000, label: '$8.2M' },
+            { active: totalProgress > 16500000, label: '$16.5M' },
+            { active: totalProgress > 33000000, label: '$33M' },
+            { active: totalProgress > 95000000, label: '$95M' },
+            { active: totalProgress > 214000000, label: '$214M' },
           ]}
         />
       </PaperWrapper>

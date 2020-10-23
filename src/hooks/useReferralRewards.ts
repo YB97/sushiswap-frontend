@@ -158,7 +158,11 @@ const useReferralRewards = () => {
     referralUnclaimedReward,
     totalQualifiedReferralPoints,
     referralQualified,
+    getReferralQualifiedTotal,
     referralClaim,
+    getTotalReferralPoints,
+    getReferralPoints,
+    getInclaimedReward,
   }
 }
 

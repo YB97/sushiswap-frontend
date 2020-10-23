@@ -1,5 +1,5 @@
 import { darken } from 'polished'
-import { RED, GRAY, FONT_POPPINS, XL } from './../../styledVars'
+import { RED, GRAY, FONT_POPPINS, XL, MD } from './../../styledVars'
 import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
@@ -9,10 +9,13 @@ export const StyledListItem = styled.li`
     margin-left: 0;
   }
 
-  @media (max-width: $md) {
+  @media (max-width: ${MD}) {
     margin-left: 15px;
     &:first-child {
       margin-left: 0;
+    }
+    &:last-child {
+      margin: 0;
     }
   }
 `

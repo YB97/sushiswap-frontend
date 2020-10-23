@@ -302,8 +302,8 @@ export const ReloadWrapper = styled.div<{ disabled?: boolean }>`
 
 export const ReloadIcon = styled(Icon)`
   fill: white;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 `
 
 export const FlexWrapper = styled.div`

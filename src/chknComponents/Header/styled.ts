@@ -28,6 +28,9 @@ export const StyledList = styled.ul`
   margin-right: 30px;
   @media (max-width: ${MD}) {
     margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 30px;
   }
 `
 
@@ -90,10 +93,18 @@ export const StyledAuditContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: -10px;
+  @media (max-width: ${MD}) {
+    margin-top: 20px;
+    justify-content: center;
+  }
 `
 export const StyledAuditText = styled.span`
   font-size: 12px;
   font-weight: 500;
   margin-right: 6px;
   margin-left: 15px;
+  @media (max-width: ${MD}) {
+    margin-right: 6px;
+    margin-left: 0;
+  }
 `
