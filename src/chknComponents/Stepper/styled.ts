@@ -3,7 +3,7 @@ import check from '../../assets/img/check.svg'
 
 export const Line = styled.div`
   height: 4px;
-  background-color: #e5f7fb;
+  background-color: #fff;
   box-sizing: border-box;
   margin: 0 20px;
 `

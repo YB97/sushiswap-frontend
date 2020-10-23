@@ -593,7 +593,7 @@ const CHKNProfile = () => {
       )}
       <PaperWrapper marginTop="30px">
         <Stepper
-          margin="0 0 350px 0"
+          margin="0 0 450px 0"
           steps={[
             { active: totalProgress > 295000, label: '$295K' },
             { active: totalProgress > 480000, label: '$480K' },
