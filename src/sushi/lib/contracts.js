@@ -7,6 +7,8 @@ import ChknLookupAbi from './abi/ReferralAddressLookup.json'
 import ChknPointsPoolAbi from './abi/pointspool.json'
 import ChknStakeRewardPoolAbi from './abi/tokenStakeRewardPool.json'
 import ChknReferralRewardPoolAbi from './abi/referralRewardPool.json'
+import ChknRewardPoolTokenBufferAbi from './abi/rewardPoolTokenBuffer.json'
+import ChknWealthAssessorAbi from './abi/wealthAssessor.json'
 // import SushiAbi from './abi/sushi.json'
 // import UNIV2PairAbi from './abi/uniswap_v2_router.json'
 import UNIV2PairAbi from './abi/uni_v2_lp.json'
@@ -39,6 +41,10 @@ export class Contracts {
     this.referralRewardPool = new this.web3.eth.Contract(
       ChknReferralRewardPoolAbi,
     )
+    this.rewardPoolTokenBuffer = new this.web3.eth.Contract(
+      ChknRewardPoolTokenBufferAbi,
+    )
+    this.wealthAssessor = new this.web3.eth.Contract(ChknWealthAssessorAbi)
 
     this.pools = supportedPools.map((pool) =>
       Object.assign(pool, {
@@ -72,6 +78,14 @@ export class Contracts {
     setProvider(
       this.referralRewardPool,
       contractAddresses.referralRewardPool[networkId],
+    )
+    setProvider(
+      this.rewardPoolTokenBuffer,
+      contractAddresses.rewardPoolTokenBuffer[networkId],
+    )
+    setProvider(
+      this.wealthAssessor,
+      contractAddresses.wealthAssessor[networkId],
     )
 
     this.pools.forEach(

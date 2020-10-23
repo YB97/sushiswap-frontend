@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import OpenLockPng from '../../assets/img/lock.svg'
 import Icon from '../../chknComponents/Icon'
 import { GRAY, LG, MD, SM, XL } from '../../styledVars'
+import { darken } from 'polished'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -269,7 +270,7 @@ export const TextWrapper = styled.div`
   justify-content: space-between;
 `
 
-export const ReloadWrapper = styled.div`
+export const ReloadWrapper = styled.div<{ disabled?: boolean }>`
   width: 30px;
   height: 30px;
   border-radius: 15px;
@@ -279,6 +280,22 @@ export const ReloadWrapper = styled.div`
   justify-content: center;
   margin-right: 10px;
   margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+
+  &:hover {
+    background-color: ${darken(0.1, '#407aeb')};
+  }
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+    background-color: ${GRAY};
+    cursor: not-allowed;
+    &:hover {
+      background-color: ${GRAY};
+    }
+  `}
 `
 
 export const ReloadIcon = styled(Icon)`

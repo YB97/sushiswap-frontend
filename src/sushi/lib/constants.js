@@ -90,6 +90,12 @@ export const contractAddresses = {
   referralRewardPool: {
     1: '0x2Be25E3EDEf4b260B4A291C32067D1548aaA069E',
   },
+  rewardPoolTokenBuffer: {
+    1: '0x810236118cAEF30b10E01dAd5A015e5cc0A63A6f',
+  },
+  wealthAssessor: {
+    1: '0x09beaee77742AFF4C9839B5D3EFae43A48C8F3a9',
+  },
 }
 
 /*

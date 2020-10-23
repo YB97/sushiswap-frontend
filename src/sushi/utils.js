@@ -46,6 +46,24 @@ export const getChknReferralRewardPool = (chkn) => {
   return chkn && chkn.contracts && chkn.contracts.referralRewardPool
 }
 
+export const getChknRewardPoolTokenBuffer = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.rewardPoolTokenBuffer
+}
+
+export const getChknWealthAssessor = (chkn) => {
+  return chkn && chkn.contracts && chkn.contracts.wealthAssessor
+}
+
+export const convertBuffer = (bufferContract, token0, token1) => {
+  if (bufferContract) {
+    const result = bufferContract.methods.convert(token0, token1)
+
+    console.log('convertBuffer', result)
+
+    return result
+  }
+}
+
 export const getRewardsPerBlock = async (masterChefContract, block) => {
   if (masterChefContract) {
     const perBlock = await masterChefContract.methods.chickenPerBlock().call()

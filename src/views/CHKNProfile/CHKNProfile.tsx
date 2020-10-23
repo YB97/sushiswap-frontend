@@ -9,7 +9,10 @@ import useReferral from '../../hooks/useReferral'
 import useSushi from '../../hooks/useSushi'
 import useTokenBalance from '../../hooks/useTokenBalance'
 import {
+  convertBuffer,
+  getChknRewardPoolTokenBuffer,
   getChknStakeRewardPool,
+  getChknWealthAssessor,
   getSushiAddress,
   getSushiContract,
   getSushiSupply,
@@ -49,6 +52,7 @@ import { decToBn } from '../../utils'
 import ModalConfirm from '../../chknComponents/ModalConfirm'
 import { StyledLink } from '../../chknComponents/MenuItem/styled'
 import Icon from '../../chknComponents/Icon'
+import useWeathAssessor from '../../hooks/useWeathAssessor'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
@@ -57,6 +61,11 @@ const CHKNProfile = () => {
   const { generate, getReferralLink, currentLink } = useReferral()
   const stakeRewardContract = getChknStakeRewardPool(chkn)
   const chknContract = getSushiContract(chkn)
+  const wealthAssessorContract = getChknWealthAssessor(chkn)
+  const rewardPoolTokenBuffer = getChknRewardPoolTokenBuffer(chkn)
+
+  console.log('rewardPoolTokenBuffer', rewardPoolTokenBuffer)
+  console.log('wealthAssessorContract', wealthAssessorContract)
 
   const { messages } = useContext(LangContext)
 
@@ -88,6 +97,8 @@ const CHKNProfile = () => {
     getStakedPoints,
     getTotalQualifiedPoints,
   } = useStakedRewards()
+
+  const { holdingValue } = useWeathAssessor()
 
   const [isCopied, setCopied] = useState<boolean>(false)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -167,6 +178,24 @@ const CHKNProfile = () => {
     }, 3000)
   }
 
+  const isReloadDisabled =
+    isNaN(Number(holdingValue)) || Number(holdingValue) < 500
+
+  const onReloadClick = async () => {
+    const res = await convertBuffer(
+      rewardPoolTokenBuffer,
+      '0x297C338Da24BeEcD4C412a3537650AC9010ea628',
+      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    )
+      .send({ from: account })
+      .on('transactionHash', (tx) => {
+        console.log(tx)
+        return tx.transactionHash
+      })
+
+    console.log('onReloadClick', res)
+  }
+
   return (
     <Wrapper>
       <PaperWrapper>
@@ -179,12 +208,15 @@ const CHKNProfile = () => {
             </SectionWrapper>
             <SectionWrapper>
               <PoolPrice fontSize="28px">
-                {/* <FlexWrapper>
-                  <ReloadWrapper>
+                <FlexWrapper>
+                  <ReloadWrapper
+                    disabled={isReloadDisabled}
+                    onClick={!isReloadDisabled ? onReloadClick : () => {}}
+                  >
                     <ReloadIcon iconName="reload" />
-                  </ReloadWrapper> */}
-                Unlock Progress
-                {/* </FlexWrapper> */}
+                  </ReloadWrapper>
+                  Unlock Progress
+                </FlexWrapper>
                 {/* $
                 {milestoneProgress !== undefined &&
                 !isNaN(Number(milestoneProgress)) ? (
