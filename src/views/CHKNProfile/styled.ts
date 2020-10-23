@@ -6,12 +6,14 @@ import { darken } from 'polished'
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 `
-export const PaperWrapper = styled.div`
-  margin-top: 80px;
+export const PaperWrapper = styled.div<{ marginTop?: string }>`
+  margin-top: ${({ marginTop }) => marginTop || '80px'};
   width: 70%;
-  margin-bottom: 350px;
+  margin-bottom: 20px;
   /* height: 974px; */
 
   @media (max-width: ${XL}) {

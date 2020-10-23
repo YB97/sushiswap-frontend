@@ -53,6 +53,7 @@ import ModalConfirm from '../../chknComponents/ModalConfirm'
 import { StyledLink } from '../../chknComponents/MenuItem/styled'
 import Icon from '../../chknComponents/Icon'
 import useWeathAssessor from '../../hooks/useWeathAssessor'
+import Stepper from '../../chknComponents/Stepper'
 
 const CHKNProfile = () => {
   const { account } = useWallet()
@@ -63,9 +64,6 @@ const CHKNProfile = () => {
   const chknContract = getSushiContract(chkn)
   const wealthAssessorContract = getChknWealthAssessor(chkn)
   const rewardPoolTokenBuffer = getChknRewardPoolTokenBuffer(chkn)
-
-  console.log('rewardPoolTokenBuffer', rewardPoolTokenBuffer)
-  console.log('wealthAssessorContract', wealthAssessorContract)
 
   const { messages } = useContext(LangContext)
 
@@ -109,6 +107,7 @@ const CHKNProfile = () => {
   const [unstakeModalVisible, setUnstakeModalVisible] = useState(false)
   const [balance, setBalance] = useState<string>()
   const [showModalConfirm, setShowModalConfirm] = useState(false)
+  const [totalProgress, setTotalProgress] = useState(0)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -154,6 +153,14 @@ const CHKNProfile = () => {
 
     setStackRewardPrc(num)
   }, [chknBalance, totalSupply])
+
+  useEffect(() => {
+    const comProgress =
+      (Number(milestoneProgress) || 0) * 0.65 * 0.75 +
+      (Number(stakeMilestoneProgress) || 0) * 0.1
+
+    setTotalProgress(comProgress || 0)
+  }, [milestoneProgress, stakeMilestoneProgress])
 
   if (!account) {
     return <UnlockWallet />
@@ -584,6 +591,23 @@ const CHKNProfile = () => {
           onConfirm={() => setShowModalConfirm(false)}
         />
       )}
+      <PaperWrapper marginTop="30px">
+        <Stepper
+          margin="0 0 350px 0"
+          steps={[
+            { active: totalProgress > 295000, label: '$295K' },
+            { active: totalProgress > 480000, label: '$480K' },
+            { active: totalProgress > 800000, label: '$800K' },
+            { active: totalProgress > 1600000, label: '$1.6M' },
+            { active: totalProgress > 4500000, label: '$4.5M' },
+            { active: totalProgress > 8500000, label: '$8.5M' },
+            { active: totalProgress > 15800000, label: '$15.8M' },
+            { active: totalProgress > 31500000, label: '$31.5M' },
+            { active: totalProgress > 92400000, label: '$92.4M' },
+            { active: totalProgress > 159500000, label: '$159.5M' },
+          ]}
+        />
+      </PaperWrapper>
     </Wrapper>
   )
 }
